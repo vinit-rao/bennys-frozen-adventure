@@ -10,7 +10,7 @@ public class BennyScript : MonoBehaviour
     public float bennny_x;
     public float benny_z;
     [SerializeField] float tileSize = 2;
-    public float timeSpacer = 0.2f;
+    public float timeStepper = .2f;
     public float ticker = 0f;
     public bool isHoldingKey = false;
     void Start()
@@ -33,7 +33,7 @@ public class BennyScript : MonoBehaviour
             isHoldingKey = false;
         }
 
-        if (isHoldingKey && ticker >= timeSpacer)
+        if (isHoldingKey && ticker >= timeStepper) // cont. press to cont. move
 
         {
             if (Input.GetKey(KeyCode.UpArrow))
@@ -62,6 +62,11 @@ public class BennyScript : MonoBehaviour
                 benny_z = benny.transform.position.z;
             }
             ticker = 0f;
+        }
+
+        if (!isHoldingKey) // instant move w single press
+        {
+            ticker = timeStepper;
         }
     }
 }
