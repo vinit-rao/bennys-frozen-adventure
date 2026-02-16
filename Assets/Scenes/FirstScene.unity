@@ -349,7 +349,7 @@ MonoBehaviour:
   bennny_x: 0
   benny_z: 0
   tileSize: 2
-  timeSpacer: 0.2
+  timeStepper: 0.2
   ticker: 0
   isHoldingKey: 0
 --- !u!1 &580406017

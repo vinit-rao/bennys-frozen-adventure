@@ -24,7 +24,7 @@ public class BennyScript : MonoBehaviour
     void Update()
     {
         ticker += Time.deltaTime;
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             isHoldingKey = true;
         }
@@ -36,26 +36,26 @@ public class BennyScript : MonoBehaviour
         if (isHoldingKey && ticker >= timeStepper) // cont. press to cont. move
 
         {
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
                 benny.transform.position = new Vector3(bennny_x, 1, benny_z + tileSize);
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
                 benny.transform.position = new Vector3(bennny_x, 1, benny_z - tileSize);
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
                 benny.transform.position = new Vector3(bennny_x - tileSize, 1, benny_z);
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
                 benny.transform.position = new Vector3(bennny_x + tileSize, 1, benny_z);
                 bennny_x = benny.transform.position.x;
