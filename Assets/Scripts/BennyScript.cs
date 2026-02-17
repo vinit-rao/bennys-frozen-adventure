@@ -13,6 +13,11 @@ public class BennyScript : MonoBehaviour
     public float timeStepper = .2f;
     public float ticker = 0f;
     public bool isHoldingKey = false;
+
+    public float benny_rotation = 0f;
+    public float CooldownTime = 0.5f;
+    private float _nextAllowedInputTime;
+
     void Start()
     {
         benny = GameObject.FindWithTag("Player");
@@ -68,5 +73,24 @@ public class BennyScript : MonoBehaviour
         {
             ticker = timeStepper;
         }
+
+        if (Time.time >= _nextAllowedInputTime)
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                benny_rotation -= 90f;
+                benny.transform.Rotate(0f, benny_rotation, 0f);
+                _nextAllowedInputTime = Time.time + CooldownTime;
+                benny_rotation = 0f;
+            }
+            if (Input.GetKey(KeyCode.E))
+            {
+                benny_rotation += 90f;
+                benny.transform.Rotate(0f, benny_rotation, 0f);
+                _nextAllowedInputTime = Time.time + CooldownTime;
+                benny_rotation = 0f;
+            }
+        }
+        
     }
 }
