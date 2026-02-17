@@ -15,7 +15,7 @@ public class BennyScript : MonoBehaviour
     public bool isHoldingKey = false;
 
     public float benny_rotation = 0f;
-    public float CooldownTime = 0.5f;
+    public float CooldownTime;
     private float _nextAllowedInputTime;
 
     void Start()

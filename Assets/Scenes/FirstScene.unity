@@ -438,6 +438,8 @@ MonoBehaviour:
   timeStepper: 0.15
   ticker: 0
   isHoldingKey: 0
+  benny_rotation: 0
+  CooldownTime: 0.25
 --- !u!1 &387482418
 GameObject:
   m_ObjectHideFlags: 0
