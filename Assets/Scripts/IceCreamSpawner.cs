@@ -8,12 +8,41 @@ public class IceCreamSpawner : MonoBehaviour
     public GameObject scoopTwo;
     public GameObject scoopThree;
 
+    float timer = 0f;
+
+    public float minSpawnX = 4f;
+    public float maxSpawnX = -4f;
+    public float minSpawnZ = 4f;
+    public float maxSpawnZ = -4f;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        int chance = Random.Range(1, 101);
+        int randomSpawnX = Mathf.RoundToInt(Random.Range(minSpawnX, maxSpawnX));
+        int randomSpawnZ = Mathf.RoundToInt(Random.Range(minSpawnZ, maxSpawnZ));
+
+        timer += Time.deltaTime;
+
+        if (timer >= 3f)
         {
-            Vector3 randomSpawnPosition = new Vector3(Random.Range(-10, 11), 5, Random.Range(-10, 11));
-            Instantiate(scoopOne, randomSpawnPosition, Quaternion.identity);
+            if (chance <= 33)
+            {
+                Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
+                Instantiate(scoopOne, randomPosition, Quaternion.identity);
+                timer = 0f;
+            }
+            else if (chance <= 66)
+            {
+                Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
+                Instantiate(scoopTwo, randomPosition, Quaternion.identity);
+                timer = 0f;
+            }
+            else
+            {
+                Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
+                Instantiate(scoopThree, randomPosition, Quaternion.identity);
+                timer = 0f;
+            }
         }
     }
 }
