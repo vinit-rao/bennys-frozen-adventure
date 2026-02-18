@@ -434,13 +434,10 @@ MonoBehaviour:
   benny: {fileID: 0}
   bennny_x: 0
   benny_z: 0
-<<<<<<< Updated upstream
   tileSize: 1
   timeStepper: 0.15
-=======
   tileSize: 2
   timeStepper: 0.2
->>>>>>> Stashed changes
   ticker: 0
   isHoldingKey: 0
   benny_rotation: 0
