@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class BennyScript : MonoBehaviour
 {
-    // set up a tile based movement system for the player character, using the arrow keys to move up, down, left, and right. The player should only be able to move one tile at a time, and should not be able to move through walls or other obstacles.
-    // Start is called before the first frame update
+    // Benny movements
     public GameObject benny;
     public float bennny_x;
     public float benny_z;
     [SerializeField] float tileSize = 2;
-    public float timeStepper = .2f;
+    public float timeStepper = .2f; // benny move ticker for holding down arrow keys
     public float ticker = 0f;
     public bool isHoldingKey = false;
 
@@ -25,7 +24,6 @@ public class BennyScript : MonoBehaviour
         benny_z = benny.transform.position.z;
     }
 
-    // Update is called once per frame
     void Update()
     {
         ticker += Time.deltaTime;
@@ -38,7 +36,7 @@ public class BennyScript : MonoBehaviour
             isHoldingKey = false;
         }
 
-        if (isHoldingKey && ticker >= timeStepper) // cont. press to cont. move
+        if (isHoldingKey && ticker >= timeStepper) // hold down arrows to move continously
 
         {
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
