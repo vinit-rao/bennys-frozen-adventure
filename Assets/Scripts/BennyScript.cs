@@ -17,7 +17,7 @@ public class BennyScript : MonoBehaviour
     public float benny_rotation = 1;
     public float CooldownTime;
     private float _nextAllowedInputTime;
-    private bool alreadyTurned;
+    private bool holdingSpace;
 
     //vectors
 
@@ -51,6 +51,15 @@ public class BennyScript : MonoBehaviour
             isHoldingKey = false;
         }
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            holdingSpace = true;
+        }
+        else
+        {
+            holdingSpace = false;
+        }
+
         if (isHoldingKey && ticker >= timeStepper) // cont. press to cont. move
 
         {
@@ -73,7 +82,6 @@ public class BennyScript : MonoBehaviour
                 }
 
                 benny.transform.position = new Vector3(benny_x, 1, benny_z);
-                alreadyTurned = false;
             }
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
@@ -93,12 +101,11 @@ public class BennyScript : MonoBehaviour
                         break;
                 }
                 benny.transform.position = new Vector3(benny_x, 1, benny_z);
-                alreadyTurned = false;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
-                if (!alreadyTurned)
+                if (holdingSpace)
                 {
                     switch (benny_rotation)
                     {
@@ -115,15 +122,16 @@ public class BennyScript : MonoBehaviour
                             benny_z += tileSize;
                             break;
                     }
+                } else
+                {
+                    rotateBenny(-1);
                 }
 
-                alreadyTurned = true;
-                rotateBenny(-1);
                 benny.transform.position = new Vector3(benny_x, 1, benny_z);
             }
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
-                if (!alreadyTurned)
+                if (holdingSpace)
                 {
                     switch (benny_rotation)
                     {
@@ -140,10 +148,11 @@ public class BennyScript : MonoBehaviour
                             benny_z -= tileSize;
                             break;
                     }
+                } else
+                {
+                    rotateBenny(1);
                 }
 
-                alreadyTurned = true;
-                rotateBenny(1);
                 benny.transform.position = new Vector3(benny_x, 1, benny_z);
             }
 
@@ -153,19 +162,6 @@ public class BennyScript : MonoBehaviour
         if (!isHoldingKey) // instant move w single press
         {
             ticker = timeStepper;
-        }
-
-        if (Time.time >= _nextAllowedInputTime)
-        {
-            if (Input.GetKey(KeyCode.Q))
-            {
-                rotateBenny(-1);
-
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-                rotateBenny(1);
-            }
         }
         
     }
