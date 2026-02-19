@@ -7,22 +7,35 @@ public class BennyScript : MonoBehaviour
     // set up a tile based movement system for the player character, using the arrow keys to move up, down, left, and right. The player should only be able to move one tile at a time, and should not be able to move through walls or other obstacles.
     // Start is called before the first frame update
     public GameObject benny;
-    public float bennny_x;
+    public float benny_x;
     public float benny_z;
     [SerializeField] float tileSize = 2;
     public float timeStepper = .2f;
     public float ticker = 0f;
     public bool isHoldingKey = false;
 
-    public float benny_rotation = 0f;
+    public float benny_rotation = 1;
     public float CooldownTime;
     private float _nextAllowedInputTime;
+    private bool alreadyTurned;
+
+    //vectors
 
     void Start()
     {
         benny = GameObject.FindWithTag("Player");
-        bennny_x = benny.transform.position.x;
+        benny_x = benny.transform.position.x;
         benny_z = benny.transform.position.z;
+    }
+
+    void rotateBenny(int rotation)
+    {
+        benny_rotation += rotation;
+        if (benny_rotation > 4) { benny_rotation = 1; };
+        if (benny_rotation < 1) { benny_rotation = 4; };
+
+        benny.transform.rotation = Quaternion.Euler(0, benny_rotation * 90, 0);
+        _nextAllowedInputTime = Time.time + CooldownTime;
     }
 
     // Update is called once per frame
@@ -43,30 +56,98 @@ public class BennyScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-                benny.transform.position = new Vector3(bennny_x, 1, benny_z + tileSize);
-                bennny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                switch (benny_rotation)
+                {
+                    case 1:
+                        benny_z -= tileSize;
+                        break;
+                    case 2:
+                        benny_x -= tileSize;
+                        break;
+                    case 3:
+                        benny_z += tileSize;
+                        break;
+                    case 4:
+                        benny_x += tileSize;
+                        break;
+                }
+
+                benny.transform.position = new Vector3(benny_x, 1, benny_z);
+                alreadyTurned = false;
             }
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
-                benny.transform.position = new Vector3(bennny_x, 1, benny_z - tileSize);
-                bennny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                switch (benny_rotation)
+                {
+                    case 1:
+                        benny_z += tileSize;
+                        break;
+                    case 2:
+                        benny_x += tileSize;
+                        break;
+                    case 3:
+                        benny_z -= tileSize;
+                        break;
+                    case 4:
+                        benny_x -= tileSize;
+                        break;
+                }
+                benny.transform.position = new Vector3(benny_x, 1, benny_z);
+                alreadyTurned = false;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
-                benny.transform.position = new Vector3(bennny_x - tileSize, 1, benny_z);
-                bennny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                if (!alreadyTurned)
+                {
+                    switch (benny_rotation)
+                    {
+                        case 1:
+                            benny_x += tileSize;
+                            break;
+                        case 2:
+                            benny_z -= tileSize;
+                            break;
+                        case 3:
+                            benny_x -= tileSize;
+                            break;
+                        case 4:
+                            benny_z += tileSize;
+                            break;
+                    }
+                }
+
+                alreadyTurned = true;
+                rotateBenny(-1);
+                benny.transform.position = new Vector3(benny_x, 1, benny_z);
             }
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
-                benny.transform.position = new Vector3(bennny_x + tileSize, 1, benny_z);
-                bennny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                if (!alreadyTurned)
+                {
+                    switch (benny_rotation)
+                    {
+                        case 1:
+                            benny_x -= tileSize;
+                            break;
+                        case 2:
+                            benny_z += tileSize;
+                            break;
+                        case 3:
+                            benny_x += tileSize;
+                            break;
+                        case 4:
+                            benny_z -= tileSize;
+                            break;
+                    }
+                }
+
+                alreadyTurned = true;
+                rotateBenny(1);
+                benny.transform.position = new Vector3(benny_x, 1, benny_z);
             }
-            ticker = 0f;
+
+            ticker = 0;
         }
 
         if (!isHoldingKey) // instant move w single press
@@ -78,17 +159,12 @@ public class BennyScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Q))
             {
-                benny_rotation -= 90f;
-                benny.transform.Rotate(0f, benny_rotation, 0f);
-                _nextAllowedInputTime = Time.time + CooldownTime;
-                benny_rotation = 0f;
+                rotateBenny(-1);
+
             }
             if (Input.GetKey(KeyCode.E))
             {
-                benny_rotation += 90f;
-                benny.transform.Rotate(0f, benny_rotation, 0f);
-                _nextAllowedInputTime = Time.time + CooldownTime;
-                benny_rotation = 0f;
+                rotateBenny(1);
             }
         }
         

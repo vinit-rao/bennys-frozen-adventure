@@ -409,7 +409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386896996}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -418,7 +418,7 @@ Transform:
   - {fileID: 809636475}
   - {fileID: 2103641948}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &386897001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,13 +432,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   benny: {fileID: 0}
-  bennny_x: 0
+  benny_x: 0
   benny_z: 0
   tileSize: 1
-  timeStepper: 0.15
+  timeStepper: 0.2
   ticker: 0
   isHoldingKey: 0
-  benny_rotation: 0
+  benny_rotation: 1
   CooldownTime: 0.25
 --- !u!1 &387482418
 GameObject:
@@ -1161,9 +1161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c55b44eaca043cb9dfb7d172e6c440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoopOne: {fileID: 8633430367955904013, guid: 6ac4e0981fddb48d5aa569e74cb5b6ee, type: 3}
-  scoopTwo: {fileID: 8633430367955904013, guid: f3485f9e9c2fc4b79aff6b14acd2087b, type: 3}
-  scoopThree: {fileID: 8633430367955904013, guid: 7db390f43af064aeca51a150c0c62a3b, type: 3}
+  scoopOne: {fileID: 0}
+  scoopTwo: {fileID: 0}
+  scoopThree: {fileID: 0}
   minSpawnX: 4
   maxSpawnX: -4
   minSpawnZ: 4
