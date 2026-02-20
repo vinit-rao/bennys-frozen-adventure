@@ -44,7 +44,7 @@ Rigidbody:
   m_GameObject: {fileID: 3424335551820010054}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -81,8 +81,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.57501507, z: 1}
-  m_Center: {x: 0, y: -0.14, z: 0}
+  m_Size: {x: 0.77277017, y: 0.57501507, z: 0.83780575}
+  m_Center: {x: -0.023523748, y: -0.030000001, z: -0.032360792}
 --- !u!114 &5163851193230526443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74277bb418ea94dd598d76e4c9c0f89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newscoop: {fileID: 3424335551820010054}
 --- !u!1001 &8486299838117484072
 PrefabInstance:
   m_ObjectHideFlags: 0

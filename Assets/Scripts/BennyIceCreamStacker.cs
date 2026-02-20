@@ -1,29 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BennyIceCreamStacker : MonoBehaviour
 {
-    // Ice cream attach when stacked
-    public float stackHeight; // check for coordinate of the highest scoop
+    public Rigidbody rb;
+    public float scoopHeight = 0.5f;
+    public float stack_y;
+    public Transform scoop;
+    public IceCreamScript landed;
+
     void Start()
     {
-        stackHeight = transform.position.y; // Initialize stack height to the position of the stacker itself
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        stack_y = transform.position.y;
         
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Scoop"))
-        {
-            // Attach the collided scoop to the stacker
-            other.transform.SetParent(transform);
-            stackHeight = other.transform.position.y; // Update the stack height to the position of the newly attached scoop
-        }
+        if (!other.transform.CompareTag("Scoop")) return;
+        IceCreamScript s = other.transform.GetComponent<IceCreamScript>();
+if (s != null && s.landed) return;
+if (s != null) s.landed = true;
+        
+
+        scoop = other.transform;
+
+        // stop physics
+        rb = scoop.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+
+        // stack on top
+        stack_y += scoopHeight;
+        scoop.position = new Vector3(transform.position.x, stack_y, transform.position.z);
+
+        // snap to tagged "Player"
+        scoop.SetParent(transform);
+
+        // mark landed
+        scoop.tag = "ScoopLanded";
     }
 }

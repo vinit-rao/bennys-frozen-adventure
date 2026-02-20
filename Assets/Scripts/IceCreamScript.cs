@@ -1,33 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class IceCreamScript : MonoBehaviour
 {
-    private Rigidbody rb;
-    public BennyIceCreamStacker stackHeight;
-    // when collide with the same object, stack on top of each other
+    public float scoopHeight = 0.5f;
+    public Rigidbody rb;
+    public BennyIceCreamStacker benny;
+    public bool landed = false;
+
     void Start()
     {
-        // infinite drag
         rb = GetComponent<Rigidbody>();
-        rb.angularDrag = Mathf.Infinity;
-        stackHeight = BennyIceCreamStacker.FindObjectOfType<BennyIceCreamStacker>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision other)
     {
-        
-    }
+        if (landed) return;
+        if (!other.transform.CompareTag("ScoopLanded")) return;
 
-private void OnCollisionEnter(Collision other)
-{
-    if (other.transform.CompareTag("Scoop"))
-    {
-        // when a scoop collides with another scoop, set transform to Benny (tag "Player")
-        other.transform.SetParent(stackHeight.transform);
-        stackHeight.stackHeight = other.transform.position.y; // Update the stack height to the position of the newly attached scoop
+        benny = other.transform.GetComponentInParent<BennyIceCreamStacker>();
+        if (benny == null) return;
+
+        landed = true;
+
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+
+        benny.stack_y += scoopHeight;
+        transform.position = new Vector3(benny.transform.position.x, benny.stack_y, benny.transform.position.z);
+
+        transform.SetParent(benny.transform);
+        transform.tag = "ScoopLanded";
     }
-}
 }
