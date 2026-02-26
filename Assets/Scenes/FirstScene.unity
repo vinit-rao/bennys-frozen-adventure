@@ -327,6 +327,7 @@ MonoBehaviour:
   scoopHeight: 0.5
   stack_y: 0
   scoop: {fileID: 0}
+  landed: {fileID: 0}
 --- !u!1 &386896996
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +979,7 @@ MonoBehaviour:
   scoopHeight: 0.5
   stack_y: 0
   scoop: {fileID: 0}
+  landed: {fileID: 0}
 --- !u!1 &1521439762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1185,7 @@ MonoBehaviour:
   scoopHeight: 0.5
   stack_y: 0
   scoop: {fileID: 0}
+  landed: {fileID: 0}
 --- !u!1 &1916150529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,7 +1217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoopOne: {fileID: 3424335551820010054, guid: fc59204c521a04bcb82a4b5b1fe96a22, type: 3}
   scoopTwo: {fileID: 829521551142780473, guid: ff3a53b5bbea040b9b7ae92e10a848e3, type: 3}
-  scoopThree: {fileID: 3424335551820010054, guid: fc59204c521a04bcb82a4b5b1fe96a22, type: 3}
+  scoopThree: {fileID: 1738511771697118128, guid: 32a7e5e7dab9349e9b77b1fef9a1f72e, type: 3}
   minSpawnX: 4
   maxSpawnX: -4
   minSpawnZ: 4
