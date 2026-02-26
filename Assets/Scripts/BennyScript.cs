@@ -27,7 +27,7 @@ public class BennyScript : MonoBehaviour
     void Update()
     {
         ticker += Time.deltaTime;
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
         {
             isHoldingKey = true;
         }
@@ -64,17 +64,7 @@ public class BennyScript : MonoBehaviour
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            ticker = 0f;
-        }
-
-        if (!isHoldingKey) // instant move w single press
-        {
-            ticker = timeStepper;
-        }
-
-        if (Time.time >= _nextAllowedInputTime)
-        {
-            if (Input.GetKey(KeyCode.Q))
+                        if (Input.GetKey(KeyCode.Q))
             {
                 benny_rotation -= 90f;
                 benny.transform.Rotate(0f, benny_rotation, 0f);
@@ -88,7 +78,14 @@ public class BennyScript : MonoBehaviour
                 _nextAllowedInputTime = Time.time + CooldownTime;
                 benny_rotation = 0f;
             }
+            ticker = 0f;
         }
+
+        if (!isHoldingKey) // instant move w single press
+        {
+            ticker = timeStepper;
+        }
+
         
     }
 }
