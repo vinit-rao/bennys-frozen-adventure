@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoopHeight: 0.5
+  rb: {fileID: 0}
+  benny: {fileID: 0}
+  landed: 0
 --- !u!1001 &982017558271482690
 PrefabInstance:
   m_ObjectHideFlags: 0
