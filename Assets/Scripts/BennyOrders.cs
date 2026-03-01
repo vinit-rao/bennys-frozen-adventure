@@ -25,7 +25,6 @@ public class BennyOrders : MonoBehaviour
         {
             int Rand = Random.Range(0, 3);
             Order1.iceCreams.Add(Rand);
-            print(Order1.iceCreams[i]);
 
             switch (Rand)
             {

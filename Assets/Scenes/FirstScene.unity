@@ -707,7 +707,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0340a5edd58704f83bdd6d15e13b14c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentOrder: 
+  leftOrder: 
+  rightOrder: 
+  text: {fileID: 103479529}
 --- !u!1 &387482418
 GameObject:
   m_ObjectHideFlags: 0
