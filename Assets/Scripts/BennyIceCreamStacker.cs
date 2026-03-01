@@ -10,17 +10,17 @@ public class BennyIceCreamStacker : MonoBehaviour
 
     void Start()
     {
-        stack_y = transform.position.y;
-        
+        stack_y = transform.position.y + 0.5f;
+
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (!other.transform.CompareTag("Scoop")) return;
         IceCreamScript s = other.transform.GetComponent<IceCreamScript>();
-if (s != null && s.landed) return;
-if (s != null) s.landed = true;
-        
+        if (s != null && s.landed) return;
+        if (s != null) s.landed = true;
+
 
         scoop = other.transform;
 

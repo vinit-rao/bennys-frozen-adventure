@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoopHeight: 0.5
+  rb: {fileID: 0}
+  benny: {fileID: 0}
+  landed: 0
 --- !u!1001 &982017558271482690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,15 +109,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalPosition.x
