@@ -10,7 +10,9 @@ public class orders
 
 public class BennyOrders : MonoBehaviour
 {
-    public List<int> currentOrder = new List<int>();
+    public List<int> leftOrder = new List<int>();
+    public List<int> rightOrder = new List<int>();
+
     orders Order1;
     public TextMeshProUGUI text;
 
@@ -44,5 +46,29 @@ public class BennyOrders : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int leftA = 0;
+        int rightA = 0;
+
+        bool complete = false;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (!complete)
+            {
+                if (leftOrder[i] == Order1.iceCreams[i])
+                {
+                    leftA++;
+                }
+                else if (rightOrder[i] == Order1.iceCreams[i])
+                {
+                    rightA++;
+                }
+            } else if (leftA <= 3 || rightA <= 3)
+            {
+                complete = true;
+                text.text = "Complete";
+            }
+   
+        }
     }
 }

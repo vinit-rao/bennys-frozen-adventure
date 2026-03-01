@@ -19,8 +19,8 @@ public class BennyIceCreamStacker : MonoBehaviour
     {
         if (!other.transform.CompareTag("Scoop")) return;
         IceCreamScript s = other.transform.GetComponent<IceCreamScript>();
-if (s != null && s.landed) return;
-if (s != null) s.landed = true;
+        if (s != null && s.landed) return;
+        if (s != null) s.landed = true;
         
 
         scoop = other.transform;
@@ -36,6 +36,37 @@ if (s != null) s.landed = true;
 
         // snap to tagged "Player"
         scoop.SetParent(transform);
+
+        if (scoop.tag == "Chocolate")
+        {
+            if (gameObject.name == "handLeft")
+            {
+
+            } else
+            {
+
+            }
+        } else if (scoop.tag == "Vanilla")
+        {
+            if (gameObject.name == "handLeft")
+            {
+
+            }
+            else
+            {
+
+            }
+        } else if (scoop.tag == "Strawberry")
+        {
+            if (gameObject.name == "handLeft")
+            {
+
+            }
+            else
+            {
+
+            }
+        }
 
         // mark landed
         scoop.tag = "ScoopLanded";
