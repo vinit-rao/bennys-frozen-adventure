@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6231428688989332774}
   m_Layer: 0
   m_Name: ScoopVanilla
-  m_TagString: Untagged
+  m_TagString: Scoop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,15 +109,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_LocalPosition.x
