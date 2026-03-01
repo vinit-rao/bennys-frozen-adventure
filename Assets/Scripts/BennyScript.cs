@@ -21,8 +21,9 @@ public class BennyScript : MonoBehaviour
     void Start()
     {
         benny = GameObject.FindWithTag("Player");
+        bennny_y = 1f; // fixed y
+        benny.transform.position = new Vector3(0, bennny_y, 0); // spawn benny at x-z origin y = 1
         bennny_x = benny.transform.position.x;
-        bennny_y = 1; // fixed
         benny_z = benny.transform.position.z;
     }
 

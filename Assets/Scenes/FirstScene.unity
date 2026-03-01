@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2864931069487301653, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.28
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 2864931069487301653, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: m_LocalRotation.w
@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   benny: {fileID: 0}
   bennny_x: 0
+  bennny_y: 0
   benny_z: 0
   tileSize: 1
   timeStepper: 0.2
