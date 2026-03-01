@@ -12,38 +12,37 @@ public class BennyOrders : MonoBehaviour
 {
     public List<int> currentOrder = new List<int>();
     orders Order1;
-    private TextMeshProUGUI text;
+    public TextMeshProUGUI text;
 
     // Start is called before the first frame update
     void Start()
     {
         Order1 = new orders();
-
-        for (int i = 0; i < 4; i++)
+        text.text = "";
+        for (int i = 0; i < 3; i++)
         {
             int Rand = Random.Range(0, 3);
-            string flavor;
             Order1.iceCreams.Add(Rand);
             print(Order1.iceCreams[i]);
 
             switch (Rand)
             {
                 case 0:
-                    flavor = "strawberry";
+                    text.text += "straw, ";
                     break;
                 case 1:
-                    flavor = "vanilla";
+                    text.text += "van, ";
                     break;
                 case 2:
-                    flavor = "chocolate";
+                    text.text += "choc, ";
                     break;
             }
+
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

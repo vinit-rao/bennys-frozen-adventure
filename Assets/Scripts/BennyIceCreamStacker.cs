@@ -7,6 +7,7 @@ public class BennyIceCreamStacker : MonoBehaviour
     public float stack_y;
     public Transform scoop;
     public IceCreamScript landed;
+    private BennyOrders bennyOrders;
 
     void Start()
     {

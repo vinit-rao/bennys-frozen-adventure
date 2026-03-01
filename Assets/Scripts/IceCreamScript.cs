@@ -23,8 +23,6 @@ public class IceCreamScript : MonoBehaviour
         benny = other.transform.GetComponentInParent<BennyIceCreamStacker>();
         if (benny == null) return;
 
-        
-
         landed = true;
 
         rb.isKinematic = true;
@@ -32,12 +30,6 @@ public class IceCreamScript : MonoBehaviour
 
         benny.stack_y += scoopHeight;
         transform.position = new Vector3(benny.transform.position.x, benny.stack_y, benny.transform.position.z);
-
-        switch (transform.tag)
-        {
-            case 1:
-                benny.
-        }
 
         transform.SetParent(benny.transform);
         transform.tag = "ScoopLanded";
