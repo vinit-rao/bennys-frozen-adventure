@@ -13,8 +13,18 @@ public class BennyOrders : MonoBehaviour
     public List<int> leftOrder = new List<int>();
     public List<int> rightOrder = new List<int>();
 
+    private int leftA = 0;
+    private int rightA = 0;
+
+    private int leftCount = 0;
+    private int rightCount = 0;
+
+    bool complete = false;
+
     orders Order1;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI rightOrderText;
+    public TextMeshProUGUI leftOrderText;
 
     // Start is called before the first frame update
     void Start()
@@ -45,29 +55,29 @@ public class BennyOrders : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int leftA = 0;
-        int rightA = 0;
-
-        bool complete = false;
-
         for (int i = 0; i < 3; i++)
         {
-            if (!complete)
+            
+            if (!complete || leftOrder.Count == 3 || rightOrder.Count == 3)
             {
                 if (leftOrder[i] == Order1.iceCreams[i])
                 {
                     leftA++;
+                    
                 }
                 else if (rightOrder[i] == Order1.iceCreams[i])
                 {
                     rightA++;
                 }
-            } else if (leftA <= 3 || rightA <= 3)
+            } else if (leftA == 3 || rightA == 3)
             {
                 complete = true;
                 text.text = "Complete";
             }
    
         }
+
+        leftCount = leftOrder.Count;
+        rightCount = rightOrder.Count;
     }
 }
