@@ -5,28 +5,30 @@ using TMPro;
 
 public class orders
 {
+    //description for the order
     public List<int> iceCreams = new List<int>();
+    public string name;
+    public bool complete;
+
+    //how many of the ice creams are correct
+    public int leftA = 0;
+    public int rightA = 0;
 }
 
 public class BennyOrders : MonoBehaviour
 {
+    //lists flavors for each of Benny's arms
     public List<int> leftOrder = new List<int>();
     public List<int> rightOrder = new List<int>();
 
-    private int leftA = 0;
-    private int rightA = 0;
-
+    //how many ice creams benny is holding in each hand
     private int leftCount = 0;
     private int rightCount = 0;
 
-    bool complete = false;
-
     orders Order1;
     public TextMeshProUGUI text;
-    public TextMeshProUGUI rightOrderText;
-    public TextMeshProUGUI leftOrderText;
 
-    // Start is called before the first frame update
+    //randomly generates a set of ice creams to complete
     void Start()
     {
         Order1 = new orders();
@@ -55,29 +57,35 @@ public class BennyOrders : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 3; i++)
+        int leftA = 0;
+        int rightA = 0;
+
+        if (leftCount < leftOrder.Count || rightCount < rightOrder.Count)
         {
-            
-            if (!complete || leftOrder.Count == 3 || rightOrder.Count == 3)
+            for (int i = 0; i < 3; i++)
             {
-                if (leftOrder[i] == Order1.iceCreams[i])
+                if (!Order1.complete)
                 {
-                    leftA++;
-                    
+                    if (leftOrder[i] == Order1.iceCreams[i])
+                    {
+                        leftA++;
+
+                    }
+                    else if (rightOrder[i] == Order1.iceCreams[i])
+                    {
+                        rightA++;
+                    }
                 }
-                else if (rightOrder[i] == Order1.iceCreams[i])
-                {
-                    rightA++;
-                }
-            } else if (leftA == 3 || rightA == 3)
-            {
-                complete = true;
-                text.text = "Complete";
             }
-   
+            if (leftA == 3 || rightA == 3)
+            {
+                text.text = "Complete";
+                Order1.complete = true;
+            }
+
+            leftCount = leftOrder.Count;
+            rightCount = rightOrder.Count;
         }
 
-        leftCount = leftOrder.Count;
-        rightCount = rightOrder.Count;
     }
 }

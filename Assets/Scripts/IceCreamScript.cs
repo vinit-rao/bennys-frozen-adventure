@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class IceCreamScript : MonoBehaviour
 {
@@ -10,27 +11,39 @@ public class IceCreamScript : MonoBehaviour
     private float timeRemaining = 5;
     GameObject collision = null;
 
+    public TextMeshProUGUI rightOrderText;
+    public TextMeshProUGUI leftOrderText;
+
+    //freeze ice cream in every direction but down
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.constraints = RigidbodyConstraints.FreezePositionX;
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
     }
 
     private void addScoop()
     {
+        //counts the amount of ice creams benny is holding in each hand
         int leftCount = bennyOrders.leftOrder.Count;
         int rightCount = bennyOrders.rightOrder.Count;
-        float stack_y = 2.25f;
+
+        //how high the first ice cream should be
+        float stack_y = 2.5f;
 
         if (transform.parent.name == "handLeft")
         {
             print("Added left");
 
-            stack_y += scoopHeight * (leftCount + 1);
+            //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
+            stack_y += scoopHeight * (leftCount);
             print(stack_y);
 
+            //changes position
             transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
 
+            //adds the ice cream to the hand's list depending on its name
             switch (transform.name)
             {
                 case "ScoopStrawberry(Clone)":
@@ -47,10 +60,12 @@ public class IceCreamScript : MonoBehaviour
             }
         }
         else
+
+        //same thing but for right hand
         {
             print("Added right");
 
-            stack_y += scoopHeight * (rightCount + 1);
+            stack_y += scoopHeight * (rightCount);
             print(stack_y);
 
             transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
@@ -82,6 +97,7 @@ public class IceCreamScript : MonoBehaviour
 
                 timeRemaining -= Time.deltaTime;
 
+                //you can change the time if you want it was just for debugging
                 if (timeRemaining <= 4)
                 {
                     Destroy(transform.gameObject);
@@ -98,13 +114,12 @@ public class IceCreamScript : MonoBehaviour
         //checks if the object collided with one of benny's arms
         if (other.transform.CompareTag("BennyArm") && !landed)
         {
+            //makes it so that it can't land on anything else
             landed = true;
 
             //stops all movement
             rb.isKinematic = true;
             rb.velocity = Vector3.zero;
-
-            transform.position = new Vector3(other.transform.position.x, 2.5f, other.transform.position.z);
 
             transform.SetParent(other.transform);
 
@@ -114,7 +129,6 @@ public class IceCreamScript : MonoBehaviour
         //if it lands on another ice cream scoop
         } else if (other.transform.CompareTag("Scoop") && !landed)
         {
-            print("scoopstack");
             landed = true;
 
             rb.isKinematic = true;

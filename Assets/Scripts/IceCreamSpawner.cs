@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class IceCreamSpawner : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class IceCreamSpawner : MonoBehaviour
     public GameObject scoopTwo;
     public GameObject scoopThree;
     public BennyOrders bennyOrders;
+
+    public TextMeshProUGUI rightOrderText;
+    public TextMeshProUGUI leftOrderText;
+
 
     float timer = 0f;
 
