@@ -17,7 +17,6 @@ public class BennyScript : MonoBehaviour
     public float benny_rotation = 0f;
     public float CooldownTime;
     private float _nextAllowedInputTime;
-    public int borderSize = 4;
 
     void Start()
     {
@@ -43,32 +42,32 @@ public class BennyScript : MonoBehaviour
         if (isHoldingKey && ticker >= timeStepper) // hold down arrows to move continously
 
         {
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && benny_z < borderSize)
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
                 benny.transform.position = new Vector3(bennny_x, bennny_y, benny_z + tileSize);
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && benny_z > -borderSize)
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
                 benny.transform.position = new Vector3(bennny_x, bennny_y, benny_z - tileSize);
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && benny_x > -borderSize)
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
                 benny.transform.position = new Vector3(bennny_x - tileSize, bennny_y, benny_z);
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && benny_x < borderSize)
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
                 benny.transform.position = new Vector3(bennny_x + tileSize, bennny_y, benny_z);
                 bennny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.Q))
+                        if (Input.GetKey(KeyCode.Q))
             {
                 benny_rotation -= 90f;
                 benny.transform.Rotate(0f, benny_rotation, 0f);
