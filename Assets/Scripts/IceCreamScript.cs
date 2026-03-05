@@ -1,35 +1,147 @@
 using UnityEngine;
+using TMPro;
 
 public class IceCreamScript : MonoBehaviour
 {
     public float scoopHeight = 0.5f;
     public Rigidbody rb;
-    public BennyIceCreamStacker benny;
     public bool landed = false;
+    public BennyOrders bennyOrders;
 
+    private float timeRemaining = 5;
+    GameObject collision = null;
+
+    public TextMeshProUGUI rightOrderText;
+    public TextMeshProUGUI leftOrderText;
+
+    //freeze ice cream in every direction but down
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.constraints = RigidbodyConstraints.FreezePositionX;
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
+    }
+
+    private void addScoop()
+    {
+        //counts the amount of ice creams benny is holding in each hand
+        int leftCount = bennyOrders.leftOrder.Count;
+        int rightCount = bennyOrders.rightOrder.Count;
+
+        //how high the first ice cream should be
+        float stack_y = 2.5f;
+
+        if (transform.parent.name == "handLeft")
+        {
+            print("Added left");
+
+            //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
+            stack_y += scoopHeight * (leftCount);
+            print(stack_y);
+
+            //changes position
+            transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
+
+            //adds the ice cream to the hand's list depending on its name
+            switch (transform.name)
+            {
+                case "ScoopStrawberry(Clone)":
+                    bennyOrders.leftOrder.Add(0);
+                    leftOrderText.text += " straw,";
+                    return;
+
+                case "ScoopVanilla(Clone)":
+                    bennyOrders.leftOrder.Add(1);
+                    leftOrderText.text += " van ,";
+                    return;
+
+                case "ScoopChoc(Clone)":
+                    bennyOrders.leftOrder.Add(2);
+                    leftOrderText.text += " choc ,";
+                    return;
+            }
+        }
+        else
+
+        //same thing but for right hand
+        {
+            print("Added right");
+
+            stack_y += scoopHeight * (rightCount);
+            print(stack_y);
+
+            transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
+            switch (transform.name)
+            {
+                case "ScoopStrawberry(Clone)":
+                    bennyOrders.rightOrder.Add(0);
+                    rightOrderText.text += " straw ";
+                    break;
+
+                case "ScoopVanilla(Clone)":
+                    bennyOrders.rightOrder.Add(1);
+                    rightOrderText.text += " van ";
+                    break;
+
+                case "ScoopChoc(Clone)":
+                    bennyOrders.rightOrder.Add(2);
+                    rightOrderText.text += " choc ";
+                    break;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        //deletes the ice cream after 5 seconds if the collision is the floor
+        if (collision != null)
+        {
+            if (collision.CompareTag("Floor"))
+            {
+                print("Landed on ground");
+
+                timeRemaining -= Time.deltaTime;
+
+                //you can change the time if you want it was just for debugging
+                if (timeRemaining <= 4)
+                {
+                    Destroy(transform.gameObject);
+                }
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (landed) return;
-        if (!other.transform.CompareTag("ScoopLanded")) return;
+        //allows outside functions to see the collision
+        collision = other.gameObject;
 
-        benny = other.transform.GetComponentInParent<BennyIceCreamStacker>();
-        if (benny == null) return;
+        //checks if the object collided with one of benny's arms
+        if (other.transform.CompareTag("BennyArm") && !landed)
+        {
+            //makes it so that it can't land on anything else
+            landed = true;
 
-        landed = true;
+            //stops all movement
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
 
-        rb.isKinematic = true;
-        rb.velocity = Vector3.zero;
+            transform.SetParent(other.transform);
 
-        benny.stack_y += scoopHeight;
-        transform.position = new Vector3(benny.transform.position.x, benny.stack_y, benny.transform.position.z);
+            //depending on the scoop add it to the list of benny scoops
+            addScoop();
 
-        transform.SetParent(benny.transform);
-        transform.tag = "ScoopLanded";
-    }
+        //if it lands on another ice cream scoop
+        } else if (other.transform.CompareTag("Scoop") && !landed)
+        {
+            landed = true;
+
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            transform.SetParent(other.transform.parent);
+
+            addScoop();
+        }
+    }   
 }
