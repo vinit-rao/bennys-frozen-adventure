@@ -6,8 +6,7 @@ public class BennyScript : MonoBehaviour
 {
     // Benny movements
     public GameObject benny;
-    public float bennny_x;
-    public float bennny_y; // fixed
+    public float benny_x;
     public float benny_z;
     [SerializeField] float tileSize = 2;
     public float timeStepper = .2f; // benny move ticker for holding down arrow keys
@@ -21,9 +20,7 @@ public class BennyScript : MonoBehaviour
     void Start()
     {
         benny = GameObject.FindWithTag("Player");
-        bennny_y = 1f; // fixed y
-        benny.transform.position = new Vector3(0, bennny_y, 0); // spawn benny at x-z origin y = 1
-        bennny_x = benny.transform.position.x;
+        benny_x = benny.transform.position.x;
         benny_z = benny.transform.position.z;
     }
 
@@ -44,27 +41,27 @@ public class BennyScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-                benny.transform.position = new Vector3(bennny_x, bennny_y, benny_z + tileSize);
-                bennny_x = benny.transform.position.x;
+                benny.transform.position = new Vector3(benny_x, 1, benny_z + tileSize);
+                benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
-                benny.transform.position = new Vector3(bennny_x, bennny_y, benny_z - tileSize);
-                bennny_x = benny.transform.position.x;
+                benny.transform.position = new Vector3(benny_x, 1, benny_z - tileSize);
+                benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
-                benny.transform.position = new Vector3(bennny_x - tileSize, bennny_y, benny_z);
-                bennny_x = benny.transform.position.x;
+                benny.transform.position = new Vector3(benny_x - tileSize, 1, benny_z);
+                benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
-                benny.transform.position = new Vector3(bennny_x + tileSize, bennny_y, benny_z);
-                bennny_x = benny.transform.position.x;
+                benny.transform.position = new Vector3(benny_x + tileSize, 1, benny_z);
+                benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
                         if (Input.GetKey(KeyCode.Q))
