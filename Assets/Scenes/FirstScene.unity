@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   benny: {fileID: 0}
-  bennny_x: 0
+  benny_x: 0
   benny_z: 0
   tileSize: 1
   timeStepper: 0.2
@@ -679,6 +679,7 @@ MonoBehaviour:
   isHoldingKey: 0
   benny_rotation: 0
   CooldownTime: 0
+  borderSize: 4
 --- !u!114 &386897002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,7 +928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 321.25, y: 178.25}
+  m_AnchoredPosition: {x: -251.25, y: 178.25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596730235
@@ -950,7 +951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Right:'
+  m_text: 'Left:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1327,7 +1328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -251.25, y: 178.25}
+  m_AnchoredPosition: {x: 321.25, y: 178.25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136787470
@@ -1350,7 +1351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Left: '
+  m_text: 'Right: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1755,6 +1756,8 @@ MonoBehaviour:
   scoopTwo: {fileID: 829521551142780473, guid: ff3a53b5bbea040b9b7ae92e10a848e3, type: 3}
   scoopThree: {fileID: 1738511771697118128, guid: 32a7e5e7dab9349e9b77b1fef9a1f72e, type: 3}
   bennyOrders: {fileID: 386897002}
+  rightOrderText: {fileID: 1136787470}
+  leftOrderText: {fileID: 596730235}
   minSpawnX: 4
   maxSpawnX: -4
   minSpawnZ: 4
