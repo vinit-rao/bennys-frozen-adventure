@@ -29,7 +29,7 @@ public class IceCreamSpawner : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= 3f)
+        if (timer >= 2f)
         {
             if (chance <= 33)
             {
