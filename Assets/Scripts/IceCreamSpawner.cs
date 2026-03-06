@@ -36,6 +36,8 @@ public class IceCreamSpawner : MonoBehaviour
                 Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
                 Instantiate(scoopOne, randomPosition, Quaternion.identity);
                 scoopOne.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
+                scoopOne.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
+                scoopOne.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
                 timer = 0f;
             }
             else if (chance <= 66)
@@ -43,6 +45,8 @@ public class IceCreamSpawner : MonoBehaviour
                 Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
                 Instantiate(scoopTwo, randomPosition, Quaternion.identity);
                 scoopTwo.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
+                scoopTwo.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
+                scoopTwo.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
                 timer = 0f;
             }
             else
@@ -50,6 +54,8 @@ public class IceCreamSpawner : MonoBehaviour
                 Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
                 Instantiate(scoopThree, randomPosition, Quaternion.identity);
                 scoopThree.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
+                scoopThree.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
+                scoopThree.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
                 timer = 0f;
             }
         }

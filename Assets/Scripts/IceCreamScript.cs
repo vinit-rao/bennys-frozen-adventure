@@ -48,14 +48,17 @@ public class IceCreamScript : MonoBehaviour
             {
                 case "ScoopStrawberry(Clone)":
                     bennyOrders.leftOrder.Add(0);
+                    leftOrderText.text += "straw, ";
                     return;
 
                 case "ScoopVanilla(Clone)":
                     bennyOrders.leftOrder.Add(1);
+                    leftOrderText.text += "van, ";
                     return;
 
                 case "ScoopChoc(Clone)":
                     bennyOrders.leftOrder.Add(2);
+                    leftOrderText.text += "choc, ";
                     return;
             }
         }
@@ -73,14 +76,17 @@ public class IceCreamScript : MonoBehaviour
             {
                 case "ScoopStrawberry(Clone)":
                     bennyOrders.rightOrder.Add(0);
+                    rightOrderText.text += "straw, ";
                     break;
 
                 case "ScoopVanilla(Clone)":
                     bennyOrders.rightOrder.Add(1);
+                    rightOrderText.text += "van, ";
                     break;
 
                 case "ScoopChoc(Clone)":
                     bennyOrders.rightOrder.Add(2);
+                    rightOrderText.text += "choc, ";
                     break;
             }
         }
