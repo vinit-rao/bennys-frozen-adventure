@@ -40,26 +40,26 @@ public class BennyScript : MonoBehaviour
         if (isHoldingKey && ticker >= timeStepper) // hold down arrows to move continously
 
         {
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && benny_z < borderSize)
+            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && benny_z < borderSize)
             {
                 benny.transform.position = new Vector3(benny_x, 1, benny_z + tileSize);
                 benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && benny_z > -borderSize)
+            if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && benny_z > -borderSize)
             {
                 benny.transform.position = new Vector3(benny_x, 1, benny_z - tileSize);
                 benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && benny_x > -borderSize)
+            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && benny_x > -borderSize)
             {
                 benny.transform.position = new Vector3(benny_x - tileSize, 1, benny_z);
                 benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && benny_x < borderSize)
+            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && benny_x < borderSize)
             {
                 benny.transform.position = new Vector3(benny_x + tileSize, 1, benny_z);
                 benny_x = benny.transform.position.x;
