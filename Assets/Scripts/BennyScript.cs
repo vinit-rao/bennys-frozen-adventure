@@ -16,7 +16,6 @@ public class BennyScript : MonoBehaviour
     public float benny_rotation = 0f;
     public float CooldownTime;
     private float _nextAllowedInputTime;
-    public int borderSize = 4;
 
     void Start()
     {
@@ -65,7 +64,7 @@ public class BennyScript : MonoBehaviour
                 benny_x = benny.transform.position.x;
                 benny_z = benny.transform.position.z;
             }
-            if (Input.GetKey(KeyCode.Q))
+                        if (Input.GetKey(KeyCode.Q))
             {
                 benny_rotation -= 90f;
                 benny.transform.Rotate(0f, benny_rotation, 0f);
