@@ -48,7 +48,7 @@ public class IceCreamSpawner : MonoBehaviour
         {
             if (chance <= 33)
             {
-                Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
+                Vector3 randomPosition = new Vector3(randomSpawnX, 20, randomSpawnZ);
                 GameObject scoop1 = Instantiate(scoopOne, randomPosition, Quaternion.identity);
                 scoop1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
@@ -56,7 +56,7 @@ public class IceCreamSpawner : MonoBehaviour
             }
             else if (chance <= 66)
             {
-                Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
+                Vector3 randomPosition = new Vector3(randomSpawnX, 20, randomSpawnZ);
                 GameObject scoop2 = Instantiate(scoopTwo, randomPosition, Quaternion.identity);
                 scoop2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
@@ -64,7 +64,7 @@ public class IceCreamSpawner : MonoBehaviour
             }
             else
             {
-                Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
+                Vector3 randomPosition = new Vector3(randomSpawnX, 20, randomSpawnZ);
                 GameObject scoop3 = Instantiate(scoopThree, randomPosition, Quaternion.identity);
                 scoop3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
