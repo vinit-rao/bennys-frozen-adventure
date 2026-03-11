@@ -8,7 +8,7 @@ public class BennyScript : MonoBehaviour
     public GameObject benny;
     public float benny_x;
     public float benny_z;
-    public float tileSize = 0;
+    public float tileSize = 1;
     public float timeStepper = .2f; // benny move ticker for holding down arrow keys
     public float ticker = 0f;
     public bool isHoldingKey = false;
