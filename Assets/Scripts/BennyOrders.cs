@@ -26,32 +26,112 @@ public class BennyOrders : MonoBehaviour
     private int rightCount = 0;
 
     orders Order1;
-    public TextMeshProUGUI text;
+    orders Order2;
+    orders Order3;
+
+    public TextMeshProUGUI text1;
+    public TextMeshProUGUI text2;
+    public TextMeshProUGUI text3;
+
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
 
-    //randomly generates a set of ice creams to complete
-    void Start()
+    orders createOrder(TextMeshProUGUI text, int size)
     {
-        Order1 = new orders();
         text.text = "";
-        for (int i = 0; i < 3; i++)
+        orders order = new orders();
+        for (int i = 0; i < size; i++)
         {
             int Rand = Random.Range(0, 3);
-            Order1.iceCreams.Add(Rand);
+            order.iceCreams.Add(Rand);
 
             switch (Rand)
             {
                 case 0:
-                    text.text += "straw, ";
+                    text.text += "Strawberry, ";
                     break;
                 case 1:
-                    text.text += "van, ";
+                    text.text += "Vanilla, ";
                     break;
                 case 2:
-                    text.text += "choc, ";
+                    text.text += "Chocolate, ";
                     break;
             }
+        }
+
+        return order;
+    }
+
+    //randomly generates a set of ice creams to complete
+    void Start()
+    {
+        Order1 = createOrder(text1, 3);
+        Order2 = createOrder(text2, 3);
+        Order3 = createOrder(text3, 3);
+    }
+
+    void checkComplete(orders order, TextMeshProUGUI text)
+    {
+        //resets how many ice creams are correct every frame
+        int leftA = 0;
+        int rightA = 0;
+
+        //checks if the flavor is correct on either side for however many scoops there are in the order
+        for (int i = 0; i < order.iceCreams.Count; i++)
+        {
+
+            //if the order isn't already complete then do it
+            if (!order.complete)
+            {
+
+                //if the ice creams on either hand is equal to the same position on order, then add to "leftA" (however many are correct)
+                //if the amount of scoops in the left and right order is less than the value of i, it won't check it
+                if (i < leftOrder.Count && leftOrder[i] == order.iceCreams[i])
+                {
+                    leftA++;
+                }
+
+                if (i < rightOrder.Count && rightOrder[i] == order.iceCreams[i])
+                {
+                    rightA++;
+                }
+            }
+
+            //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
+            if (leftA == order.iceCreams.Count)
+            {
+                text.text = "Complete";
+                order.complete = true;
+
+                for (int j = 0; j < 3; j++)
+                {
+                    Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
+                    leftOrder.RemoveAt(leftOrder.Count - 1);
+                    leftCount -= 1;
+
+                    leftText.text = "Left :";
+                }
+
+            }
+            else if (rightA == order.iceCreams.Count)
+            {
+                text.text = "Complete";
+                order.complete = true;
+
+                for (int j = 0; j < 3; j++)
+                {
+                    Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
+                    rightOrder.RemoveAt(rightOrder.Count - 1);
+                    rightCount -= 1;
+                    rightText.text = "Right :";
+                }
+
+            }
+
+
+            //update left and right count
+            leftCount = leftOrder.Count;
+            rightCount = rightOrder.Count;
 
         }
     }
@@ -59,48 +139,13 @@ public class BennyOrders : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //resets how many ice creams are correct every frame
-        int leftA = 0;
-        int rightA = 0;
 
         //checks if any ice creams have been added to the left or right hand
         if (leftCount < leftOrder.Count || rightCount < rightOrder.Count)
         {
-            //checks if the flavor is correct on either side for however many scoops there are in the order
-            for (int i = 0; i < Order1.iceCreams.Count; i++)
-            {
-
-                //if the order isn't already complete then do it
-                if (!Order1.complete)
-                {
-
-                    //if the ice creams on either hand is equal to the same position on order1, then add to "leftA" (however many are correct)
-                    //if the amount of scoops in the left and right order is less than the value of i, it won't check it
-                    if (i < leftOrder.Count && leftOrder[i] == Order1.iceCreams[i])
-                    {
-                        leftA++;
-                    }
-
-                    if (i < rightOrder.Count && rightOrder[i] == Order1.iceCreams[i])
-                    {
-                        rightA++;
-                    }
-                }
-
-                //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
-                if (leftA == Order1.iceCreams.Count || rightA == Order1.iceCreams.Count)
-                {
-                    text.text = "Complete";
-                    Order1.complete = true;
-                }
-
-
-                //update left and right count
-                leftCount = leftOrder.Count;
-                rightCount = rightOrder.Count;
-
-            }
-
+            checkComplete(Order1, text1);
+            checkComplete(Order2, text2);
+            checkComplete(Order3, text3);
         }
 
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
