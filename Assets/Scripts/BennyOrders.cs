@@ -25,6 +25,35 @@ public class BennyOrders : MonoBehaviour
     private int leftCount = 0;
     private int rightCount = 0;
 
+    public GameObject floor;
+
+    private List<string> names = new List<string>()
+{
+    "Alex","Sam","Jamie","Taylor","Casey","Morgan","Riley","Jordan","Parker","Quinn",
+    "Avery","Cameron","Blake","Charlie","Elliot","Kai","Leo","Noah","Liam","Logan",
+    "Lucas","Ethan","Mason","Elijah","James","Benjamin","Henry","Jack","Daniel",
+    "Matthew","Samuel","David","Joseph","Owen","Wyatt","Luke","Nathan","Connor",
+    "Tyler","Hunter","Evan","Cole","Tristan","Victor","Oscar","Adrian","Marco",
+    "Diego","Mateo","Carlos","Javier","Ricardo","Santiago",
+
+    "Sarah","Emily","Grace","Lily","Anna","Claire","Sophie","Hannah","Julia","Leah",
+    "Madeline","Elena","Bianca","Valeria","Camila","Daniela","Lucia","Marina",
+    "Olivia","Emma","Ava","Sophia","Isabella","Mia","Charlotte","Amelia","Harper",
+    "Evelyn","Abigail","Ella","Scarlett","Aria","Nova","Luna","Hazel","Willow",
+
+    "Fabio","Rania","Rowan","Natalia","Naia","Rebecca","Skye","Silver","Mungus",
+    "Vinit","Khoi","Hugh","Ronald","Craig","Aidan","Andy","Michelle","Jason",
+
+    "Batman","Spider-Man","Venom","Superman","Joker","Harley Quinn",
+    "Goku","Naruto","Levi","Mikasa","Eren",
+
+    "Sonic","Shadow","Tails","Knuckles",
+    "Mario","Luigi","Peach",
+    "Link","Zelda",
+    "Kratos","Atreus",
+    "Kirby"
+};
+
     orders Order1;
     orders Order2;
     orders Order3;
@@ -38,12 +67,17 @@ public class BennyOrders : MonoBehaviour
 
     orders createOrder(TextMeshProUGUI text, int size)
     {
-        text.text = "";
         orders order = new orders();
+
+        int name = Random.Range(0, names.Count);
+        order.name = names[name];
+        text.text = order.name + ": ";
+        
         for (int i = 0; i < size; i++)
         {
-            int Rand = Random.Range(0, 3);
+            int Rand = Random.Range(0, 3);  
             order.iceCreams.Add(Rand);
+
 
             switch (Rand)
             {
@@ -66,8 +100,8 @@ public class BennyOrders : MonoBehaviour
     void Start()
     {
         Order1 = createOrder(text1, 3);
-        Order2 = createOrder(text2, 3);
-        Order3 = createOrder(text3, 3);
+        Order2 = createOrder(text2, 5);
+        Order3 = createOrder(text3, 7);
     }
 
     void checkComplete(orders order, TextMeshProUGUI text)
@@ -103,7 +137,7 @@ public class BennyOrders : MonoBehaviour
                 text.text = "Complete";
                 order.complete = true;
 
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < order.iceCreams.Count; j++)
                 {
                     Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
                     leftOrder.RemoveAt(leftOrder.Count - 1);
@@ -118,7 +152,7 @@ public class BennyOrders : MonoBehaviour
                 text.text = "Complete";
                 order.complete = true;
 
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < order.iceCreams.Count; j++)
                 {
                     Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
                     rightOrder.RemoveAt(rightOrder.Count - 1);
