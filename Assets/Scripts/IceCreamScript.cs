@@ -127,7 +127,6 @@ public class IceCreamScript : MonoBehaviour
 
             //stops all movement
             rb.isKinematic = true;
-            rb.velocity = Vector3.zero;
 
             transform.SetParent(other.transform);
 
@@ -140,7 +139,6 @@ public class IceCreamScript : MonoBehaviour
             landed = true;
 
             rb.isKinematic = true;
-            rb.velocity = Vector3.zero;
             transform.SetParent(other.transform.parent);
 
             addScoop();
