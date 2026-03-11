@@ -28,31 +28,31 @@ public class BennyOrders : MonoBehaviour
     public GameObject floor;
 
     private List<string> names = new List<string>()
-{
-    "Alex","Sam","Jamie","Taylor","Casey","Morgan","Riley","Jordan","Parker","Quinn",
-    "Avery","Cameron","Blake","Charlie","Elliot","Kai","Leo","Noah","Liam","Logan",
-    "Lucas","Ethan","Mason","Elijah","James","Benjamin","Henry","Jack","Daniel",
-    "Matthew","Samuel","David","Joseph","Owen","Wyatt","Luke","Nathan","Connor",
-    "Tyler","Hunter","Evan","Cole","Tristan","Victor","Oscar","Adrian","Marco",
-    "Diego","Mateo","Carlos","Javier","Ricardo","Santiago",
+    {
+        "Alex","Sam","Jamie","Taylor","Casey","Morgan","Riley","Jordan","Parker","Quinn",
+        "Avery","Cameron","Blake","Charlie","Elliot","Kai","Leo","Noah","Liam","Logan",
+        "Lucas","Ethan","Mason","Elijah","James","Benjamin","Henry","Jack","Daniel",
+        "Matthew","Samuel","David","Joseph","Owen","Wyatt","Luke","Nathan","Connor",
+        "Tyler","Hunter","Evan","Cole","Tristan","Victor","Oscar","Adrian","Marco",
+        "Diego","Mateo","Carlos","Javier","Ricardo","Santiago",
 
-    "Sarah","Emily","Grace","Lily","Anna","Claire","Sophie","Hannah","Julia","Leah",
-    "Madeline","Elena","Bianca","Valeria","Camila","Daniela","Lucia","Marina",
-    "Olivia","Emma","Ava","Sophia","Isabella","Mia","Charlotte","Amelia","Harper",
-    "Evelyn","Abigail","Ella","Scarlett","Aria","Nova","Luna","Hazel","Willow",
+        "Sarah","Emily","Grace","Lily","Anna","Claire","Sophie","Hannah","Julia","Leah",
+        "Madeline","Elena","Bianca","Valeria","Camila","Daniela","Lucia","Marina",
+        "Olivia","Emma","Ava","Sophia","Isabella","Mia","Charlotte","Amelia","Harper",
+        "Evelyn","Abigail","Ella","Scarlett","Aria","Nova","Luna","Hazel","Willow",
 
-    "Fabio","Rania","Rowan","Natalia","Naia","Rebecca","Skye","Silver","Mungus",
-    "Vinit","Khoi","Hugh","Ronald","Craig","Aidan","Andy","Michelle","Jason",
+        "Fabio","Rania","Rowan","Natalia","Naia","Rebecca","Skye","Silver","Mungus",
+        "Vinit","Khoi","Hugh","Ronald","Craig","Aidan","Andy","Michelle","Jason",
 
-    "Batman","Spider-Man","Venom","Superman","Joker","Harley Quinn",
-    "Goku","Naruto","Levi","Mikasa","Eren",
+        "Batman","Spider-Man","Venom","Superman","Joker","Harley Quinn",
+        "Goku","Naruto","Levi","Mikasa","Eren",
 
-    "Sonic","Shadow","Tails","Knuckles",
-    "Mario","Luigi","Peach",
-    "Link","Zelda",
-    "Kratos","Atreus",
-    "Kirby"
-};
+        "Sonic","Shadow","Tails","Knuckles",
+        "Mario","Luigi","Peach",
+        "Link","Zelda",
+        "Kratos","Atreus",
+        "Kirby"
+    };
 
     orders Order1;
     orders Order2;
@@ -65,7 +65,7 @@ public class BennyOrders : MonoBehaviour
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
 
-    orders createOrder(TextMeshProUGUI text, int size)
+    orders createOrder(TextMeshProUGUI text, int size, int time)
     {
         orders order = new orders();
 
@@ -99,9 +99,9 @@ public class BennyOrders : MonoBehaviour
     //randomly generates a set of ice creams to complete
     void Start()
     {
-        Order1 = createOrder(text1, 3);
-        Order2 = createOrder(text2, 5);
-        Order3 = createOrder(text3, 7);
+        Order1 = createOrder(text1, 3, 0);
+        Order2 = createOrder(text2, 5, 15);
+        Order3 = createOrder(text3, 7, 30);
     }
 
     void checkComplete(orders order, TextMeshProUGUI text)

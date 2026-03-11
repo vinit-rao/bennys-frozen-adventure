@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Animations;
 
 public class IceCreamScript : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class IceCreamScript : MonoBehaviour
     public bool landed = false;
     public BennyOrders bennyOrders;
     public int numOrder;
+    bool holdingSpace;
+    public IceCreamSpawner spawner;
+    public AudioSource music;
 
     private float timeRemaining = 5;
     GameObject collision = null;
@@ -32,6 +36,8 @@ public class IceCreamScript : MonoBehaviour
 
         //how high the first ice cream should be
         float stack_y = 2.5f;
+
+        Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
 
         if (transform.parent.name == "ArmL")
         {
@@ -99,13 +105,26 @@ public class IceCreamScript : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            rb.velocity = new Vector3(0, -3.44f, 0);
+            spawner.timeBetween = 1;
+            music.pitch = 1.1f;
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, -1.77f, 0);
+            spawner.timeBetween = 2;
+            music.pitch = 1;
+        }
+
         //deletes the ice cream after 5 seconds if the collision is the floor
         if (collision != null)
         {
-            if (collision.CompareTag("Floor"))
-            {
+            if (collision.CompareTag("Floor") || collision.CompareTag("Fallen")) { 
                 print("Landed on ground");
-
+                gameObject.tag = "Fallen";
                 timeRemaining -= Time.deltaTime;
 
                 //you can change the time if you want it was just for debugging
