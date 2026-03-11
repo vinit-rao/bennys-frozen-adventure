@@ -97,8 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoopHeight: 0.5
   rb: {fileID: 0}
-  benny: {fileID: 0}
   landed: 0
+  bennyOrders: {fileID: 0}
+  rightOrderText: {fileID: 0}
+  leftOrderText: {fileID: 0}
 --- !u!1001 &7529032749328401185
 PrefabInstance:
   m_ObjectHideFlags: 0

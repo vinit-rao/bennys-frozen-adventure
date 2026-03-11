@@ -21,6 +21,21 @@ public class IceCreamSpawner : MonoBehaviour
     public float minSpawnZ = 4f;
     public float maxSpawnZ = -4f;
 
+    private void Start()
+    {
+        scoopOne.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
+        scoopOne.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
+        scoopOne.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
+
+        scoopTwo.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
+        scoopTwo.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
+        scoopTwo.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
+
+        scoopThree.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
+        scoopThree.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
+        scoopThree.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
+    }
+
     void Update()
     {
         int chance = Random.Range(1, 101);
@@ -34,28 +49,25 @@ public class IceCreamSpawner : MonoBehaviour
             if (chance <= 33)
             {
                 Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
-                Instantiate(scoopOne, randomPosition, Quaternion.identity);
-                scoopOne.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
-                scoopOne.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
-                scoopOne.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
+                GameObject scoop1 = Instantiate(scoopOne, randomPosition, Quaternion.identity);
+                scoop1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
                 timer = 0f;
             }
             else if (chance <= 66)
             {
                 Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
-                Instantiate(scoopTwo, randomPosition, Quaternion.identity);
-                scoopTwo.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
-                scoopTwo.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
-                scoopTwo.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
+                GameObject scoop2 = Instantiate(scoopTwo, randomPosition, Quaternion.identity);
+                scoop2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
                 timer = 0f;
             }
             else
             {
                 Vector3 randomPosition = new Vector3(randomSpawnX, 10, randomSpawnZ);
-                Instantiate(scoopThree, randomPosition, Quaternion.identity);
-                scoopThree.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
-                scoopThree.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
-                scoopThree.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
+                GameObject scoop3 = Instantiate(scoopThree, randomPosition, Quaternion.identity);
+                scoop3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
                 timer = 0f;
             }
         }

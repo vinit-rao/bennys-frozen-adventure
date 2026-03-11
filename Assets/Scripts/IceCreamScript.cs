@@ -32,7 +32,7 @@ public class IceCreamScript : MonoBehaviour
         //how high the first ice cream should be
         float stack_y = 2.5f;
 
-        if (transform.parent.name == "handLeft")
+        if (transform.parent.name == "ArmL")
         {
             print("Added left");
 
@@ -62,7 +62,7 @@ public class IceCreamScript : MonoBehaviour
                     return;
             }
         }
-        else
+        else if (transform.parent.name == "ArmR")
 
         //same thing but for right hand
         {
@@ -116,6 +116,8 @@ public class IceCreamScript : MonoBehaviour
     {
         //allows outside functions to see the collision
         collision = other.gameObject;
+
+        print(collision);
 
         //checks if the object collided with one of benny's arms
         if (other.transform.CompareTag("BennyArm") && !landed)
