@@ -27,6 +27,8 @@ public class BennyOrders : MonoBehaviour
 
     orders Order1;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI leftText;
+    public TextMeshProUGUI rightText;
 
     //randomly generates a set of ice creams to complete
     void Start()
@@ -99,7 +101,32 @@ public class BennyOrders : MonoBehaviour
 
             }
 
+        }
 
+        if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
+        {
+            
+            if (gameObject.GetComponent<BennyScript>().benny_rotation == 90)
+            {
+                for (int i = 0; i < leftOrder.Count; i++)
+                {
+                    Destroy(transform.GetChild(1).GetChild(i).gameObject);
+                    leftOrder.RemoveAt(0);
+                    leftCount = 0;
+
+                    leftText.text = "Left: ";
+                }
+            } else if (gameObject.GetComponent<BennyScript>().benny_rotation == 270)
+            {
+                for (int i = 0; i < rightOrder.Count; i++)
+                {
+                    Destroy(transform.GetChild(0).GetChild(i).gameObject);
+                    rightOrder.RemoveAt(0);
+                    rightCount = 0;
+
+                    rightText.text = "Right: ";
+                }
+            }
         }
     }
 }

@@ -6,8 +6,6 @@ public class BennyScript : MonoBehaviour
 {
     // Benny movements
     public GameObject benny;
-    public float benny_x;
-    public float benny_z;
     public float tileSize = 1;
     public float timeStepper = .2f; // benny move ticker for holding down arrow keys
     public float ticker = 0f;
@@ -21,11 +19,6 @@ public class BennyScript : MonoBehaviour
     void Start()
     {
         benny = gameObject;
-
-        benny_x = benny.transform.position.x;
-        benny_z = benny.transform.position.z;
-
-
     }
 
     void Update()
@@ -43,44 +36,37 @@ public class BennyScript : MonoBehaviour
         if (isHoldingKey && ticker >= timeStepper) // hold down arrows to move continously
 
         {
-            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && benny_z < borderSize)
+            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && benny.transform.position.z < borderSize)
             {
-                benny.transform.position = new Vector3(benny_x, 1, benny_z + tileSize);
-                benny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                benny.transform.position = new Vector3(benny.transform.position.x, 1, benny.transform.position.z + tileSize);
             }
-            if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && benny_z > -borderSize)
+            if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && benny.transform.position.z > -borderSize)
             {
-                benny.transform.position = new Vector3(benny_x, 1, benny_z - tileSize);
-                benny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                benny.transform.position = new Vector3(benny.transform.position.x, 1, benny.transform.position.z - tileSize);
             }
-
-            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && benny_x > -borderSize)
+            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && benny.transform.position.x > -borderSize)
             {
-                benny.transform.position = new Vector3(benny_x - tileSize, 1, benny_z);
-                benny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                benny.transform.position = new Vector3(benny.transform.position.x - tileSize, 1, benny.transform.position.z);
             }
-            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && benny_x < borderSize)
+            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && benny.transform.position.x < borderSize)
             {
-                benny.transform.position = new Vector3(benny_x + tileSize, 1, benny_z);
-                benny_x = benny.transform.position.x;
-                benny_z = benny.transform.position.z;
+                benny.transform.position = new Vector3(benny.transform.position.x + tileSize, 1, benny.transform.position.z);
             }
             if (Input.GetKey(KeyCode.Q))
             {
                 benny_rotation -= 90f;
-                benny.transform.Rotate(0f, benny_rotation, 0f);
+                if (benny_rotation < 0) benny_rotation = 270;
+
+                benny.transform.Rotate(0, -90, 0);
                 _nextAllowedInputTime = Time.time + CooldownTime;
-                benny_rotation = 0f;
             }
             if (Input.GetKey(KeyCode.E))
             {
                 benny_rotation += 90f;
-                benny.transform.Rotate(0f, benny_rotation, 0f);
+                if (benny_rotation == 360) benny_rotation = 0;
+
+                benny.transform.Rotate(0, 90, 0);
                 _nextAllowedInputTime = Time.time + CooldownTime;
-                benny_rotation = 0f;
             }
             ticker = 0f;
         }

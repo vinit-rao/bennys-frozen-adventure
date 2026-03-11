@@ -7,6 +7,7 @@ public class IceCreamScript : MonoBehaviour
     public Rigidbody rb;
     public bool landed = false;
     public BennyOrders bennyOrders;
+    public int numOrder;
 
     private float timeRemaining = 5;
     GameObject collision = null;
@@ -43,6 +44,8 @@ public class IceCreamScript : MonoBehaviour
             //changes position
             transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
 
+            numOrder = bennyOrders.leftOrder.Count;
+
             //adds the ice cream to the hand's list depending on its name
             switch (transform.name)
             {
@@ -70,6 +73,8 @@ public class IceCreamScript : MonoBehaviour
 
             stack_y += scoopHeight * (rightCount);
             print(stack_y);
+
+            numOrder = bennyOrders.rightOrder.Count;
 
             transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
             switch (transform.name)
