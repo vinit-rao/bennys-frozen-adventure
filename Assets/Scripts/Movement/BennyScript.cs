@@ -21,6 +21,10 @@ public class BennyScript : MonoBehaviour
         benny = gameObject;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+    }
+
     void Update()
     {
         ticker += Time.deltaTime;
