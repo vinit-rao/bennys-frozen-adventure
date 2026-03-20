@@ -96,6 +96,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: debris4
       objectReference: {fileID: 0}
+    - target: {fileID: 2331395548692636414, guid: e80d2451a90e1465a83265e87f428306, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331395548692636414, guid: e80d2451a90e1465a83265e87f428306, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331395548692636414, guid: e80d2451a90e1465a83265e87f428306, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

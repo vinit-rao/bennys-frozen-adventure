@@ -96,6 +96,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5431909340593547246, guid: cab9a9478d6b24e26b886a196b61f608, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5431909340593547246, guid: cab9a9478d6b24e26b886a196b61f608, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5431909340593547246, guid: cab9a9478d6b24e26b886a196b61f608, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cab9a9478d6b24e26b886a196b61f608, type: 3}
       propertyPath: m_Name
       value: debris1
