@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3652165654809876676, guid: cab9a9478d6b24e26b886a196b61f608, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 213f5130c06eb44188716fa408d288f7, type: 2}
     - target: {fileID: 919132149155446097, guid: cab9a9478d6b24e26b886a196b61f608, type: 3}
       propertyPath: m_Name
       value: debris1

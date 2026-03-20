@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: debris3
       objectReference: {fileID: 0}
+    - target: {fileID: 5107775065009050465, guid: 215dde09345184caf87e675e618d26a6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 213f5130c06eb44188716fa408d288f7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

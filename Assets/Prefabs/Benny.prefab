@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6970034643073419416}
   - component: {fileID: 8143062075462403513}
   - component: {fileID: 7180586053552983580}
-  - component: {fileID: 1550585308998312024}
   m_Layer: 0
   m_Name: ArmR
   m_TagString: BennyArm
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 15199980843291966}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.132, y: 1.28, z: 0.012000024}
+  m_LocalPosition: {x: -1.404, y: 1.28, z: 0.05100002}
   m_LocalScale: {x: 0.85468984, y: 0.84613657, z: 0.93879443}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,23 +105,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1550585308998312024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15199980843291966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d93fc96529124829b09e970c4b1475d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  scoopHeight: 0.5
-  stack_y: 0
-  scoop: {fileID: 0}
-  landed: {fileID: 0}
 --- !u!1 &2053277376199839876
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +151,6 @@ GameObject:
   - component: {fileID: 5324092845478043331}
   - component: {fileID: 7975691598022658394}
   - component: {fileID: 349146871321043364}
-  - component: {fileID: 4835675005061118790}
   m_Layer: 0
   m_Name: ArmL
   m_TagString: BennyArm
@@ -186,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 8743134753422424362}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.044, y: 1.28, z: 0.012}
+  m_LocalPosition: {x: 1.28, y: 1.28, z: 0.051}
   m_LocalScale: {x: 0.85468984, y: 0.84613657, z: 0.93879443}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -263,23 +244,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4835675005061118790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8743134753422424362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d93fc96529124829b09e970c4b1475d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  scoopHeight: 0.5
-  stack_y: 0
-  scoop: {fileID: 0}
-  landed: {fileID: 0}
 --- !u!1001 &5112598480760926167
 PrefabInstance:
   m_ObjectHideFlags: 0
