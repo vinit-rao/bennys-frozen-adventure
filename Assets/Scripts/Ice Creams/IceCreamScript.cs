@@ -167,5 +167,11 @@ public class IceCreamScript : MonoBehaviour
 
             addScoop();
         }
+
+        // if lands on the floor: destroy the spotlight clone
+        else if (other.transform.CompareTag("Floor"))
+        {
+            Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
+        }
     }   
 }
