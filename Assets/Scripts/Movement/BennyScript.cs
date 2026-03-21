@@ -27,6 +27,12 @@ public class BennyScript : MonoBehaviour
 
     void Update()
     {
+        // this is to pause benny movement controls if pause menu is open
+        if (UIManager.isPaused)
+        {
+            return;
+        }
+
         ticker += Time.deltaTime;
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
         {

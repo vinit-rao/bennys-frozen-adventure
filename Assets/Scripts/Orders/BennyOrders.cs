@@ -58,53 +58,70 @@ public class BennyOrders : MonoBehaviour
     orders Order2;
     orders Order3;
 
-    public TextMeshProUGUI text1;
-    public TextMeshProUGUI text2;
-    public TextMeshProUGUI text3;
+    public OrderUI uiTicket1;
+    public OrderUI uiTicket2;
+    public OrderUI uiTicket3;
 
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
 
-    orders createOrder(TextMeshProUGUI text, int size, int time)
+    orders createOrder(OrderUI ticketVisual, int size, int time)
     {
         orders order = new orders();
+        int nameIndex = Random.Range(0, names.Count);
+        order.name = names[nameIndex];
 
-        int name = Random.Range(0, names.Count);
-        order.name = names[name];
-        text.text = order.name + ": ";
-        
         for (int i = 0; i < size; i++)
         {
-            int Rand = Random.Range(0, 3);  
+            int Rand = Random.Range(0, 3);
             order.iceCreams.Add(Rand);
-
-
-            switch (Rand)
-            {
-                case 0:
-                    text.text += "Strawberry, ";
-                    break;
-                case 1:
-                    text.text += "Vanilla, ";
-                    break;
-                case 2:
-                    text.text += "Chocolate, ";
-                    break;
-            }
         }
+
+        ticketVisual.SetupOrderVisuals(order);
 
         return order;
     }
 
+    //orders createOrder(TextMeshProUGUI text, int size, int time)
+    //{
+    //    orders order = new orders();
+
+    //    int name = Random.Range(0, names.Count);
+    //    order.name = names[name];
+    //    text.text = order.name + ": ";
+        
+    //    for (int i = 0; i < size; i++)
+    //    {
+    //        int Rand = Random.Range(0, 3);  
+    //        order.iceCreams.Add(Rand);
+
+
+    //        switch (Rand)
+    //        {
+    //            case 0:
+    //                text.text += "Strawberry, ";
+    //                break;
+    //            case 1:
+    //                text.text += "Vanilla, ";
+    //                break;
+    //            case 2:
+    //                text.text += "Chocolate, ";
+    //                break;
+    //        }
+    //    }
+
+    //    return order;
+    //}
+
     //randomly generates a set of ice creams to complete
     void Start()
     {
-        Order1 = createOrder(text1, 3, 0);
-        Order2 = createOrder(text2, 5, 15);
-        Order3 = createOrder(text3, 7, 30);
+        Order1 = createOrder(uiTicket1, 3, 0);
+        Order2 = createOrder(uiTicket2, 5, 15);
+        Order3 = createOrder(uiTicket3, 7, 30);
     }
 
-    void checkComplete(orders order, TextMeshProUGUI text)
+    void checkComplete(orders order, OrderUI ticketVisual)
     {
         //resets how many ice creams are correct every frame
         int leftA = 0;
@@ -134,7 +151,7 @@ public class BennyOrders : MonoBehaviour
             //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
             if (leftA == order.iceCreams.Count)
             {
-                text.text = "Complete";
+                ticketVisual.MarkAsComplete();
                 order.complete = true;
 
                 for (int j = 0; j < order.iceCreams.Count; j++)
@@ -149,7 +166,7 @@ public class BennyOrders : MonoBehaviour
             }
             else if (rightA == order.iceCreams.Count)
             {
-                text.text = "Complete";
+                ticketVisual.MarkAsComplete();
                 order.complete = true;
 
                 for (int j = 0; j < order.iceCreams.Count; j++)
@@ -177,9 +194,9 @@ public class BennyOrders : MonoBehaviour
         //checks if any ice creams have been added to the left or right hand
         if (leftCount < leftOrder.Count || rightCount < rightOrder.Count)
         {
-            checkComplete(Order1, text1);
-            checkComplete(Order2, text2);
-            checkComplete(Order3, text3);
+            checkComplete(Order1, uiTicket1);
+            checkComplete(Order2, uiTicket2);
+            checkComplete(Order3, uiTicket3);
         }
         // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
