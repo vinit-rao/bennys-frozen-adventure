@@ -198,11 +198,11 @@ public class BennyOrders : MonoBehaviour
             checkComplete(Order2, uiTicket2);
             checkComplete(Order3, uiTicket3);
         }
-
+        // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
         {
             
-            if (gameObject.GetComponent<BennyScript>().benny_rotation == 90)
+            if (gameObject.GetComponent<BennyScript>().benny_rotation == 270)
             {
                 for (int i = 0; i < leftOrder.Count; i++)
                 {
@@ -212,7 +212,7 @@ public class BennyOrders : MonoBehaviour
 
                     leftText.text = "Left: ";
                 }
-            } else if (gameObject.GetComponent<BennyScript>().benny_rotation == 270)
+            } else if (gameObject.GetComponent<BennyScript>().benny_rotation == 90)
             {
                 for (int i = 0; i < rightOrder.Count; i++)
                 {
