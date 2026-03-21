@@ -119,6 +119,7 @@ public class BennyOrders : MonoBehaviour
         Order1 = createOrder(uiTicket1, 3, 0);
         Order2 = createOrder(uiTicket2, 5, 15);
         Order3 = createOrder(uiTicket3, 7, 30);
+        floor = GameObject.FindWithTag("Floor");
     }
 
     void checkComplete(orders order, OrderUI ticketVisual)
