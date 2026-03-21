@@ -2832,6 +2832,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArmL
       objectReference: {fileID: 0}
+    - target: {fileID: 224089214420314122, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ba038ba96b3a4313a627bf36720fa56, type: 2}
+    - target: {fileID: 1235952318568175864, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ba038ba96b3a4313a627bf36720fa56, type: 2}
     - target: {fileID: 2053277376199839876, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: m_Name
       value: Benny
