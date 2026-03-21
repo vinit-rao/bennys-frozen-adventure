@@ -2970,7 +2970,15 @@ PrefabInstance:
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: floor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 387482418}
+    - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: leftText
+      value: 
+      objectReference: {fileID: 596730235}
+    - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: rightText
+      value: 
+      objectReference: {fileID: 1136787470}
     - target: {fileID: 2864931069487301653, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
