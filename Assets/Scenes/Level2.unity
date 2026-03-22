@@ -97,7 +97,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 3ac9800e689bffc47b67e8d336b4da87, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -653,9 +653,9 @@ MonoBehaviour:
   leftOrder: 
   rightOrder: 
   floor: {fileID: 387482418}
-  text1: {fileID: 103479529}
-  text2: {fileID: 1489606118}
-  text3: {fileID: 709965266}
+  uiTicket1: {fileID: 0}
+  uiTicket2: {fileID: 0}
+  uiTicket3: {fileID: 0}
   leftText: {fileID: 596730235}
   rightText: {fileID: 1136787470}
 --- !u!1001 &563697602
