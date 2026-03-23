@@ -7,6 +7,8 @@ TagManager:
   - Scoop
   - BennyArm
   - ScoopLanded
+  - Floor
+  - Fallen
   layers:
   - Default
   - TransparentFX

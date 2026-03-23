@@ -11,7 +11,6 @@ public class IceCreamScript : MonoBehaviour
     public int numOrder;
     bool holdingSpace;
     public IceCreamSpawner spawner;
-    public AudioSource music;
 
     private float timeRemaining = 5;
     GameObject collision = null;
@@ -110,13 +109,11 @@ public class IceCreamScript : MonoBehaviour
         {
             rb.velocity = new Vector3(0, -3.44f, 0);
             spawner.timeBetween = 1;
-            music.pitch = 1.1f;
         }
         else
         {
             rb.velocity = new Vector3(0, -1.77f, 0);
             spawner.timeBetween = 2;
-            music.pitch = 1;
         }
 
         //deletes the ice cream after 5 seconds if the collision is the floor
@@ -141,8 +138,6 @@ public class IceCreamScript : MonoBehaviour
         //allows outside functions to see the collision
         collision = other.gameObject;
 
-        print(collision);
-
         //checks if the object collided with one of benny's arms
         if (other.transform.CompareTag("BennyArm") && !landed)
         {
@@ -166,12 +161,6 @@ public class IceCreamScript : MonoBehaviour
             transform.SetParent(other.transform.parent);
 
             addScoop();
-        }
-
-        // if lands on the floor: destroy the spotlight clone
-        else if (other.transform.CompareTag("Floor"))
-        {
-            Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
         }
     }   
 }

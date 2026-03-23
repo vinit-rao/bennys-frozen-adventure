@@ -82,36 +82,6 @@ public class BennyOrders : MonoBehaviour
         return order;
     }
 
-    //orders createOrder(TextMeshProUGUI text, int size, int time)
-    //{
-    //    orders order = new orders();
-
-    //    int name = Random.Range(0, names.Count);
-    //    order.name = names[name];
-    //    text.text = order.name + ": ";
-        
-    //    for (int i = 0; i < size; i++)
-    //    {
-    //        int Rand = Random.Range(0, 3);  
-    //        order.iceCreams.Add(Rand);
-
-
-    //        switch (Rand)
-    //        {
-    //            case 0:
-    //                text.text += "Strawberry, ";
-    //                break;
-    //            case 1:
-    //                text.text += "Vanilla, ";
-    //                break;
-    //            case 2:
-    //                text.text += "Chocolate, ";
-    //                break;
-    //        }
-    //    }
-
-    //    return order;
-    //}
 
     //randomly generates a set of ice creams to complete
     void Start()
@@ -199,14 +169,16 @@ public class BennyOrders : MonoBehaviour
             checkComplete(Order2, uiTicket2);
             checkComplete(Order3, uiTicket3);
         }
+
         // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
         {
-            
+            print(rightOrder[0]);
             if (gameObject.GetComponent<BennyScript>().benny_rotation == 270)
             {
                 for (int i = 0; i < leftOrder.Count; i++)
                 {
+                    print("Destroyed");
                     Destroy(transform.GetChild(1).GetChild(i).gameObject);
                     leftOrder.RemoveAt(0);
                     leftCount = 0;
