@@ -23,6 +23,7 @@ public class IceCreamScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        bennyOrders = GameObject.FindWithTag("Player").GetComponent<BennyOrders>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
