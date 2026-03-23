@@ -6,6 +6,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadTargetScene(string sceneName)
     {
         Time.timeScale = 1f;
+        UIManager.isPaused = false;
         SceneManager.LoadScene(sceneName);
     }
 
