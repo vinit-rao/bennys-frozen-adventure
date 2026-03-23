@@ -633,14 +633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55213b6ab8f8a21478318255b2e2b7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftOrder: 
-  rightOrder: 
-  floor: {fileID: 387482418}
-  uiTicket1: {fileID: 1004806977}
-  uiTicket2: {fileID: 1079406476}
-  uiTicket3: {fileID: 884014790}
-  leftText: {fileID: 596730235}
-  rightText: {fileID: 1136787470}
 --- !u!1 &580406017
 GameObject:
   m_ObjectHideFlags: 0
@@ -4516,7 +4508,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+    - {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -4741,15 +4735,15 @@ PrefabInstance:
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: uiTicket1
       value: 
-      objectReference: {fileID: 457254505}
+      objectReference: {fileID: 1004806977}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: uiTicket2
       value: 
-      objectReference: {fileID: 295957050}
+      objectReference: {fileID: 1079406476}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: uiTicket3
       value: 
-      objectReference: {fileID: 1439042091}
+      objectReference: {fileID: 884014790}
     - target: {fileID: 2864931069487301653, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4833,4 +4827,3 @@ SceneRoots:
   - {fileID: 978210266}
   - {fileID: 647616368}
   - {fileID: 1238028744}
-  - {fileID: 983927558}
