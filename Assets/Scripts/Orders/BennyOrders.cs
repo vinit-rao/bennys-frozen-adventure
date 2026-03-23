@@ -116,10 +116,11 @@ public class BennyOrders : MonoBehaviour
     //randomly generates a set of ice creams to complete
     void Start()
     {
-        Order1 = createOrder(uiTicket1, 3, 0);
+        floor = GameObject.Find("Floor");
+
+        Order1 = createOrder(uiTicket1, 5, 0);
         Order2 = createOrder(uiTicket2, 5, 15);
-        Order3 = createOrder(uiTicket3, 7, 30);
-        floor = GameObject.FindWithTag("Floor");
+        Order3 = createOrder(uiTicket3, 5, 30);
     }
 
     void checkComplete(orders order, OrderUI ticketVisual)
