@@ -17,6 +17,8 @@ public class BennyScript : MonoBehaviour
     public int borderSize = 4;
     public bool isAnimating = false;
 
+    public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
     void Start()
     {
         benny = gameObject;
@@ -83,7 +85,7 @@ public class BennyScript : MonoBehaviour
                 if (targetPos.x >= -borderSize && targetPos.x <= borderSize &&
                     targetPos.z >= -borderSize && targetPos.z <= borderSize)
                 {
-                    StartCoroutine(DoHop(targetPos));
+                    StartCoroutine(DoMove(targetPos));
                 }
             }
 
@@ -96,11 +98,10 @@ public class BennyScript : MonoBehaviour
         }
     }
 
-    private IEnumerator DoHop(Vector3 targetPos)
+    private IEnumerator DoMove(Vector3 targetPos)
     {
         isAnimating = true;
 
-        float hopHeight = 0.4f;
         float duration = timeStepper * 0.75f;
         float elapsed = 0f;
 
@@ -111,13 +112,9 @@ public class BennyScript : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
 
-            float moveT = 1f - Mathf.Pow(1f - t, 3f);
-            float jumpT = Mathf.Sin(t * Mathf.PI);
+            float curveT = moveCurve.Evaluate(t);
 
-            Vector3 currentPos = Vector3.Lerp(startPos, targetPos, moveT);
-            currentPos.y += jumpT * hopHeight;
-
-            benny.transform.position = currentPos;
+            benny.transform.position = Vector3.Lerp(startPos, targetPos, curveT);
             yield return null;
         }
 
