@@ -22,9 +22,6 @@ public class IceCreamScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.constraints = RigidbodyConstraints.FreezePositionX;
-        rb.constraints = RigidbodyConstraints.FreezePositionZ;
     }
 
     private void addScoop()
@@ -37,6 +34,8 @@ public class IceCreamScript : MonoBehaviour
         float stack_y = 2.5f;
 
         Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
+
+        transform.eulerAngles = new Vector3(0, 0, 0);
 
         if (transform.parent.name == "ArmL")
         {
