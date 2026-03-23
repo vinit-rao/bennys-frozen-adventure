@@ -7,7 +7,6 @@ public class IceCreamSpawner : MonoBehaviour
 {
     public GameObject scoopOne, scoopTwo, scoopThree;
     public BennyOrders bennyOrders;
-    public AudioSource music;
 
     public float timeBetween = 2;
 
@@ -15,7 +14,6 @@ public class IceCreamSpawner : MonoBehaviour
 
     public TextMeshProUGUI rightOrderText;
     public TextMeshProUGUI leftOrderText;
-
 
     float timer = 0f;
 

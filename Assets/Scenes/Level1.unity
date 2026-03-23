@@ -4713,11 +4713,10 @@ MonoBehaviour:
   scoopTwo: {fileID: 3424335551820010054, guid: fc59204c521a04bcb82a4b5b1fe96a22, type: 3}
   scoopThree: {fileID: 1738511771697118128, guid: 32a7e5e7dab9349e9b77b1fef9a1f72e, type: 3}
   bennyOrders: {fileID: 520473114}
-  music: {fileID: 0}
   timeBetween: 2
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
-  rightOrderText: {fileID: 0}
-  leftOrderText: {fileID: 0}
+  rightOrderText: {fileID: 1136787470}
+  leftOrderText: {fileID: 596730235}
   minSpawn: 4
 --- !u!1001 &1956188608
 PrefabInstance:

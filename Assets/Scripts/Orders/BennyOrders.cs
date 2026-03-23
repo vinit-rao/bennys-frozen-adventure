@@ -119,43 +119,42 @@ public class BennyOrders : MonoBehaviour
                 }
             }
 
-            //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
-            if (leftA == order.iceCreams.Count)
-            {
-                ticketVisual.MarkAsComplete();
-                order.complete = true;
-
-                for (int j = 0; j < order.iceCreams.Count; j++)
-                {
-                    Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
-                    leftOrder.RemoveAt(leftOrder.Count - 1);
-                    leftCount -= 1;
-
-                    leftText.text = "Left :";
-                }
-
-            }
-            else if (rightA == order.iceCreams.Count)
-            {
-                ticketVisual.MarkAsComplete();
-                order.complete = true;
-
-                for (int j = 0; j < order.iceCreams.Count; j++)
-                {
-                    Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
-                    rightOrder.RemoveAt(rightOrder.Count - 1);
-                    rightCount -= 1;
-                    rightText.text = "Right :";
-                }
-
-            }
-
-
             //update left and right count
             leftCount = leftOrder.Count;
             rightCount = rightOrder.Count;
+        }
+
+        //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
+        if (leftA == order.iceCreams.Count)
+        {
+            ticketVisual.MarkAsComplete();
+            order.complete = true;
+
+            for (int j = 0; j < order.iceCreams.Count; j++)
+            {
+                Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
+                leftOrder.RemoveAt(leftOrder.Count - 1);
+                leftCount -= 1;
+
+                leftText.text = "Left :";
+            }
 
         }
+        else if (rightA == order.iceCreams.Count)
+        {
+            ticketVisual.MarkAsComplete();
+            order.complete = true;
+
+            for (int j = 0; j < order.iceCreams.Count; j++)
+            {
+                Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
+                rightOrder.RemoveAt(rightOrder.Count - 1);
+                rightCount -= 1;
+                rightText.text = "Right :";
+            }
+
+        }
+
     }
 
     // Update is called once per frame
@@ -173,28 +172,35 @@ public class BennyOrders : MonoBehaviour
         // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
         {
-            print(rightOrder[0]);
+            
             if (gameObject.GetComponent<BennyScript>().benny_rotation == 270)
             {
-                for (int i = 0; i < leftOrder.Count; i++)
+                
+
+                for (int i = 0; i <= leftOrder.Count; i++)
                 {
-                    print("Destroyed");
-                    Destroy(transform.GetChild(1).GetChild(i).gameObject);
+                    print("In the area");
+                    Destroy(transform.GetChild(1).GetChild(0).gameObject);
                     leftOrder.RemoveAt(0);
-                    leftCount = 0;
 
                     leftText.text = "Left: ";
                 }
+
+                leftCount = leftOrder.Count;
+
             } else if (gameObject.GetComponent<BennyScript>().benny_rotation == 90)
             {
-                for (int i = 0; i < rightOrder.Count; i++)
+
+                for (int i = 0; i <= rightOrder.Count; i++)
                 {
-                    Destroy(transform.GetChild(0).GetChild(i).gameObject);
+                    print("In the area");
+                    Destroy(transform.GetChild(0).GetChild(0).gameObject);
                     rightOrder.RemoveAt(0);
-                    rightCount = 0;
 
                     rightText.text = "Right: ";
                 }
+
+                rightCount = rightOrder.Count;
             }
         }
     }
