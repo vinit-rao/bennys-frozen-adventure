@@ -4508,7 +4508,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+    - {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -4714,6 +4716,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: moveCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: moveCurve.m_Curve.Array.data[0].inSlope
+      value: 3.3365242
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: moveCurve.m_Curve.Array.data[0].outSlope
+      value: 3.3365242
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: moveCurve.m_Curve.Array.data[0].outWeight
+      value: 0.027932959
+      objectReference: {fileID: 0}
     - target: {fileID: 2053277376199839876, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: m_Name
       value: Benny
