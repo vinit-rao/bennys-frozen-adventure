@@ -175,7 +175,7 @@ public class BennyOrders : MonoBehaviour
         {
             float rotation = gameObject.GetComponent<BennyScript>().benny_rotation;
 
-            if (rotation == 270)
+            if (rotation == 90)
             {
                 print("In the area");
                 foreach (Transform iceCream in transform.Find("ArmL"))
@@ -189,7 +189,7 @@ public class BennyOrders : MonoBehaviour
 
                 leftCount = leftOrder.Count;
 
-            } else if (rotation == 90)
+            } else if (rotation == 270)
             {
                 print("In the area");
                 foreach (Transform iceCream in transform.Find("ArmR"))
