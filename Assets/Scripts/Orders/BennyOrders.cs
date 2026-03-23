@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class orders
+public class Orders
 {
     //description for the order
     public List<int> iceCreams = new List<int>();
@@ -54,9 +54,9 @@ public class BennyOrders : MonoBehaviour
         "Kirby"
     };
 
-    orders Order1;
-    orders Order2;
-    orders Order3;
+    Orders Order1;
+    Orders Order2;
+    Orders Order3;
 
     public OrderUI uiTicket1;
     public OrderUI uiTicket2;
@@ -65,9 +65,9 @@ public class BennyOrders : MonoBehaviour
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
 
-    orders createOrder(OrderUI ticketVisual, int size, int time)
+    Orders createOrder(OrderUI ticketVisual, int size, int time)
     {
-        orders order = new orders();
+        Orders order = new Orders();
         int nameIndex = Random.Range(0, names.Count);
         order.name = names[nameIndex];
 
@@ -92,7 +92,7 @@ public class BennyOrders : MonoBehaviour
         floor = GameObject.FindWithTag("Floor");
     }
 
-    void checkComplete(orders order, OrderUI ticketVisual)
+    void checkComplete(Orders order, OrderUI ticketVisual)
     {
         //resets how many ice creams are correct every frame
         int leftA = 0;
@@ -172,34 +172,33 @@ public class BennyOrders : MonoBehaviour
         // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
         {
-            
-            if (gameObject.GetComponent<BennyScript>().benny_rotation == 270)
+            float rotation = gameObject.GetComponent<BennyScript>().benny_rotation;
+
+            if (rotation == 270)
             {
-                
-
-                for (int i = 0; i <= leftOrder.Count; i++)
+                print("In the area");
+                foreach (Transform iceCream in transform.Find("ArmL"))
                 {
-                    print("In the area");
-                    Destroy(transform.GetChild(1).GetChild(0).gameObject);
-                    leftOrder.RemoveAt(0);
-
-                    leftText.text = "Left: ";
+                    Destroy(iceCream.gameObject);
                 }
+                    
+                leftOrder.Clear();
+
+                leftText.text = "Left: ";
 
                 leftCount = leftOrder.Count;
 
-            } else if (gameObject.GetComponent<BennyScript>().benny_rotation == 90)
+            } else if (rotation == 90)
             {
-
-                for (int i = 0; i <= rightOrder.Count; i++)
+                print("In the area");
+                foreach (Transform iceCream in transform.Find("ArmR"))
                 {
-                    print("In the area");
-                    Destroy(transform.GetChild(0).GetChild(0).gameObject);
-                    rightOrder.RemoveAt(0);
-
-                    rightText.text = "Right: ";
+                    Destroy(iceCream.gameObject);
                 }
 
+                rightOrder.Clear();
+
+                rightText.text = "Right: ";
                 rightCount = rightOrder.Count;
             }
         }

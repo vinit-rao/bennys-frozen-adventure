@@ -43,7 +43,6 @@ public class IceCreamScript : MonoBehaviour
 
             //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
             stack_y += scoopHeight * (leftCount);
-            print(stack_y);
 
             //changes position
             transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
@@ -76,7 +75,6 @@ public class IceCreamScript : MonoBehaviour
             print("Added right");
 
             stack_y += scoopHeight * (rightCount);
-            print(stack_y);
 
             numOrder = bennyOrders.rightOrder.Count;
 
