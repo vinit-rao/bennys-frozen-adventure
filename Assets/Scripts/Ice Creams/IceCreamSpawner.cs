@@ -54,8 +54,24 @@ public class IceCreamSpawner : MonoBehaviour
                 scoop = Instantiate(scoopOne, randomPosition, Quaternion.identity);
                 
                 light.transform.SetParent(scoop.transform);
-                light.transform.GetComponent<Light>().color = new Color(0.9f, 0.3f, 0.5f);
+                // scoopOne (inspector assigned) lvl 1 always strawberry, lvl 2 always rocky road, lvl 3 always lavender
+                
+                if (scoop.name == "ScoopStrawberry(Clone)")
+                {
+                    light.transform.GetComponent<Light>().color = new Color(0.9f, 0.3f, 0.5f);;
+                    Debug.Log("strawberry");
+                }
+                else if (scoop.name == "ScoopRockyRoad(Clone)")
+                {
+                    light.transform.GetComponent<Light>().color = new Color(0.4f, 0.1f, 0.1f);
+                    Debug.Log("rocky road");
+                }
+                else
+                {
+                    // for space lvl 3;
+                }
             }
+
             else if (chance == 1)
             {
                 scoop = Instantiate(scoopTwo, randomPosition, Quaternion.identity);

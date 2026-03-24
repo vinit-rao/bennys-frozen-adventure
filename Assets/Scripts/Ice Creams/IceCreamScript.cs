@@ -72,14 +72,14 @@ public class IceCreamScript : MonoBehaviour
                     leftOrderText.text += "choc, ";
                     return;
 
-                case "ScoopPistachio(Clone)":
+                case "ScoopRockyRoad(Clone)":
                     bennyOrders.leftOrder.Add(3);
-                    leftOrderText.text += "pista, ";
+                    leftOrderText.text += "rocky road, ";
                     return;
 
-                case "ScoopRockyRoad(Clone)":
+                case "ScoopPistachio(Clone)":
                     bennyOrders.leftOrder.Add(4);
-                    leftOrderText.text += "rocky road, ";
+                    leftOrderText.text += "pista, ";
                     return;
 
                 case "ScoopButterscotch(Clone)":
@@ -116,14 +116,16 @@ public class IceCreamScript : MonoBehaviour
                     rightOrderText.text += "choc, ";
                     break;
 
-                case "ScoopPistachio(Clone)":
-                    bennyOrders.rightOrder.Add(3);
-                    rightOrderText.text += "pista, ";
-                    return;
                 case "ScoopRockyRoad(Clone)":
-                    bennyOrders.rightOrder.Add(4);
+                    bennyOrders.rightOrder.Add(3);
                     rightOrderText.text += "rocky road, ";
                     return;
+
+                case "ScoopPistachio(Clone)":
+                    bennyOrders.rightOrder.Add(4);
+                    rightOrderText.text += "pista, ";
+                    return;
+
                 case "ScoopButterscotch(Clone)":
                     bennyOrders.rightOrder.Add(5);
                     rightOrderText.text += "butterscotch, ";
@@ -150,7 +152,7 @@ public class IceCreamScript : MonoBehaviour
         if (collision != null)
         {
             if (collision.CompareTag("Floor") || collision.CompareTag("Fallen")) { 
-                print("Landed on ground");
+                // print("Landed on ground");
                 gameObject.tag = "Fallen";
                 timeRemaining -= Time.deltaTime;
 
