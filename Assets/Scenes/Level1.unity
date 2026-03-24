@@ -3754,6 +3754,7 @@ GameObject:
   - component: {fileID: 1505005473}
   - component: {fileID: 1505005472}
   - component: {fileID: 1505005474}
+  - component: {fileID: 1505005475}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3801,6 +3802,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfad2103a61542de8ce363e30a25edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1505005475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505005471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c6f3e49d67549bbb164ee1f913f5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useArduinoController: 1
+  portName: /dev/cu.usbmodem2101
+  baudRate: 9600
+  deadzone: 0.2
+  rawJoyX: 0
+  rawJoyY: 0
+  isLeftBtnPressed: 0
+  isRightBtnPressed: 0
+  joyX: 0
+  joyY: 0
 --- !u!1 &1524576395
 GameObject:
   m_ObjectHideFlags: 0
@@ -4547,6 +4570,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c55b44eaca043cb9dfb7d172e6c440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoopOne: {fileID: 829521551142780473, guid: ff3a53b5bbea040b9b7ae92e10a848e3, type: 3}
+  scoopTwo: {fileID: 3424335551820010054, guid: fc59204c521a04bcb82a4b5b1fe96a22, type: 3}
+  scoopThree: {fileID: 1738511771697118128, guid: 32a7e5e7dab9349e9b77b1fef9a1f72e, type: 3}
+  bennyOrders: {fileID: 520473114}
+  timeBetween: 2
+  spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
+  rightOrderText: {fileID: 1136787470}
+  leftOrderText: {fileID: 596730235}
+  minSpawn: 4
 --- !u!4 &1916150531
 Transform:
   m_ObjectHideFlags: 0
@@ -4703,6 +4735,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: arduino
+      value: 
+      objectReference: {fileID: 1505005475}
     - target: {fileID: 1040977633326441368, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: moveCurve.m_PreInfinity
       value: 2
