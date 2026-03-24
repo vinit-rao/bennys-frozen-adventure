@@ -52,20 +52,20 @@ public class IceCreamSpawner : MonoBehaviour
             if (chance == 0)
             {
                 scoop = Instantiate(scoopOne, randomPosition, Quaternion.identity);
-                
+
                 light.transform.SetParent(scoop.transform);
                 // scoopOne (inspector assigned) lvl 1 always strawberry, lvl 2 always rocky road, lvl 3 always lavender
-                
+
                 if (scoop.name == "ScoopStrawberry(Clone)")
                 {
-                    light.transform.GetComponent<Light>().color = new Color(0.9f, 0.3f, 0.5f);;
-                    Debug.Log("strawberry");
+                    light.transform.GetComponent<Light>().color = new Color(0.9f, 0.3f, 0.5f); ;
                 }
+
                 else if (scoop.name == "ScoopRockyRoad(Clone)")
                 {
-                    light.transform.GetComponent<Light>().color = new Color(0.4f, 0.1f, 0.1f);
-                    Debug.Log("rocky road");
+                    light.transform.GetComponent<Light>().color = new Color(1.0f, 0.3f, 0.3f);
                 }
+
                 else
                 {
                     // for space lvl 3;
@@ -75,16 +75,46 @@ public class IceCreamSpawner : MonoBehaviour
             else if (chance == 1)
             {
                 scoop = Instantiate(scoopTwo, randomPosition, Quaternion.identity);
-
+                // scoopTwo (inspector assigned) lvl 1 always choc, lvl 2 always pistachio, lvl 3 always blue moon
                 light.transform.SetParent(scoop.transform);
-                light.transform.GetComponent<Light>().color = new Color(1.0f, 0.5f, 0.0f);
+
+                if (scoop.name == "ScoopChocolate(Clone)")
+                {
+                    light.transform.GetComponent<Light>().color = new Color(1.0f, 0.3f, 0.0f);
+                }
+                
+                else if (scoop.name == "ScoopPistachio(Clone)")
+                {
+                    light.transform.GetComponent<Light>().color = new Color(0.2f, 1.0f, 0.0f);
+                }
+                
+                else
+                {
+                    // for space lvl 3;
+                }
             }
+
             else
             {
                 scoop = Instantiate(scoopThree, randomPosition, Quaternion.identity);
-
+                // scoopThree (inspector assigned) lvl 1 always vanilla, lvl 2 always butterscotch, lvl 3 always black hole
                 light.transform.SetParent(scoop.transform);
-                light.transform.GetComponent<Light>().color = Color.white;
+                
+                if (scoop.name == "ScoopVanilla(Clone)")
+                {
+                    light.transform.GetComponent<Light>().color = Color.white;
+                }
+                
+                else if (scoop.name == "ScoopButterscotch(Clone)")
+                {
+                    light.transform.GetComponent<Light>().color = new Color(1.0f, 0.8f, 0.3f);
+
+                }
+
+                else
+                {
+                    // for space lvl 3;
+                }
             }
 
             timer = 0f;
