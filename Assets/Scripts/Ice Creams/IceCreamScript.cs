@@ -9,7 +9,6 @@ public class IceCreamScript : MonoBehaviour
     public bool landed = false;
     public BennyOrders bennyOrders;
     public int numOrder;
-    bool holdingSpace;
     public IceCreamSpawner spawner;
 
     private float timeRemaining = 5;
@@ -39,7 +38,7 @@ public class IceCreamScript : MonoBehaviour
 
         Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
 
-        transform.eulerAngles = new Vector3(0, 0, 0);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
 
         if (transform.parent.name == "ArmL")
         {

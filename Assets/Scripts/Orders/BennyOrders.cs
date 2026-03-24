@@ -25,6 +25,8 @@ public class BennyOrders : MonoBehaviour
     private int leftCount = 0;
     private int rightCount = 0;
 
+    public float score = 0f;
+
     public GameObject floor;
 
     private List<string> names = new List<string>()
@@ -130,6 +132,7 @@ public class BennyOrders : MonoBehaviour
         {
             ticketVisual.MarkAsComplete();
             order.complete = true;
+            score += 1;
 
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
@@ -145,6 +148,7 @@ public class BennyOrders : MonoBehaviour
         {
             ticketVisual.MarkAsComplete();
             order.complete = true;
+            score += 1;
 
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
@@ -182,11 +186,11 @@ public class BennyOrders : MonoBehaviour
                 {
                     Destroy(iceCream.gameObject);
                 }
-                    
+
+                score -= 0.5f;
                 leftOrder.Clear();
 
                 leftText.text = "Left: ";
-
                 leftCount = leftOrder.Count;
 
             } else if (rotation == 270)
@@ -197,6 +201,7 @@ public class BennyOrders : MonoBehaviour
                     Destroy(iceCream.gameObject);
                 }
 
+                score -= 0.5f;
                 rightOrder.Clear();
 
                 rightText.text = "Right: ";

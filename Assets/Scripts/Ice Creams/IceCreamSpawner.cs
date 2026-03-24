@@ -8,16 +8,21 @@ public class IceCreamSpawner : MonoBehaviour
     public GameObject scoopOne, scoopTwo, scoopThree;
     public BennyOrders bennyOrders;
 
+    public float chunkTime = 6;
     public float timeBetween = 2;
+
+    private float chunkTimer = 0f;
+    public List<int> currentChunk = new List<int> { 0, 1, 2 };
 
     public GameObject spotLight;
 
     public TextMeshProUGUI rightOrderText;
     public TextMeshProUGUI leftOrderText;
 
-    float timer = 0f;
-
     public float minSpawn = 4;
+
+    Coroutine IceCreamsC;
+
     private void Start()
     {
         GameObject scoop = scoopOne;
@@ -34,45 +39,55 @@ public class IceCreamSpawner : MonoBehaviour
         }
     }
 
+    //fisher yates algorithm
+    public static void Shuffle(List<int> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+
+            int temp = list[i];
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
+    }
+
     void Update()
     {
-        int chance = Random.Range(0, 3);
-        Vector3 randomPosition =
-        new Vector3(Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)),
-        20, Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)));
+        chunkTimer += Time.deltaTime;
 
-        timer += Time.deltaTime;
-
-        if (timer >= timeBetween)
+        if (chunkTimer >= chunkTime)
         {
+            Shuffle(currentChunk);
+            IceCreamsC = StartCoroutine(IceCreams(currentChunk));
+
+            chunkTimer = 0f;
+        }
+    }
+
+    IEnumerator IceCreams(List<int> chunk)
+    {
+        foreach (int flavor in chunk)
+        {
+            Vector3 randomPosition =
+            new Vector3(Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)),
+            20, Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)));
+
+            GameObject prefab = null;
+            Color color = Color.white;
+
+            if (flavor == 0) { prefab = scoopOne; color = new Color(0.9f, 0.3f, 0.5f); }
+            if (flavor == 1) { prefab = scoopTwo; color = new Color(1.0f, 0.5f, 0.0f); }
+            if (flavor == 2) { prefab = scoopThree; color = Color.white; }
+
+            GameObject scoop = Instantiate(prefab, randomPosition, Quaternion.identity);
             GameObject light = Instantiate(spotLight, randomPosition, Quaternion.identity);
-            GameObject scoop;
+     
             light.transform.Rotate(90, 0, 0);
+            light.transform.SetParent(scoop.transform);
+            light.transform.GetComponent<Light>().color = color;
 
-            if (chance == 0)
-            {
-                scoop = Instantiate(scoopOne, randomPosition, Quaternion.identity);
-                
-                light.transform.SetParent(scoop.transform);
-                light.transform.GetComponent<Light>().color = new Color(0.9f, 0.3f, 0.5f);
-            }
-            else if (chance == 1)
-            {
-                scoop = Instantiate(scoopTwo, randomPosition, Quaternion.identity);
-
-                light.transform.SetParent(scoop.transform);
-                light.transform.GetComponent<Light>().color = new Color(1.0f, 0.5f, 0.0f);
-            }
-            else
-            {
-                scoop = Instantiate(scoopThree, randomPosition, Quaternion.identity);
-
-                light.transform.SetParent(scoop.transform);
-                light.transform.GetComponent<Light>().color = Color.white;
-            }
-
-            timer = 0f;
-            
+            yield return new WaitForSeconds(timeBetween);
         }
     }
 }
