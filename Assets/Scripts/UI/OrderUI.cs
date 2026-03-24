@@ -14,7 +14,7 @@ public class OrderUI : MonoBehaviour
     public GameObject completeStamp;
     public GameObject incompleteStamp;
 
-    public void SetupOrderVisuals(orders orderData)
+    public void SetupOrderVisuals(Orders orderData)
     {
         customerNameText.text = orderData.name;
         if (completeStamp != null) completeStamp.SetActive(false);

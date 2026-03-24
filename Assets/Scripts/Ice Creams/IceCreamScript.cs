@@ -11,7 +11,6 @@ public class IceCreamScript : MonoBehaviour
     public int numOrder;
     bool holdingSpace;
     public IceCreamSpawner spawner;
-    public AudioSource music;
 
     private float timeRemaining = 5;
     GameObject collision = null;
@@ -40,13 +39,14 @@ public class IceCreamScript : MonoBehaviour
 
         Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
 
+        transform.eulerAngles = new Vector3(0, 0, 0);
+
         if (transform.parent.name == "ArmL")
         {
             print("Added left");
 
             //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
             stack_y += scoopHeight * (leftCount);
-            print(stack_y);
 
             //changes position
             transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
@@ -79,7 +79,6 @@ public class IceCreamScript : MonoBehaviour
             print("Added right");
 
             stack_y += scoopHeight * (rightCount);
-            print(stack_y);
 
             numOrder = bennyOrders.rightOrder.Count;
 
@@ -111,13 +110,11 @@ public class IceCreamScript : MonoBehaviour
         {
             rb.velocity = new Vector3(0, -3.44f, 0);
             spawner.timeBetween = 1;
-            music.pitch = 1.1f;
         }
         else
         {
             rb.velocity = new Vector3(0, -1.77f, 0);
             spawner.timeBetween = 2;
-            music.pitch = 1;
         }
 
         //deletes the ice cream after 5 seconds if the collision is the floor
@@ -142,8 +139,6 @@ public class IceCreamScript : MonoBehaviour
         //allows outside functions to see the collision
         collision = other.gameObject;
 
-        print(collision);
-
         //checks if the object collided with one of benny's arms
         if (other.transform.CompareTag("BennyArm") && !landed)
         {
@@ -167,12 +162,6 @@ public class IceCreamScript : MonoBehaviour
             transform.SetParent(other.transform.parent);
 
             addScoop();
-        }
-
-        // if lands on the floor: destroy the spotlight clone
-        else if (other.transform.CompareTag("Floor"))
-        {
-            Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
         }
     }   
 }

@@ -5,95 +5,74 @@ using TMPro;
 
 public class IceCreamSpawner : MonoBehaviour
 {
-    public GameObject scoopOne;
-    public GameObject scoopTwo;
-    public GameObject scoopThree;
+    public GameObject scoopOne, scoopTwo, scoopThree;
     public BennyOrders bennyOrders;
-    public AudioSource music;
 
-    public float timeBetween = 2f;
+    public float timeBetween = 2;
 
     public GameObject spotLight;
 
     public TextMeshProUGUI rightOrderText;
     public TextMeshProUGUI leftOrderText;
 
-
     float timer = 0f;
 
-    public float minSpawnX = 4f;
-    public float maxSpawnX = -4f;
-    public float minSpawnZ = 4f;
-    public float maxSpawnZ = -4f;
-
+    public float minSpawn = 4;
     private void Start()
     {
-        scoopOne.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
-        scoopOne.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
-        scoopOne.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
-        scoopOne.GetComponent<IceCreamScript>().spawner = this;
-        scoopOne.GetComponent<IceCreamScript>().music = music;
+        GameObject scoop = scoopOne;
 
-        scoopTwo.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
-        scoopTwo.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
-        scoopTwo.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
-        scoopTwo.GetComponent<IceCreamScript>().spawner = this;
-        scoopTwo.GetComponent<IceCreamScript>().music = music;
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == 1) scoop = scoopTwo;
+            if (i == 2) scoop = scoopThree;
 
-        scoopThree.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
-        scoopThree.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
-        scoopThree.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
-        scoopThree.GetComponent<IceCreamScript>().spawner = this;
-        scoopThree.GetComponent<IceCreamScript>().music = music;
+            scoop.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
+            scoop.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
+            scoop.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
+            scoop.GetComponent<IceCreamScript>().spawner = this;
+        }
     }
 
     void Update()
     {
-        int chance = Random.Range(1, 101);
-        int randomSpawnX = Mathf.RoundToInt(Random.Range(minSpawnX, maxSpawnX));
-        int randomSpawnZ = Mathf.RoundToInt(Random.Range(minSpawnZ, maxSpawnZ));
+        int chance = Random.Range(0, 3);
+        Vector3 randomPosition =
+        new Vector3(Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)),
+        20, Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)));
 
         timer += Time.deltaTime;
 
         if (timer >= timeBetween)
         {
-            if (chance <= 33)
-            {
-                Vector3 randomPosition = new Vector3(randomSpawnX, 20, randomSpawnZ);
-                GameObject scoop1 = Instantiate(scoopOne, randomPosition, Quaternion.identity);
-                GameObject light = Instantiate(spotLight, randomPosition, Quaternion.identity);
-                light.transform.SetParent(scoop1.transform);
-                light.transform.Rotate(90, 0, 0);
-                light.transform.GetComponent<Light>().color = new Color(1.0f, 0.5f, 0.0f);
+            GameObject light = Instantiate(spotLight, randomPosition, Quaternion.identity);
+            GameObject scoop;
+            light.transform.Rotate(90, 0, 0);
 
-                scoop1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-
-                timer = 0f;
-            }
-            else if (chance <= 66)
+            if (chance == 0)
             {
-                Vector3 randomPosition = new Vector3(randomSpawnX, 20, randomSpawnZ);
-                GameObject scoop2 = Instantiate(scoopTwo, randomPosition, Quaternion.identity);
-                scoop2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                GameObject light = Instantiate(spotLight, randomPosition, Quaternion.identity);
-                light.transform.SetParent(scoop2.transform);
-                light.transform.Rotate(90, 0, 0);
+                scoop = Instantiate(scoopOne, randomPosition, Quaternion.identity);
+                
+                light.transform.SetParent(scoop.transform);
                 light.transform.GetComponent<Light>().color = new Color(0.9f, 0.3f, 0.5f);
+            }
+            else if (chance == 1)
+            {
+                scoop = Instantiate(scoopTwo, randomPosition, Quaternion.identity);
 
-                timer = 0f;
+                light.transform.SetParent(scoop.transform);
+                light.transform.GetComponent<Light>().color = new Color(1.0f, 0.5f, 0.0f);
             }
             else
             {
-                Vector3 randomPosition = new Vector3(randomSpawnX, 20, randomSpawnZ);
-                GameObject scoop3 = Instantiate(scoopThree, randomPosition, Quaternion.identity);
-                scoop3.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                GameObject light = Instantiate(spotLight, randomPosition, Quaternion.identity);
-                light.transform.SetParent(scoop3.transform);
-                light.transform.Rotate(90, 0, 0);
-                light.transform.GetComponent<Light>().color = Color.white;
+                scoop = Instantiate(scoopThree, randomPosition, Quaternion.identity);
 
-                timer = 0f;
+                light.transform.SetParent(scoop.transform);
+                light.transform.GetComponent<Light>().color = Color.white;
             }
+
+            timer = 0f;
+            
         }
     }
 }

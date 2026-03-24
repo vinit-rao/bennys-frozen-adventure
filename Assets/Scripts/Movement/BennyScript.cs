@@ -15,6 +15,9 @@ public class BennyScript : MonoBehaviour
     public float CooldownTime;
     private float _nextAllowedInputTime;
     public int borderSize = 4;
+    public bool isAnimating = false;
+
+    public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     void Start()
     {
@@ -43,41 +46,49 @@ public class BennyScript : MonoBehaviour
             isHoldingKey = false;
         }
 
-        if (isHoldingKey && ticker >= timeStepper) // hold down arrows to move continously
-
+        if (isHoldingKey && ticker >= timeStepper && !isAnimating) // hold down arrows to move continously
         {
-            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && benny.transform.position.z < borderSize)
-            {
-                benny.transform.position = new Vector3(benny.transform.position.x, 1, benny.transform.position.z + tileSize);
-            }
-            if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && benny.transform.position.z > -borderSize)
-            {
-                benny.transform.position = new Vector3(benny.transform.position.x, 1, benny.transform.position.z - tileSize);
-            }
-            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && benny.transform.position.x > -borderSize)
-            {
-                benny.transform.position = new Vector3(benny.transform.position.x - tileSize, 1, benny.transform.position.z);
-            }
-            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && benny.transform.position.x < borderSize)
-            {
-                benny.transform.position = new Vector3(benny.transform.position.x + tileSize, 1, benny.transform.position.z);
-            }
+            float moveX = 0f;
+            float moveZ = 0f;
+
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) moveZ += tileSize;
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) moveZ -= tileSize;
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) moveX -= tileSize;
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) moveX += tileSize;
+
+            bool isTurning = false;
             if (Input.GetKey(KeyCode.Q))
             {
                 benny_rotation -= 90f;
                 if (benny_rotation < 0) benny_rotation = 270;
 
-                benny.transform.Rotate(0, -90, 0);
-                _nextAllowedInputTime = Time.time + CooldownTime;
+                StartCoroutine(DoTurn(benny_rotation));
+                isTurning = true;
             }
-            if (Input.GetKey(KeyCode.E))
+            else if (Input.GetKey(KeyCode.E))
             {
                 benny_rotation += 90f;
                 if (benny_rotation == 360) benny_rotation = 0;
 
-                benny.transform.Rotate(0, 90, 0);
-                _nextAllowedInputTime = Time.time + CooldownTime;
+                StartCoroutine(DoTurn(benny_rotation));
+                isTurning = true;
             }
+
+            if (!isTurning && (moveX != 0f || moveZ != 0f))
+            {
+                Vector3 targetPos = new Vector3(
+                    benny.transform.position.x + moveX,
+                    benny.transform.position.y,
+                    benny.transform.position.z + moveZ
+                );
+
+                if (targetPos.x >= -borderSize && targetPos.x <= borderSize &&
+                    targetPos.z >= -borderSize && targetPos.z <= borderSize)
+                {
+                    StartCoroutine(DoMove(targetPos));
+                }
+            }
+
             ticker = 0f;
         }
 
@@ -85,7 +96,63 @@ public class BennyScript : MonoBehaviour
         {
             ticker = timeStepper;
         }
+    }
 
-        
+    private IEnumerator DoMove(Vector3 targetPos)
+    {
+        isAnimating = true;
+
+        float duration = timeStepper * 0.75f;
+        float elapsed = 0f;
+
+        Vector3 startPos = benny.transform.position;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            float curveT = moveCurve.Evaluate(t);
+
+            benny.transform.position = Vector3.Lerp(startPos, targetPos, curveT);
+            yield return null;
+        }
+
+        benny.transform.position = targetPos;
+        isAnimating = false;
+    }
+
+    private IEnumerator DoTurn(float targetAngle)
+    {
+        isAnimating = true;
+
+        float duration = timeStepper * 0.6f;
+        float hopHeight = 0.3f;
+        float elapsed = 0f;
+
+        Quaternion startRot = benny.transform.rotation;
+        Quaternion endRot = Quaternion.Euler(0, targetAngle, 0);
+        Vector3 startPos = benny.transform.position;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            float sprintT = 1f - Mathf.Pow(1f - t, 4f);
+            float jumpT = Mathf.Sin(t * Mathf.PI);
+
+            benny.transform.rotation = Quaternion.Slerp(startRot, endRot, sprintT);
+
+            Vector3 currentPos = startPos;
+            currentPos.y += jumpT * hopHeight;
+            benny.transform.position = currentPos;
+
+            yield return null;
+        }
+
+        benny.transform.rotation = endRot;
+        benny.transform.position = startPos;
+        isAnimating = false;
     }
 }
