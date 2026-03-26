@@ -6,7 +6,7 @@ public class OrderUI : MonoBehaviour
 {
     public TextMeshProUGUI customerNameText;
     public Image[] scoopSlots;
-    public BennyOrders BennyOrders;
+    private BennyOrders BennyOrders;
 
     public Sprite strawberrySprite;
     public Sprite vanillaSprite;
@@ -26,8 +26,6 @@ public class OrderUI : MonoBehaviour
             slot.gameObject.SetActive(false);
         }
 
-        setPosition(orderData);
-
         for (int i = 0; i < orderData.iceCreams.Count; i++)
         {
             if (i >= scoopSlots.Length) break;
@@ -45,31 +43,15 @@ public class OrderUI : MonoBehaviour
 
     private void setPosition(Orders order)
     {
-        int orderCount = BennyOrders.levelOrders.Count;
-        RectTransform rect = GetComponent<RectTransform>();
-        int ypos = 350;
+        Vector2 pos = gameObject.transform.position;
 
-        if (orderCount == 0)
+        int orderCount = 0;
+
+        foreach (Orders count in BennyOrders.levelOrders) { orderCount++; }
+
+        if (orderCount == 1)
         {
-            rect.anchoredPosition = new Vector2(-802, 280);
-        } else if (orderCount == 1)
-        {
-            rect.anchoredPosition = new Vector2(-802, 280 - ypos);
-        } else if (orderCount == 2)
-        {
-            rect.anchoredPosition = new Vector2(-802, 280 - (ypos * 2));
-        }
-        else if (orderCount == 3)
-        {
-            rect.anchoredPosition = new Vector2(-552, 280);
-        }
-        else if (orderCount == 4)
-        {
-            rect.anchoredPosition = new Vector2(-552, 280 - ypos);
-        }
-        else if (orderCount == 5)
-        {
-            rect.anchoredPosition = new Vector2(-552, 280 - (ypos * 2));
+            pos = new Vector2(-802, 280);
         }
 
     }

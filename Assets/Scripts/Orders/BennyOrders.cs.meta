@@ -3,7 +3,11 @@ guid: 55213b6ab8f8a21478318255b2e2b7a2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ticket: {fileID: 8110687929172066647, guid: 64d5e94d3fe264fadaa4920e79fe3f2f, type: 3}
+  - floor: {instanceID: 0}
+  - leftText: {instanceID: 0}
+  - rightText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -25,7 +25,7 @@ public class BennyOrders : MonoBehaviour
     public List<int> rightOrder = new List<int>();
     public List<Orders> levelOrders = new List<Orders>();
 
-    public int numOrders = 5;
+    public int numOrders = 3;
 
     //how many ice creams benny is holding in each hand
     private int leftCount = 0;
@@ -80,14 +80,7 @@ public class BennyOrders : MonoBehaviour
 
         
         order.ticket = Instantiate(ticket);
-        GameObject ticketUI = order.ticket;
-        ticketUI.transform.SetAsFirstSibling();
-
-        ticketUI.GetComponent<OrderUI>().BennyOrders = this;
-
-        ticketUI.transform.SetParent(UIcontainer);
-        ticketUI.name = "Ticket" + (levelOrders.Count + 1);
-
+        order.ticket.transform.parent = UIcontainer;
         order.ticket.GetComponent<OrderUI>().SetupOrderVisuals(order);
         return order;
     }
@@ -114,16 +107,15 @@ public class BennyOrders : MonoBehaviour
 
         for (int i = 0; i < numOrders; i++)
         {
-            print("instantiated");
+            
             int num = time[0];
-            levelOrders.Add(createOrder(Random.Range(3, 6), num));
+            levelOrders.Add(createOrder(5, num));
         }
+        print("instantiated");
     }
 
     void checkComplete(Orders order)
     {
-        OrderUI UI = order.ticket.GetComponent<OrderUI>();
-
         //resets how many ice creams are correct every frame
         int leftA = 0;
         int rightA = 0;
@@ -157,7 +149,7 @@ public class BennyOrders : MonoBehaviour
         //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
         if (leftA == order.iceCreams.Count)
         {
-            UI.MarkAsComplete();
+            order.ticket.GetComponent<OrderUI>().MarkAsComplete();
             order.complete = true;
 
             for (int j = 0; j < order.iceCreams.Count; j++)
@@ -172,7 +164,7 @@ public class BennyOrders : MonoBehaviour
         }
         else if (rightA == order.iceCreams.Count)
         {
-            UI.MarkAsComplete();
+            order.ticket.GetComponent<OrderUI>().MarkAsComplete();
             order.complete = true;
 
             for (int j = 0; j < order.iceCreams.Count; j++)
@@ -182,7 +174,9 @@ public class BennyOrders : MonoBehaviour
                 rightCount -= 1;
                 rightText.text = "Right :";
             }
+
         }
+
     }
 
     private IEnumerator countDown()
