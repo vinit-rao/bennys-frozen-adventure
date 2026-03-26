@@ -70,6 +70,7 @@ public class BennyOrders : MonoBehaviour
 
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
+    public TextMeshProUGUI scoreText;
 
     Orders createOrder(int size, float time, bool active)
     {
@@ -184,6 +185,9 @@ public class BennyOrders : MonoBehaviour
             UI.MarkAsComplete();
             order.complete = true;
 
+            score += 1;
+            scoreText.text = "Score: " + score;
+
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
                 Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
@@ -199,6 +203,8 @@ public class BennyOrders : MonoBehaviour
             UI.MarkAsComplete();
             order.complete = true;
 
+            score += 1;
+
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
                 Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
@@ -213,30 +219,20 @@ public class BennyOrders : MonoBehaviour
     {
         TextMeshProUGUI timerUI = order.ticket.GetComponent<OrderUI>().timerText;
 
-        while (order.timer >= 0)
+        while (order.timer >= 0 && !order.complete)
         {
             yield return new WaitForSeconds(1);
             order.timer -= 1;
             timerUI.text = "Time" + order.timer;
         }
 
-        if (order.complete)
-        {
-            yield return new WaitForSeconds(2);
-            Destroy(order.ticket);
-            levelOrders.Remove(order);
-        } else
-        {
-            order.timeFailed = true;
-            timerUI.text = "Failed";
-            
-
-            yield return new WaitForSeconds(2);
-            Destroy(order.ticket);
-            levelOrders.Remove(order);
-        }
-
+        order.timeFailed = true;
+        timerUI.text = "Failed";
         int orderIndex = levelOrders.IndexOf(order);
+
+        yield return new WaitForSeconds(2);
+        Destroy(order.ticket);
+        levelOrders.Remove(order);
 
         foreach (Orders orders in levelOrders)
         {
