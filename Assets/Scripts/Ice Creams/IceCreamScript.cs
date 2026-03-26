@@ -68,16 +68,15 @@ public class IceCreamScript : MonoBehaviour
                     leftOrderText.text += "straw, ";
                     return;
 
-                case "ScoopVanilla(Clone)":
-                    bennyOrders.leftOrder.Add(1);
-                    leftOrderText.text += "van, ";
-                    return;
-
                 case "ScoopChoc(Clone)":
-                    bennyOrders.leftOrder.Add(2);
+                    bennyOrders.leftOrder.Add(1);
                     leftOrderText.text += "choc, ";
                     return;
 
+                case "ScoopVanilla(Clone)":
+                    bennyOrders.leftOrder.Add(2);
+                    leftOrderText.text += "van, ";
+                    return;
                 case "ScoopRockyRoad(Clone)":
                     bennyOrders.leftOrder.Add(3);
                     leftOrderText.text += "rocky road, ";
@@ -129,14 +128,14 @@ public class IceCreamScript : MonoBehaviour
                     rightOrderText.text += "straw, ";
                     return;
 
-                case "ScoopVanilla(Clone)":
+                case "ScoopChoc(Clone)":
                     bennyOrders.rightOrder.Add(1);
-                    rightOrderText.text += "van, ";
+                    rightOrderText.text += "choc, ";
                     return;
 
-                case "ScoopChoc(Clone)":
+                case "ScoopVanilla(Clone)":
                     bennyOrders.rightOrder.Add(2);
-                    rightOrderText.text += "choc, ";
+                    rightOrderText.text += "van, ";
                     return;
 
                 case "ScoopRockyRoad(Clone)":
@@ -186,7 +185,8 @@ public class IceCreamScript : MonoBehaviour
         //deletes the ice cream after 5 seconds if the collision is the floor
         if (collision != null)
         {
-            if (collision.CompareTag("Floor") || collision.CompareTag("Fallen")) { 
+            if (collision.CompareTag("Floor") || collision.CompareTag("Fallen"))
+            {
                 // print("Landed on ground");
                 gameObject.tag = "Fallen";
                 timeRemaining -= Time.deltaTime;
@@ -210,6 +210,7 @@ public class IceCreamScript : MonoBehaviour
         {
             //makes it so that it can't land on anything else
             landed = true;
+            gameObject.tag = "ScoopLanded";
 
             //stops all movement
             rb.isKinematic = true;
@@ -219,15 +220,17 @@ public class IceCreamScript : MonoBehaviour
             //depending on the scoop add it to the list of benny scoops
             addScoop();
 
-        //if it lands on another ice cream scoop
-        } else if (other.transform.CompareTag("Scoop") && !landed)
+            //if it lands on another ice cream scoop
+        }
+        else if (other.transform.CompareTag("ScoopLanded") && !landed)
         {
             landed = true;
+            gameObject.tag = "ScoopLanded";
 
             rb.isKinematic = true;
             transform.SetParent(other.transform.parent);
 
             addScoop();
         }
-    }   
+    }
 }
