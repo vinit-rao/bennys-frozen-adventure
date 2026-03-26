@@ -93,82 +93,77 @@ public class BennyOrders : MonoBehaviour
         Order3 = createOrder(uiTicket3, 5, 30);
     }
 
-    void checkComplete(Orders order, OrderUI ticketVisual)
+    bool checkComplete(Orders order, OrderUI ticketVisual)
     {
-        //resets how many ice creams are correct every frame
+        Debug.Log($"Order needs: [{string.Join(", ", order.iceCreams)}]");
+        Debug.Log($"Left has:    [{string.Join(", ", leftOrder)}]");
+        Debug.Log($"Right has:   [{string.Join(", ", rightOrder)}]");
+        if (order.complete) return false;
+
         int leftA = 0;
         int rightA = 0;
 
-        //checks if the flavor is correct on either side for however many scoops there are in the order
         for (int i = 0; i < order.iceCreams.Count; i++)
         {
+            // Read leftOrder/rightOrder from the top of the stack (end of list)
+            int leftIndex = leftOrder.Count - 1 - i;
+            int rightIndex = rightOrder.Count - 1 - i;
 
-            //if the order isn't already complete then do it
-            if (!order.complete)
-            {
+            if (leftIndex >= 0 && leftOrder[leftIndex] == order.iceCreams[i])
+                leftA++;
 
-                //if the ice creams on either hand is equal to the same position on order, then add to "leftA" (however many are correct)
-                //if the amount of scoops in the left and right order is less than the value of i, it won't check it
-                if (i < leftOrder.Count && leftOrder[i] == order.iceCreams[i])
-                {
-                    leftA++;
-                }
-
-                if (i < rightOrder.Count && rightOrder[i] == order.iceCreams[i])
-                {
-                    rightA++;
-                }
-            }
-
-            //update left and right count
-            leftCount = leftOrder.Count;
-            rightCount = rightOrder.Count;
+            if (rightIndex >= 0 && rightOrder[rightIndex] == order.iceCreams[i])
+                rightA++;
         }
 
-        //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
+        leftCount = leftOrder.Count;
+        rightCount = rightOrder.Count;
+
         if (leftA == order.iceCreams.Count)
         {
             ticketVisual.MarkAsComplete();
             order.complete = true;
 
-            for (int j = 0; j < order.iceCreams.Count; j++)
+            Transform armL = transform.Find("ArmL");  // fixed: use Find instead of GetChild(1)
+            for (int j = leftOrder.Count - 1; j >= 0; j--)
             {
-                Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
-                leftOrder.RemoveAt(leftOrder.Count - 1);
-                leftCount -= 1;
-
-                leftText.text = "Left :";
+                if (j < armL.childCount)
+                    Destroy(armL.GetChild(j).gameObject);
+                leftOrder.RemoveAt(j);
             }
 
+            leftCount = 0;
+            leftText.text = "Left :";
+            return true;
         }
-        else if (rightA == order.iceCreams.Count)
+
+        if (rightA == order.iceCreams.Count)
         {
             ticketVisual.MarkAsComplete();
             order.complete = true;
 
-            for (int j = 0; j < order.iceCreams.Count; j++)
+            Transform armR = transform.Find("ArmR");  // fixed: use Find instead of GetChild(0)
+            for (int j = rightOrder.Count - 1; j >= 0; j--)
             {
-                Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
-                rightOrder.RemoveAt(rightOrder.Count - 1);
-                rightCount -= 1;
-                rightText.text = "Right :";
+                if (j < armR.childCount)
+                    Destroy(armR.GetChild(j).gameObject);
+                rightOrder.RemoveAt(j);
             }
 
+            rightCount = 0;
+            rightText.text = "Right :";
+            return true;
         }
 
+        return false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //checks if any ice creams have been added to the left or right hand
-        if (leftCount < leftOrder.Count || rightCount < rightOrder.Count)
-        {
-            checkComplete(Order1, uiTicket1);
-            checkComplete(Order2, uiTicket2);
-            checkComplete(Order3, uiTicket3);
-        }
+        checkComplete(Order1, uiTicket1);
+        checkComplete(Order2, uiTicket2);
+        checkComplete(Order3, uiTicket3);
 
         // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
@@ -182,14 +177,12 @@ public class BennyOrders : MonoBehaviour
                 {
                     Destroy(iceCream.gameObject);
                 }
-                    
+
                 leftOrder.Clear();
-
                 leftText.text = "Left: ";
-
                 leftCount = leftOrder.Count;
-
-            } else if (rotation == 270)
+            }
+            else if (rotation == 270)
             {
                 print("In the area");
                 foreach (Transform iceCream in transform.Find("ArmR"))
@@ -198,7 +191,6 @@ public class BennyOrders : MonoBehaviour
                 }
 
                 rightOrder.Clear();
-
                 rightText.text = "Right: ";
                 rightCount = rightOrder.Count;
             }
