@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.IO.Ports;
 using System;
 
@@ -25,6 +26,10 @@ public class ArduinoController : MonoBehaviour
     public bool LeftPressed => joyX < -0.5f;
     public bool RotateLeftPressed => isLeftBtnPressed;
     public bool RotateRightPressed => isRightBtnPressed;
+
+    private bool leftLedOn = false;
+    private bool rightLedOn = false;
+    private bool middleLedOn = false; // Ignored for now!
 
     void Start()
     {
@@ -66,6 +71,41 @@ public class ArduinoController : MonoBehaviour
         float normalized = (rawValue - 512f) / 512f;
         if (Mathf.Abs(normalized) < deadzone) return 0f;
         return Mathf.Clamp(normalized, -1f, 1f);
+    }
+
+    public void BlinkLeftLED()
+    {
+        StartCoroutine(BlinkRoutine(1, 0.25f)); // blinks for a quarter second
+    }
+
+    public void BlinkRightLED()
+    {
+        StartCoroutine(BlinkRoutine(2, 0.25f));
+    }
+
+    private IEnumerator BlinkRoutine(int ledID, float duration)
+    {
+        //led on
+        if (ledID == 1) leftLedOn = true;
+        if (ledID == 2) rightLedOn = true;
+        SendLEDData();
+        yield return new WaitForSeconds(duration);
+        //led off
+        if (ledID == 1) leftLedOn = false;
+        if (ledID == 2) rightLedOn = false;
+        SendLEDData();
+    }
+
+    private void SendLEDData()
+    {
+        if (serialPort != null && serialPort.IsOpen)
+        {
+            int l1 = leftLedOn ? 1 : 0;
+            int l2 = rightLedOn ? 1 : 0;
+            int l3 = middleLedOn ? 1 : 0;
+
+            serialPort.Write($"{l1},{l2},{l3}\n");
+        }
     }
 
     void OnDestroy()
