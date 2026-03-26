@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class orders
+public class Orders
 {
     //description for the order
     public List<int> iceCreams = new List<int>();
@@ -54,9 +54,9 @@ public class BennyOrders : MonoBehaviour
         "Kirby"
     };
 
-    orders Order1;
-    orders Order2;
-    orders Order3;
+    Orders Order1;
+    Orders Order2;
+    Orders Order3;
 
     public OrderUI uiTicket1;
     public OrderUI uiTicket2;
@@ -65,9 +65,9 @@ public class BennyOrders : MonoBehaviour
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
 
-    orders createOrder(OrderUI ticketVisual, int size, int time)
+    Orders createOrder(OrderUI ticketVisual, int size, int time)
     {
-        orders order = new orders();
+        Orders order = new Orders();
         int nameIndex = Random.Range(0, names.Count);
         order.name = names[nameIndex];
 
@@ -82,36 +82,6 @@ public class BennyOrders : MonoBehaviour
         return order;
     }
 
-    //orders createOrder(TextMeshProUGUI text, int size, int time)
-    //{
-    //    orders order = new orders();
-
-    //    int name = Random.Range(0, names.Count);
-    //    order.name = names[name];
-    //    text.text = order.name + ": ";
-        
-    //    for (int i = 0; i < size; i++)
-    //    {
-    //        int Rand = Random.Range(0, 3);  
-    //        order.iceCreams.Add(Rand);
-
-
-    //        switch (Rand)
-    //        {
-    //            case 0:
-    //                text.text += "Strawberry, ";
-    //                break;
-    //            case 1:
-    //                text.text += "Vanilla, ";
-    //                break;
-    //            case 2:
-    //                text.text += "Chocolate, ";
-    //                break;
-    //        }
-    //    }
-
-    //    return order;
-    //}
 
     //randomly generates a set of ice creams to complete
     void Start()
@@ -123,7 +93,7 @@ public class BennyOrders : MonoBehaviour
         Order3 = createOrder(uiTicket3, 5, 30);
     }
 
-    void checkComplete(orders order, OrderUI ticketVisual)
+    void checkComplete(Orders order, OrderUI ticketVisual)
     {
         //resets how many ice creams are correct every frame
         int leftA = 0;
@@ -150,43 +120,42 @@ public class BennyOrders : MonoBehaviour
                 }
             }
 
-            //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
-            if (leftA == order.iceCreams.Count)
-            {
-                ticketVisual.MarkAsComplete();
-                order.complete = true;
-
-                for (int j = 0; j < order.iceCreams.Count; j++)
-                {
-                    Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
-                    leftOrder.RemoveAt(leftOrder.Count - 1);
-                    leftCount -= 1;
-
-                    leftText.text = "Left :";
-                }
-
-            }
-            else if (rightA == order.iceCreams.Count)
-            {
-                ticketVisual.MarkAsComplete();
-                order.complete = true;
-
-                for (int j = 0; j < order.iceCreams.Count; j++)
-                {
-                    Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
-                    rightOrder.RemoveAt(rightOrder.Count - 1);
-                    rightCount -= 1;
-                    rightText.text = "Right :";
-                }
-
-            }
-
-
             //update left and right count
             leftCount = leftOrder.Count;
             rightCount = rightOrder.Count;
+        }
+
+        //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
+        if (leftA == order.iceCreams.Count)
+        {
+            ticketVisual.MarkAsComplete();
+            order.complete = true;
+
+            for (int j = 0; j < order.iceCreams.Count; j++)
+            {
+                Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
+                leftOrder.RemoveAt(leftOrder.Count - 1);
+                leftCount -= 1;
+
+                leftText.text = "Left :";
+            }
 
         }
+        else if (rightA == order.iceCreams.Count)
+        {
+            ticketVisual.MarkAsComplete();
+            order.complete = true;
+
+            for (int j = 0; j < order.iceCreams.Count; j++)
+            {
+                Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
+                rightOrder.RemoveAt(rightOrder.Count - 1);
+                rightCount -= 1;
+                rightText.text = "Right :";
+            }
+
+        }
+
     }
 
     // Update is called once per frame
@@ -200,30 +169,38 @@ public class BennyOrders : MonoBehaviour
             checkComplete(Order2, uiTicket2);
             checkComplete(Order3, uiTicket3);
         }
+
         // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
         {
-            
-            if (gameObject.GetComponent<BennyScript>().benny_rotation == 270)
-            {
-                for (int i = 0; i < leftOrder.Count; i++)
-                {
-                    Destroy(transform.GetChild(1).GetChild(i).gameObject);
-                    leftOrder.RemoveAt(0);
-                    leftCount = 0;
+            float rotation = gameObject.GetComponent<BennyScript>().benny_rotation;
 
-                    leftText.text = "Left: ";
-                }
-            } else if (gameObject.GetComponent<BennyScript>().benny_rotation == 90)
+            if (rotation == 90)
             {
-                for (int i = 0; i < rightOrder.Count; i++)
+                print("In the area");
+                foreach (Transform iceCream in transform.Find("ArmL"))
                 {
-                    Destroy(transform.GetChild(0).GetChild(i).gameObject);
-                    rightOrder.RemoveAt(0);
-                    rightCount = 0;
-
-                    rightText.text = "Right: ";
+                    Destroy(iceCream.gameObject);
                 }
+                    
+                leftOrder.Clear();
+
+                leftText.text = "Left: ";
+
+                leftCount = leftOrder.Count;
+
+            } else if (rotation == 270)
+            {
+                print("In the area");
+                foreach (Transform iceCream in transform.Find("ArmR"))
+                {
+                    Destroy(iceCream.gameObject);
+                }
+
+                rightOrder.Clear();
+
+                rightText.text = "Right: ";
+                rightCount = rightOrder.Count;
             }
         }
     }

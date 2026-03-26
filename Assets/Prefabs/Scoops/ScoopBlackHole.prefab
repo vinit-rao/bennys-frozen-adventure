@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6231428688989332774}
   - component: {fileID: 4033095276632576382}
   m_Layer: 0
-  m_Name: ScoopVanilla
+  m_Name: ScoopBlackHole
   m_TagString: Scoop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bc752c3551a144fedaba57fd4a67ab6a, type: 2}
+      objectReference: {fileID: 2100000, guid: 202555ce3b1ca4628bb79abcd629deb0, type: 2}
     - target: {fileID: 919132149155446097, guid: 857c900295fcd460d89fcfbc54525ec2, type: 3}
       propertyPath: m_Name
       value: Scoop

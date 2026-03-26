@@ -414,6 +414,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7460689431268591535, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7836933155951402261, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.41
@@ -429,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 8619640410251503941, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
       propertyPath: m_Name
       value: Canyon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619640410251503941, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -446,6 +454,10 @@ PrefabInstance:
     - target: {fileID: 4936976941917463730, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_Name
       value: Saguaro (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936976941917463730, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalScale.x
@@ -499,6 +511,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7322677114613669988, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7986202263156587230, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0048685074
@@ -541,7 +557,7 @@ GameObject:
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &387482419
 BoxCollider:
@@ -769,6 +785,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Debris2
       objectReference: {fileID: 0}
+    - target: {fileID: 1282551675013139198, guid: 6acf5f50e99ae436e85d232210da022e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892044404889416198, guid: 6acf5f50e99ae436e85d232210da022e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918712131325072175, guid: 6acf5f50e99ae436e85d232210da022e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5062927168792838849, guid: 6acf5f50e99ae436e85d232210da022e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.98
@@ -826,6 +854,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saguaro (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4936976941917463730, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.2086964
@@ -865,6 +897,10 @@ PrefabInstance:
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 7.787
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322677114613669988, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7986202263156587230, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
@@ -963,7 +999,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1223,9 +1259,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1718804466437958320, guid: d78debecc03024983b3740049a4a6af2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3971035495687709684, guid: d78debecc03024983b3740049a4a6af2, type: 3}
       propertyPath: m_Name
       value: Machine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971035495687709684, guid: d78debecc03024983b3740049a4a6af2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4082069087874812310, guid: d78debecc03024983b3740049a4a6af2, type: 3}
       propertyPath: m_LocalScale.x
@@ -1279,6 +1323,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4692388889033063252, guid: d78debecc03024983b3740049a4a6af2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637342440737275297, guid: d78debecc03024983b3740049a4a6af2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344186393809654114, guid: d78debecc03024983b3740049a4a6af2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611461171966071317, guid: d78debecc03024983b3740049a4a6af2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1301,7 +1361,7 @@ GameObject:
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!65 &688280928
 BoxCollider:
@@ -1575,6 +1635,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7460689431268591535, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7836933155951402261, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.41
@@ -1590,6 +1654,10 @@ PrefabInstance:
     - target: {fileID: 8619640410251503941, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
       propertyPath: m_Name
       value: Canyon (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619640410251503941, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1640,6 +1708,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1719650718207277891, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1834477304579079774, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.7775652
@@ -1680,6 +1752,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2509464413979098228, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4891470909350739693, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1687,6 +1763,10 @@ PrefabInstance:
     - target: {fileID: 9110043668551789022, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
       propertyPath: m_Name
       value: Debris4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110043668551789022, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1773,6 +1853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saguaro (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4936976941917463730, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.03
@@ -1812,6 +1896,10 @@ PrefabInstance:
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322677114613669988, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7986202263156587230, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1893,7 +1981,7 @@ PrefabInstance:
     - target: {fileID: 2566776988032916675, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
       propertyPath: floor
       value: 
-      objectReference: {fileID: 387482418}
+      objectReference: {fileID: 0}
     - target: {fileID: 2566776988032916675, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
       propertyPath: leftText
       value: 
@@ -1902,6 +1990,10 @@ PrefabInstance:
       propertyPath: rightText
       value: 
       objectReference: {fileID: 1136787470}
+    - target: {fileID: 2566776988032916675, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
+      propertyPath: leftOrder.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2058,7 +2150,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &1145448698
 MeshCollider:
@@ -2159,6 +2251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saguaro (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4936976941917463730, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3005
@@ -2210,6 +2306,10 @@ PrefabInstance:
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322677114613669988, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7986202263156587230, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2296,6 +2396,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.073
       objectReference: {fileID: 0}
+    - target: {fileID: 3342058294311785228, guid: cfdf2a9b7b05c4b0bbbde3312a4cd2c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3846527355404530393, guid: cfdf2a9b7b05c4b0bbbde3312a4cd2c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2303,6 +2407,10 @@ PrefabInstance:
     - target: {fileID: 4355160005217286558, guid: cfdf2a9b7b05c4b0bbbde3312a4cd2c4, type: 3}
       propertyPath: m_Name
       value: road
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355160005217286558, guid: cfdf2a9b7b05c4b0bbbde3312a4cd2c4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2455,6 +2563,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Debris3
       objectReference: {fileID: 0}
+    - target: {fileID: 1073237072487245366, guid: 06f9b09c0ce184271849647836fe90bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621913133282829661, guid: 06f9b09c0ce184271849647836fe90bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3877710871171397470, guid: 06f9b09c0ce184271849647836fe90bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2531,6 +2647,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 63.585
       objectReference: {fileID: 0}
+    - target: {fileID: 9219848050207103342, guid: 06f9b09c0ce184271849647836fe90bd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2544,6 +2664,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1719650718207277891, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1834477304579079774, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.63
@@ -2584,9 +2708,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2509464413979098228, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9110043668551789022, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
       propertyPath: m_Name
       value: Debris4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110043668551789022, guid: 138c8483afc444df38ebe9ac8e0949f0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2610,7 +2742,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!64 &1565518824
 MeshCollider:
@@ -2763,9 +2895,49 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3325711302659991854, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060229315514088445, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904313562230561725, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987437546696898811, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226003050278710365, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246633442385918417, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078244000799184518, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7940631625033974882, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
       propertyPath: m_Name
       value: Truck
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940631625033974882, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210911486441589418, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475585210819357656, guid: b1fc6d93020024d649b20c5e21623055, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2820,9 +2992,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1029446327015281516, guid: e0f3a30f36c934b14948b3278747a5da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2091268204473186881, guid: e0f3a30f36c934b14948b3278747a5da, type: 3}
       propertyPath: m_Name
       value: Debris1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091268204473186881, guid: e0f3a30f36c934b14948b3278747a5da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288646227214540555, guid: e0f3a30f36c934b14948b3278747a5da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2840,6 +3024,10 @@ PrefabInstance:
     - target: {fileID: 4936976941917463730, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_Name
       value: Saguaro
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936976941917463730, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6804734212924939487, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2881,6 +3069,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7322677114613669988, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7986202263156587230, guid: da4422c277bdd4bc081a77b4e2b3a654, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.004413128
@@ -2921,6 +3113,14 @@ PrefabInstance:
     - target: {fileID: 929084211615493258, guid: b05f5d8a00cd343eb906da10f8e9aac2, type: 3}
       propertyPath: m_Name
       value: trashCan
+      objectReference: {fileID: 0}
+    - target: {fileID: 929084211615493258, guid: b05f5d8a00cd343eb906da10f8e9aac2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332001861655313538, guid: b05f5d8a00cd343eb906da10f8e9aac2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5936933297709118873, guid: b05f5d8a00cd343eb906da10f8e9aac2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2996,19 +3196,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c55b44eaca043cb9dfb7d172e6c440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoopOne: {fileID: 3424335551820010054, guid: fc59204c521a04bcb82a4b5b1fe96a22, type: 3}
-  scoopTwo: {fileID: 829521551142780473, guid: ff3a53b5bbea040b9b7ae92e10a848e3, type: 3}
-  scoopThree: {fileID: 1738511771697118128, guid: 32a7e5e7dab9349e9b77b1fef9a1f72e, type: 3}
+  scoopOne: {fileID: 829521551142780473, guid: 68b5c51df7138482997f35b76ee7df48, type: 3}
+  scoopTwo: {fileID: 829521551142780473, guid: ab38d6f8787d847b0ba01877460750ca, type: 3}
+  scoopThree: {fileID: 3424335551820010054, guid: 205cfd51039f24f4282352f11ffd5b62, type: 3}
   bennyOrders: {fileID: 0}
-  music: {fileID: 0}
   timeBetween: 2
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
   rightOrderText: {fileID: 1136787470}
   leftOrderText: {fileID: 596730235}
-  minSpawnX: 4
-  maxSpawnX: -4
-  minSpawnZ: 4
-  maxSpawnZ: -4
+  minSpawn: 4
 --- !u!4 &1916150531
 Transform:
   m_ObjectHideFlags: 0
