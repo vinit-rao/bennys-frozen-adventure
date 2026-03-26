@@ -1484,6 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerNameText: {fileID: 4168465546871212349}
+  timerText: {fileID: 705382112781433120}
   scoopSlots:
   - {fileID: 7965603140344557073}
   - {fileID: 6054716443278865475}

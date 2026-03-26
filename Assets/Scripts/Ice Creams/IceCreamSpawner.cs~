@@ -59,6 +59,7 @@ public class IceCreamSpawner : MonoBehaviour
         if (chunkTimer >= chunkTime)
         {
             chunkTime = 6;
+
             Shuffle(currentChunk);
             IceCreamsC = StartCoroutine(IceCreams(currentChunk));
 
