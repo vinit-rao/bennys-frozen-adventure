@@ -126,83 +126,34 @@ public class BennyOrders : MonoBehaviour
         }
 
         //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
-    //     if (leftA == order.iceCreams.Count)
-    //     {
-    //         ticketVisual.MarkAsComplete();
-    //         order.complete = true;
-
-    //         for (int j = 0; j < order.iceCreams.Count; j++)
-    //         {
-    //             Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
-    //             leftOrder.RemoveAt(leftOrder.Count - 1);
-    //             leftCount -= 1;
-
-    //             leftText.text = "Left :";
-    //         }
-
-    //     }
-    //     else if (rightA == order.iceCreams.Count)
-    //     {
-    //         ticketVisual.MarkAsComplete();
-    //         order.complete = true;
-
-    //         for (int j = 0; j < order.iceCreams.Count; j++)
-    //         {
-    //             Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
-    //             rightOrder.RemoveAt(rightOrder.Count - 1);
-    //             rightCount -= 1;
-    //             rightText.text = "Right :";
-    //         }
-
-    //     }
-
-    // }
-
-     if (leftA == order.iceCreams.Count)
+        if (leftA == order.iceCreams.Count)
         {
             ticketVisual.MarkAsComplete();
             order.complete = true;
 
-            Transform armL = transform.Find("ArmL");
-            if (armL != null)
+            for (int j = 0; j < order.iceCreams.Count; j++)
             {
-                for (int j = 0; j < order.iceCreams.Count; j++)
-                {
-                    if (armL.childCount > 0)
-                    {
-                        Destroy(armL.GetChild(armL.childCount - 1).gameObject);
-                    }
-                    if (leftOrder.Count > 0)
-                    {
-                        leftOrder.RemoveAt(leftOrder.Count - 1);
-                    }
-                    leftCount = leftOrder.Count;
-                    leftText.text = "Left: ";
-                }
+                Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
+                leftOrder.RemoveAt(leftOrder.Count - 1);
+                leftCount -= 1;
+
+                leftText.text = "Left :";
             }
+
         }
         else if (rightA == order.iceCreams.Count)
         {
             ticketVisual.MarkAsComplete();
             order.complete = true;
 
-            Transform armR = transform.Find("ArmR");
-            if (armR != null)
+            for (int j = 0; j < order.iceCreams.Count; j++)
             {
-                for (int j = 0; j < order.iceCreams.Count; j++)
-                {
-                    if (armR.childCount > 0)
-                    {
-                        Destroy(armR.GetChild(armR.childCount - 1).gameObject);
-                    }
-                    if (rightOrder.Count > 0)
-                    {
-                        rightOrder.RemoveAt(rightOrder.Count - 1);
-                    }
-                    rightCount = rightOrder.Count;
-                    rightText.text = "Right: ";
-                }
+                Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
+                rightOrder.RemoveAt(rightOrder.Count - 1);
+                rightCount -= 1;
+                rightText.text = "Right :";
             }
+
         }
 
     }

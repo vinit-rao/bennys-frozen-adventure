@@ -33,9 +33,9 @@ public class OrderUI : MonoBehaviour
             if (orderData.iceCreams[i] == 0)
                 scoopSlots[i].sprite = strawberrySprite;
             else if (orderData.iceCreams[i] == 1)
-                scoopSlots[i].sprite = vanillaSprite;
-            else if (orderData.iceCreams[i] == 2)
                 scoopSlots[i].sprite = chocolateSprite;
+            else if (orderData.iceCreams[i] == 2)
+                scoopSlots[i].sprite = vanillaSprite;
         }
     }
 
