@@ -78,7 +78,7 @@ public class IceCreamSpawner : MonoBehaviour
                 // scoopTwo (inspector assigned) lvl 1 always choc, lvl 2 always pistachio, lvl 3 always blue moon
                 light.transform.SetParent(scoop.transform);
 
-                if (scoop.name == "ScoopChocolate(Clone)")
+                if (scoop.name == "ScoopChoc(Clone)")
                 {
                     light.transform.GetComponent<Light>().color = new Color(1.0f, 0.3f, 0.0f);
                 }
