@@ -2875,19 +2875,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c55b44eaca043cb9dfb7d172e6c440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoopOne: {fileID: 3424335551820010054, guid: fc59204c521a04bcb82a4b5b1fe96a22, type: 3}
-  scoopTwo: {fileID: 829521551142780473, guid: ff3a53b5bbea040b9b7ae92e10a848e3, type: 3}
-  scoopThree: {fileID: 1738511771697118128, guid: 32a7e5e7dab9349e9b77b1fef9a1f72e, type: 3}
+  scoopOne: {fileID: 1738511771697118128, guid: 779683384be774940b2920971f1a227e, type: 3}
+  scoopTwo: {fileID: 1738511771697118128, guid: e1ba39f0a6df74446bf3de033de1f219, type: 3}
+  scoopThree: {fileID: 1738511771697118128, guid: e5cd3b4113ef745fcbb321308dea2bfd, type: 3}
   bennyOrders: {fileID: 0}
-  music: {fileID: 0}
   timeBetween: 2
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
   rightOrderText: {fileID: 1136787470}
   leftOrderText: {fileID: 596730235}
-  minSpawnX: 4
-  maxSpawnX: -4
-  minSpawnZ: 4
-  maxSpawnZ: -4
+  minSpawn: 4
 --- !u!4 &1916150531
 Transform:
   m_ObjectHideFlags: 0

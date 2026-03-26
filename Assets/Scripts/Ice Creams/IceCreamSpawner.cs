@@ -68,7 +68,7 @@ public class IceCreamSpawner : MonoBehaviour
 
                 else
                 {
-                    // for space lvl 3;
+                    light.transform.GetComponent<Light>().color = new Color(0.8f, 0.5f, 1.0f);
                 }
             }
 
@@ -90,7 +90,7 @@ public class IceCreamSpawner : MonoBehaviour
                 
                 else
                 {
-                    // for space lvl 3;
+                    light.transform.GetComponent<Light>().color = new Color(0.2f, 0.8f, 1.0f);
                 }
             }
 
@@ -113,7 +113,7 @@ public class IceCreamSpawner : MonoBehaviour
 
                 else
                 {
-                    // for space lvl 3;
+                    light.transform.GetComponent<Light>().color = new Color(0.2f, 0.6f, 0.2f);
                 }
             }
 
