@@ -17,6 +17,7 @@ public class IceCreamScript : MonoBehaviour
 
     public TextMeshProUGUI rightOrderText;
     public TextMeshProUGUI leftOrderText;
+    private ArduinoController arduino;
 
     //freeze ice cream in every direction but down
     void Start()
@@ -26,6 +27,7 @@ public class IceCreamScript : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        arduino = FindObjectOfType<ArduinoController>();
     }
 
     private void addScoop()
@@ -44,6 +46,11 @@ public class IceCreamScript : MonoBehaviour
         if (transform.parent.name == "ArmL")
         {
             print("Added left");
+
+            if (arduino != null && arduino.useArduinoController) //arduino left led blink
+            {
+                arduino.BlinkLeftLED();
+            }
 
             //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
             stack_y += scoopHeight * (leftCount);
@@ -93,6 +100,11 @@ public class IceCreamScript : MonoBehaviour
         //same thing but for right hand
         {
             print("Added right");
+
+            if (arduino != null && arduino.useArduinoController) //arduino right led blink
+            {
+                arduino.BlinkRightLED();
+            }
 
             stack_y += scoopHeight * (rightCount);
 
