@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
 using System.IO.Ports;
 #endif
 
@@ -13,7 +13,7 @@ public class ArduinoController : MonoBehaviour
     public int baudRate = 9600;
     public float deadzone = 0.2f;
 
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
     private SerialPort serialPort;
 #endif
 
@@ -38,7 +38,7 @@ public class ArduinoController : MonoBehaviour
 
     void Start()
     {
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
         serialPort = new SerialPort(portName, baudRate);
         serialPort.ReadTimeout = 10;
         try { serialPort.Open(); } catch (Exception e) { Debug.LogWarning(e.Message); }
@@ -47,7 +47,7 @@ public class ArduinoController : MonoBehaviour
 
     void Update()
     {
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
         if (serialPort != null && serialPort.IsOpen)
         {
             try
@@ -84,21 +84,21 @@ public class ArduinoController : MonoBehaviour
 
     public void BlinkLeftLED()
     {
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
         StartCoroutine(BlinkRoutine(1, 0.25f)); // blinks for a quarter second
 #endif
     }
 
     public void BlinkRightLED()
     {
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
         StartCoroutine(BlinkRoutine(2, 0.25f));
 #endif
     }
 
     private IEnumerator BlinkRoutine(int ledID, float duration)
     {
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
         //led on
         if (ledID == 1) leftLedOn = true;
         if (ledID == 2) rightLedOn = true;
@@ -115,7 +115,7 @@ public class ArduinoController : MonoBehaviour
 
     private void SendLEDData()
     {
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
         if (serialPort != null && serialPort.IsOpen)
         {
             int l1 = leftLedOn ? 1 : 0;
@@ -129,7 +129,7 @@ public class ArduinoController : MonoBehaviour
 
     void OnDestroy()
     {
-#if !UNITY_WEBGL
+#if !UNITY_WEBGL || UNITY_EDITOR
         if (serialPort != null && serialPort.IsOpen) serialPort.Close();
 #endif
     }

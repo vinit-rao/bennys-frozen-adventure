@@ -2620,13 +2620,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401702836}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c6f3e49d67549bbb164ee1f913f5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   useArduinoController: 0
-  portName: COM7
+  portName: /dev/cu.usbmodem2101
   baudRate: 9600
   deadzone: 0.2
   rawJoyX: 0

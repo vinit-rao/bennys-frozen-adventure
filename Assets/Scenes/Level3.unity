@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useArduinoController: 1
-  portName: COM3
+  portName: /dev/cu.usbmodem2101
   baudRate: 9600
   deadzone: 0.2
   rawJoyX: 0
@@ -2008,7 +2008,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 3.44, y: 5.51}
   m_BounceIntensity: 1
