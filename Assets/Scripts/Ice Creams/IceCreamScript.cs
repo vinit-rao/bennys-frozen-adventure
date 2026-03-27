@@ -47,10 +47,12 @@ public class IceCreamScript : MonoBehaviour
         {
             print("Added left");
 
-            if (arduino != null && arduino.useArduinoController) //arduino left led blink
+            #if !UNITY_WEBGL
+            if (arduino != null && arduino.useArduinoController) 
             {
                 arduino.BlinkLeftLED();
             }
+            #endif
 
             //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
             stack_y += scoopHeight * (leftCount);
@@ -111,10 +113,12 @@ public class IceCreamScript : MonoBehaviour
         {
             print("Added right");
 
-            if (arduino != null && arduino.useArduinoController) //arduino right led blink
+            #if !UNITY_WEBGL
+            if (arduino != null && arduino.useArduinoController) 
             {
                 arduino.BlinkRightLED();
             }
+            #endif
 
             stack_y += scoopHeight * (rightCount);
 
