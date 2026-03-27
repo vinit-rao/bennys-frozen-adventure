@@ -22,12 +22,12 @@ EditorBuildSettings:
     guid: df8132cc89f3a48bdb31ddca06cbadba
   - enabled: 1
     path: Assets/Scenes/Level3.unity
-    guid: 3d4e63b61a5cc4ab59183cedbf7c87a9
+    guid: 0d6599200292447de984ad6d14abfe0b
   - enabled: 1
-    path: Assets/Scenes/WinLose/Level1/LoseMenu1.unity
+    path: Assets/Scenes/WinLose/LoseMenu1.unity
     guid: 6e0ad16164d55ef4682f03151ce8b84b
   - enabled: 1
-    path: Assets/Scenes/WinLose/Level1/WinMenu1.unity
+    path: Assets/Scenes/WinLose/WinMenu1.unity
     guid: 9c0a34ebe8c16ff47bac403de8f76c7d
   - enabled: 1
     path: Assets/Scenes/LevelMenus/LevelMenu1.unity
@@ -35,13 +35,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelMenus/LevelMenu2.unity
     guid: 8598bb418246e9b40abdb3d2c3643b4e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WinLose/Level2/LoseMenu2.unity
     guid: 7144c7f548e83374a86ee55a22b9dd32
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WinLose/Level2/WinMenu2.unity
     guid: f84595cb865f40e428b043fd7d09e8d7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WinLose/Level3/LoseMenu3.unity
     guid: d76b408bcf4784b44ab4eadb617eafe7
   - enabled: 1
