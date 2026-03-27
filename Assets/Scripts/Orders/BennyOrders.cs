@@ -314,14 +314,38 @@ public class BennyOrders : MonoBehaviour
             finishedTimer -= Time.deltaTime;
             if (finishedTimer < 0)
             {
-                if (((score / numOrders) * 5) > 2)
+                if (gameObject.name == "Benny")
                 {
-                    SceneManager.LoadScene("WinMenu1");
-                }
-                else
+                    if (((score / numOrders) * 5) > 2)
+                    {
+                        SceneManager.LoadScene("WinMenu1");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("LoseMenu1");
+                    }
+                } else if (gameObject.name == "BennyCowboy")
                 {
-                    SceneManager.LoadScene("LoseMenu1");
+                    if (((score / numOrders) * 5) > 2)
+                    {
+                        SceneManager.LoadScene("WinMenu2");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("LoseMenu2");
+                    }
+                } else if (gameObject.name == "BennyAstro")
+                {
+                    if (((score / numOrders) * 5) > 2)
+                    {
+                        SceneManager.LoadScene("WinMenu3");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("LoseMenu3");
+                    }
                 }
+                
             }
         }
     }

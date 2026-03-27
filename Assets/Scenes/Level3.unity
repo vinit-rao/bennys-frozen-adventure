@@ -788,7 +788,7 @@ PrefabInstance:
       objectReference: {fileID: 1691897347}
     - target: {fileID: 2794198640240002358, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
       propertyPath: numOrders
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2794198640240002358, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
       propertyPath: rightText
