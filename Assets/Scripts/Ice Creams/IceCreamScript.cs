@@ -39,7 +39,11 @@ public class IceCreamScript : MonoBehaviour
         //how high the first ice cream should be
         float stack_y = 2.5f;
 
-        Destroy(gameObject.transform.Find("Spot Light(Clone)").gameObject);
+        Transform light = transform.Find("Spot Light(Clone)");
+        if (light != null)
+        {
+            Destroy(light.gameObject);
+        }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 

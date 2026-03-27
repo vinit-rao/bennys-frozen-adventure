@@ -25,10 +25,8 @@ public class BennyScript : MonoBehaviour
     void Start()
     {
         benny = gameObject;
-    }
+        benny_rotation = transform.eulerAngles.y;
 
-    private void OnCollisionEnter(Collision collision)
-    {
     }
 
     void Update()
@@ -63,7 +61,7 @@ public class BennyScript : MonoBehaviour
         }
 
         // benny turning while sliding (no hop tho cause it looks nicer)
-        if (!isTurning)
+        if (!isTurning && ticker >= timeStepper)
         {
             if (rotLeft)
             {

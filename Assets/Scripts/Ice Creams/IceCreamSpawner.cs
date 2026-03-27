@@ -57,8 +57,7 @@ public class IceCreamSpawner : MonoBehaviour
 
         if (chunkTimer >= chunkTime)
         {
-            Shuffle(currentChunk);
-            StartCoroutine(IceCreams(currentChunk));
+            StartCoroutine(IceCreams(new List<int>(currentChunk)));
 
             chunkTimer = 0f;
         }
@@ -66,6 +65,7 @@ public class IceCreamSpawner : MonoBehaviour
 
     IEnumerator IceCreams(List<int> chunk)
     {
+        Shuffle(chunk);
         foreach (int flavor in chunk)
         {
             Vector3 randomPosition =
