@@ -3993,7 +3993,7 @@ MonoBehaviour:
   scoopThree: {fileID: 1738511771697118128, guid: 32a7e5e7dab9349e9b77b1fef9a1f72e, type: 3}
   bennyOrders: {fileID: 520473114}
   chunkTime: 6
-  timeBetween: 1.9
+  timeBetween: 2
   currentChunk: 000000000100000002000000
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
   rightOrderText: {fileID: 1136787470}
