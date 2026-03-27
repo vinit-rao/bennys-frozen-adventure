@@ -9,8 +9,7 @@ public class IceCreamSpawner : MonoBehaviour
     public BennyOrders bennyOrders;
 
     public float chunkTime = 6;
-    public float timeBetween = 2;
-    bool spawningChunk = false;
+    public float timeBetween = 2f;
 
     private float chunkTimer = 0f;
     public List<int> currentChunk = new List<int> { 0, 1, 2 };
@@ -54,8 +53,6 @@ public class IceCreamSpawner : MonoBehaviour
 
     void Update()
     {
-        if (spawningChunk) return;
-
         chunkTimer += Time.deltaTime;
 
         if (chunkTimer >= chunkTime)
@@ -69,7 +66,6 @@ public class IceCreamSpawner : MonoBehaviour
 
     IEnumerator IceCreams(List<int> chunk)
     {
-        spawningChunk = true;
         foreach (int flavor in chunk)
         {
             Vector3 randomPosition =
@@ -83,12 +79,12 @@ public class IceCreamSpawner : MonoBehaviour
             {
                 prefab = scoopOne;
 
-                if (prefab.name == "ScoopStrawberry(Clone)")
+                if (prefab.name == "ScoopStrawberry")
                 {
                     color = new Color(0.9f, 0.3f, 0.5f); ;
                 }
 
-                else if (prefab.name == "ScoopRockyRoad(Clone)")
+                else if (prefab.name == "ScoopRockyRoad")
                 {
                     color = new Color(1.0f, 0.3f, 0.3f);
                 }
@@ -100,12 +96,14 @@ public class IceCreamSpawner : MonoBehaviour
             }
             if (flavor == 1)
             {
-                if (prefab.name == "ScoopChoc(Clone)")
+                prefab = scoopTwo;
+
+                if (prefab.name == "ScoopChoc")
                 {
                     color = new Color(1.0f, 0.3f, 0.0f);
                 }
 
-                else if (prefab.name == "ScoopPistachio(Clone)")
+                else if (prefab.name == "ScoopPistachio")
                 {
                     color = new Color(0.2f, 1.0f, 0.0f);
                 }
@@ -117,12 +115,14 @@ public class IceCreamSpawner : MonoBehaviour
             }
             if (flavor == 2)
             {
-                if (prefab.name == "ScoopVanilla(Clone)")
+                prefab = scoopThree;
+
+                if (prefab.name == "ScoopVanilla")
                 {
                     color = Color.white;
                 }
 
-                else if (prefab.name == "ScoopButterscotch(Clone)")
+                else if (prefab.name == "ScoopButterscotch")
                 {
                     color = new Color(1.0f, 0.8f, 0.3f);
                 }
@@ -141,6 +141,5 @@ public class IceCreamSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(timeBetween);
         }
-        spawningChunk = false;
     }
 }

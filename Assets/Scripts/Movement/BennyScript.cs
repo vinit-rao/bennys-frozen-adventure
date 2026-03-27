@@ -15,20 +15,14 @@ public class BennyScript : MonoBehaviour
     public float CooldownTime;
     private float _nextAllowedInputTime;
     public int borderSize = 4;
-
-    public bool isMoving = false;
-    public bool isTurning = false;
+    public bool isAnimating = false;
 
     public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-    public ArduinoController arduino;
     void Start()
     {
         benny = gameObject;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
+        benny_rotation = transform.eulerAngles.y;
     }
 
     void Update()
@@ -39,21 +33,8 @@ public class BennyScript : MonoBehaviour
             return;
         }
 
-        // check if arduino is enabled
-        bool useArd = arduino != null && arduino.useArduinoController;
-
-        // updated movement code to check arrow keys, WASD keys, and arduino stick controls --vinit
-        bool up = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || (useArd && arduino.UpPressed);
-        bool down = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || (useArd && arduino.DownPressed);
-        bool left = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || (useArd && arduino.LeftPressed);
-        bool right = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || (useArd && arduino.RightPressed);
-        bool rotLeft = Input.GetKey(KeyCode.Q) || (useArd && arduino.RotateLeftPressed);
-        bool rotRight = Input.GetKey(KeyCode.E) || (useArd && arduino.RotateRightPressed);
-
         ticker += Time.deltaTime;
-
-        // holding check
-        if (up || down || left || right || rotLeft || rotRight)
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
         {
             isHoldingKey = true;
         }
@@ -62,37 +43,35 @@ public class BennyScript : MonoBehaviour
             isHoldingKey = false;
         }
 
-        // benny turning while sliding (no hop tho cause it looks nicer)
-        if (!isTurning)
+        if (isHoldingKey && ticker >= timeStepper && !isAnimating) // hold down arrows to move continously
         {
-            if (rotLeft)
+            float moveX = 0f;
+            float moveZ = 0f;
+
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) moveZ += tileSize;
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) moveZ -= tileSize;
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) moveX -= tileSize;
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) moveX += tileSize;
+
+            bool isTurning = false;
+            if (Input.GetKey(KeyCode.Q))
             {
                 benny_rotation -= 90f;
                 if (benny_rotation < 0) benny_rotation = 270;
 
                 StartCoroutine(DoTurn(benny_rotation));
+                isTurning = true;
             }
-            else if (rotRight)
+            else if (Input.GetKey(KeyCode.E))
             {
                 benny_rotation += 90f;
                 if (benny_rotation == 360) benny_rotation = 0;
 
                 StartCoroutine(DoTurn(benny_rotation));
+                isTurning = true;
             }
-        }
 
-        // move benny
-        if (isHoldingKey && ticker >= timeStepper && !isMoving)
-        {
-            float moveX = 0f;
-            float moveZ = 0f;
-
-            if (up) moveZ += tileSize;
-            if (down) moveZ -= tileSize;
-            if (left) moveX -= tileSize;
-            if (right) moveX += tileSize;
-
-            if (moveX != 0f || moveZ != 0f)
+            if (!isTurning && (moveX != 0f || moveZ != 0f))
             {
                 Vector3 targetPos = new Vector3(
                     benny.transform.position.x + moveX,
@@ -118,7 +97,7 @@ public class BennyScript : MonoBehaviour
 
     private IEnumerator DoMove(Vector3 targetPos)
     {
-        isMoving = true;
+        isAnimating = true;
 
         float duration = timeStepper * 0.75f;
         float elapsed = 0f;
@@ -132,31 +111,25 @@ public class BennyScript : MonoBehaviour
 
             float curveT = moveCurve.Evaluate(t);
 
-            float newX = Mathf.Lerp(startPos.x, targetPos.x, curveT);
-            float newZ = Mathf.Lerp(startPos.z, targetPos.z, curveT);
-
-            benny.transform.position = new Vector3(newX, benny.transform.position.y, newZ);
+            benny.transform.position = Vector3.Lerp(startPos, targetPos, curveT);
             yield return null;
         }
 
-        benny.transform.position = new Vector3(targetPos.x, benny.transform.position.y, targetPos.z);
-        isMoving = false;
+        benny.transform.position = targetPos;
+        isAnimating = false;
     }
 
     private IEnumerator DoTurn(float targetAngle)
     {
-        isTurning = true;
+        isAnimating = true;
 
         float duration = timeStepper * 0.6f;
         float hopHeight = 0.3f;
         float elapsed = 0f;
 
-        // if he is already sliding he does not hop when rotating
-        bool doHop = !isMoving;
-
         Quaternion startRot = benny.transform.rotation;
         Quaternion endRot = Quaternion.Euler(0, targetAngle, 0);
-        float startY = benny.transform.position.y;
+        Vector3 startPos = benny.transform.position;
 
         while (elapsed < duration)
         {
@@ -164,26 +137,19 @@ public class BennyScript : MonoBehaviour
             float t = elapsed / duration;
 
             float sprintT = 1f - Mathf.Pow(1f - t, 4f);
+            float jumpT = Mathf.Sin(t * Mathf.PI);
 
             benny.transform.rotation = Quaternion.Slerp(startRot, endRot, sprintT);
 
-            if (doHop)
-            {
-                float jumpT = Mathf.Sin(t * Mathf.PI);
-                float newY = startY + (jumpT * hopHeight);
-                benny.transform.position = new Vector3(benny.transform.position.x, newY, benny.transform.position.z);
-            }
+            Vector3 currentPos = startPos;
+            currentPos.y += jumpT * hopHeight;
+            benny.transform.position = currentPos;
 
             yield return null;
         }
 
         benny.transform.rotation = endRot;
-
-        if (doHop)
-        {
-            benny.transform.position = new Vector3(benny.transform.position.x, startY, benny.transform.position.z);
-        }
-
-        isTurning = false;
+        benny.transform.position = startPos;
+        isAnimating = false;
     }
 }

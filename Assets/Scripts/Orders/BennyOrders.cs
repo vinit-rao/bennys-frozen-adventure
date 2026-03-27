@@ -56,7 +56,6 @@ public class BennyOrders : MonoBehaviour
     public IceCreamSpawner spawner;
 
     public int numOrders = 5;
-    Coroutine startTimer;
 
     //how many ice creams benny is holding in each hand
     private int leftCount = 0;
@@ -109,7 +108,7 @@ public class BennyOrders : MonoBehaviour
         for (int i = 0; i < numOrders; i++)
         {
             bool active = false;
-            int random = Random.Range(3, 8);
+            int random = Random.Range(3, 6);
             int time = (random * 6) + 15;
 
             if (time > 25 && time < 35)
@@ -130,7 +129,7 @@ public class BennyOrders : MonoBehaviour
 
             Orders order = createOrder(random, time, active);
 
-            if (order.IsActive) { startTimer = StartCoroutine(countDown(order)); }
+            if (order.IsActive) { StartCoroutine(countDown(order)); }
         }
     }
 
@@ -177,9 +176,13 @@ public class BennyOrders : MonoBehaviour
             rightCount = rightOrder.Count;
         }
 
+        print("The correct amount on the right is " + rightA);
+        print("The correct amount on the left is " + leftA);
+
         //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
-        if (leftA == order.iceCreams.Count)
+        if (leftA == order.iceCreams.Count && !order.timeFailed)
         {
+
             UI.MarkAsComplete();
             order.complete = true;
 
@@ -196,7 +199,7 @@ public class BennyOrders : MonoBehaviour
             }
 
         }
-        else if (rightA == order.iceCreams.Count)
+        else if (rightA == order.iceCreams.Count && !order.timeFailed)
         {
             UI.MarkAsComplete();
             order.complete = true;
@@ -228,8 +231,12 @@ public class BennyOrders : MonoBehaviour
             timerUI.text = "Time" + order.timer;
         }
 
-        order.timeFailed = true;
-        timerUI.text = "Failed";
+        if (!order.complete)
+        {
+            order.timeFailed = true;
+            timerUI.text = "Failed";
+        }
+
         int orderIndex = levelOrders.IndexOf(order);
 
         yield return new WaitForSeconds(2);
@@ -239,28 +246,30 @@ public class BennyOrders : MonoBehaviour
         foreach (Orders orders in levelOrders)
         {
             int index = levelOrders.IndexOf(orders);
-            orders.ticket.GetComponent<OrderUI>().setPosition(orders, index);
-            print(index);
+            if (orders.IsActive) { orders.ticket.GetComponent<OrderUI>().setPosition(orders, index); }
         }
 
-        if (levelOrders.Count > 0)
+        foreach (Orders nextInLine in levelOrders)
         {
-            int nextIndex = Mathf.Clamp(orderIndex, 0, levelOrders.Count - 1);
-            Orders nextOrder = levelOrders[nextIndex];
+            if (!nextInLine.IsActive)
+            {
+                nextInLine.IsActive = true;
+                int newIndex = levelOrders.IndexOf(nextInLine);
 
-            nextOrder.IsActive = true;
-            nextOrder.ticket.GetComponent<OrderUI>().SetupOrderVisuals(nextOrder, nextIndex);
-            StartCoroutine(countDown(nextOrder));
+                nextInLine.ticket.GetComponent<OrderUI>().SetupOrderVisuals(nextInLine, newIndex);
+                StartCoroutine(countDown(nextInLine));
+
+                break;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //checks if any ice creams have been added to the left or right hand
         foreach (Orders order in levelOrders)
         {
-            if (order.timer != 0)
+            if (!order.complete)
             {
                 checkComplete(order);
             }
@@ -308,7 +317,8 @@ public class BennyOrders : MonoBehaviour
                 if (((score / numOrders) * 5) > 2)
                 {
                     SceneManager.LoadScene("WinMenu1");
-                } else
+                }
+                else
                 {
                     SceneManager.LoadScene("LoseMenu1");
                 }

@@ -10,18 +10,18 @@ public class OrderUI : MonoBehaviour
     public Image[] scoopSlots;
     public BennyOrders BennyOrders;
 
-    public Sprite strawberrySprite;
-    public Sprite vanillaSprite;
-    public Sprite chocolateSprite;
+    public Sprite Sprite1;
+    public Sprite Sprite2;
+    public Sprite Sprite3;
 
     public GameObject completeStamp;
     public GameObject incompleteStamp;
 
     public void SetupOrderVisuals(Orders orderData, int index)
     {
-
         if (orderData.IsActive)
         {
+            setPosition(orderData, index);
             customerNameText.text = orderData.name;
 
             if (completeStamp != null) completeStamp.SetActive(false);
@@ -30,8 +30,6 @@ public class OrderUI : MonoBehaviour
             {
                 slot.gameObject.SetActive(false);
             }
-
-            setPosition(orderData, index);
 
             timerText.text = "Time: " + orderData.timer;
 
@@ -42,13 +40,17 @@ public class OrderUI : MonoBehaviour
                 scoopSlots[i].gameObject.SetActive(true);
 
                 if (orderData.iceCreams[i] == 0)
-                    scoopSlots[i].sprite = strawberrySprite;
+                    scoopSlots[i].sprite = Sprite1;
                 else if (orderData.iceCreams[i] == 1)
-                    scoopSlots[i].sprite = vanillaSprite;
+                    scoopSlots[i].sprite = Sprite2;
                 else if (orderData.iceCreams[i] == 2)
-                    scoopSlots[i].sprite = chocolateSprite;
+                    scoopSlots[i].sprite = Sprite3;
             }
+        } else
+        {
+            //if you want to create the grayed out version
         }
+
         
     }
 

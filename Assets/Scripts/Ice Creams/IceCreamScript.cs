@@ -78,29 +78,29 @@ public class IceCreamScript : MonoBehaviour
                     leftOrderText.text += "van, ";
                     return;
                 case "ScoopRockyRoad(Clone)":
-                    bennyOrders.leftOrder.Add(3);
+                    bennyOrders.leftOrder.Add(0);
                     leftOrderText.text += "rocky road, ";
                     return;
 
                 case "ScoopPistachio(Clone)":
-                    bennyOrders.leftOrder.Add(4);
+                    bennyOrders.leftOrder.Add(1);
                     leftOrderText.text += "pista, ";
                     return;
 
                 case "ScoopButterscotch(Clone)":
-                    bennyOrders.leftOrder.Add(5);
+                    bennyOrders.leftOrder.Add(2);
                     leftOrderText.text += "butterscotch, ";
                     return;
                 case "ScoopLavender(Clone)":
-                    bennyOrders.leftOrder.Add(6);
+                    bennyOrders.leftOrder.Add(0);
                     leftOrderText.text += "lav, ";
                     return;
                 case "ScoopBlueMoon(Clone)":
-                    bennyOrders.leftOrder.Add(7);
+                    bennyOrders.leftOrder.Add(1);
                     leftOrderText.text += "blue moon, ";
                     return;
                 case "ScoopBlackHole(Clone)":
-                    bennyOrders.leftOrder.Add(8);
+                    bennyOrders.leftOrder.Add(2);
                     leftOrderText.text += "black hole, ";
                     return;
             }
@@ -139,29 +139,29 @@ public class IceCreamScript : MonoBehaviour
                     return;
 
                 case "ScoopRockyRoad(Clone)":
-                    bennyOrders.rightOrder.Add(3);
+                    bennyOrders.rightOrder.Add(0);
                     rightOrderText.text += "rocky road, ";
                     return;
 
                 case "ScoopPistachio(Clone)":
-                    bennyOrders.rightOrder.Add(4);
+                    bennyOrders.rightOrder.Add(1);
                     rightOrderText.text += "pista, ";
                     return;
 
                 case "ScoopButterscotch(Clone)":
-                    bennyOrders.rightOrder.Add(5);
+                    bennyOrders.rightOrder.Add(2);
                     rightOrderText.text += "butterscotch, ";
                     return;
                 case "ScoopLavender(Clone)":
-                    bennyOrders.rightOrder.Add(6);
+                    bennyOrders.rightOrder.Add(0);
                     rightOrderText.text += "lav, ";
                     return;
                 case "ScoopBlueMoon(Clone)":
-                    bennyOrders.rightOrder.Add(7);
+                    bennyOrders.rightOrder.Add(1);
                     rightOrderText.text += "blue moon, ";
                     return;
                 case "ScoopBlackHole(Clone)":
-                    bennyOrders.rightOrder.Add(8);
+                    bennyOrders.rightOrder.Add(2);
                     rightOrderText.text += "black hole, ";
                     return;
             }
