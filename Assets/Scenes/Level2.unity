@@ -2626,7 +2626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useArduinoController: 0
-  portName: COM7
+  portName: /dev/cu.usbmodem2101
   baudRate: 9600
   deadzone: 0.2
   rawJoyX: 0
