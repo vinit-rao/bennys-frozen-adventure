@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
 
 public class IceCreamScript : MonoBehaviour
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Orders
 {
@@ -15,8 +16,7 @@ public class Orders
     public GameObject ticket;
 
     //how many of the ice creams are correct
-    public int leftA = 0;
-    public int rightA = 0;
+    public int time;
     public float timer = 0f;
 }
 
@@ -64,7 +64,7 @@ public class BennyOrders : MonoBehaviour
     public GameObject ticket;
     public Transform UIcontainer;
 
-    public int score;
+    public float score;
 
     public GameObject floor;
 
@@ -72,12 +72,14 @@ public class BennyOrders : MonoBehaviour
     public TextMeshProUGUI rightText;
     public TextMeshProUGUI scoreText;
 
-    Orders createOrder(int size, float time, bool active)
+    public float finishedTimer = 2;
+
+    Orders createOrder(int size, int time, bool active)
     {
         Orders order = new Orders();
         int nameIndex = Random.Range(0, names.Count);
         order.name = names[nameIndex];
-        order.timer = time;
+        order.time = time;
 
         for (int i = 0; i < size; i++)
         {
@@ -99,19 +101,6 @@ public class BennyOrders : MonoBehaviour
         return order;
     }
 
-    //fisher yates algorithm
-    public static void Shuffle(List<int> list)
-    {
-        for (int i = list.Count - 1; i > 0; i--)
-        {
-            int randomIndex = Random.Range(0, i + 1);
-
-            int temp = list[i];
-            list[i] = list[randomIndex];
-            list[randomIndex] = temp;
-        }
-    }
-
     //randomly generates a set of ice creams to complete
     void Start()
     {
@@ -125,16 +114,16 @@ public class BennyOrders : MonoBehaviour
 
             if (time > 25 && time < 35)
             {
-                time = 30;
+                time = 35;
             } else if (time > 35 && time < 45)
             {
-                time = 40;
+                time = 45;
             } else if (time > 45 && time < 60)
             {
-                time = 45;
+                time = 60;
             } else if (time > 60 && time < 75)
             {
-                time = 70;
+                time = 75;
             }
 
             if (i == 0 || i == 1) active = true;
@@ -144,6 +133,15 @@ public class BennyOrders : MonoBehaviour
             if (order.IsActive) { startTimer = StartCoroutine(countDown(order)); }
         }
     }
+
+    float scoreCalc(Orders order)
+    {
+        float score = (order.timer / order.time) + 0.5f;
+        if (score > 1) { score = 1; }
+
+        return score;
+    }
+    
 
     void checkComplete(Orders order)
     {
@@ -185,8 +183,8 @@ public class BennyOrders : MonoBehaviour
             UI.MarkAsComplete();
             order.complete = true;
 
-            score += 1;
-            scoreText.text = "Score: " + score;
+            score += scoreCalc(order);
+            scoreText.text = "Score: " + (score * 100).ToString("F0");
 
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
@@ -203,13 +201,15 @@ public class BennyOrders : MonoBehaviour
             UI.MarkAsComplete();
             order.complete = true;
 
-            score += 1;
+            score += scoreCalc(order);
+            scoreText.text = "Score: " + (score * 100).ToString("F0");
 
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
                 Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
                 rightOrder.RemoveAt(rightOrder.Count - 1);
                 rightCount -= 1;
+
                 rightText.text = "Right :";
             }
         }
@@ -219,7 +219,9 @@ public class BennyOrders : MonoBehaviour
     {
         TextMeshProUGUI timerUI = order.ticket.GetComponent<OrderUI>().timerText;
 
-        while (order.timer >= 0 && !order.complete)
+        order.timer = order.time;
+
+        while (order.timer >= 0 && !order.complete && order.IsActive)
         {
             yield return new WaitForSeconds(1);
             order.timer -= 1;
@@ -241,18 +243,15 @@ public class BennyOrders : MonoBehaviour
             print(index);
         }
 
-        int nextIndex = orderIndex + 1;
-        Orders nextOrder = levelOrders[nextIndex];
-
-        if (orderIndex == 1)
+        if (levelOrders.Count > 0)
         {
-            nextIndex = orderIndex;
-            nextOrder = levelOrders[nextIndex];
-        }
+            int nextIndex = Mathf.Clamp(orderIndex, 0, levelOrders.Count - 1);
+            Orders nextOrder = levelOrders[nextIndex];
 
-        nextOrder.IsActive = true;
-        nextOrder.ticket.GetComponent<OrderUI>().SetupOrderVisuals(nextOrder, nextIndex);
-        if (nextOrder.IsActive) { startTimer = StartCoroutine(countDown(nextOrder)); }
+            nextOrder.IsActive = true;
+            nextOrder.ticket.GetComponent<OrderUI>().SetupOrderVisuals(nextOrder, nextIndex);
+            StartCoroutine(countDown(nextOrder));
+        }
     }
 
     // Update is called once per frame
@@ -298,6 +297,21 @@ public class BennyOrders : MonoBehaviour
 
                 rightText.text = "Right: ";
                 rightCount = rightOrder.Count;
+            }
+        }
+
+        if (levelOrders.Count == 0)
+        {
+            finishedTimer -= Time.deltaTime;
+            if (finishedTimer < 0)
+            {
+                if (((score / numOrders) * 5) > 2)
+                {
+                    SceneManager.LoadScene("WinMenu1");
+                } else
+                {
+                    SceneManager.LoadScene("LoseMenu1");
+                }
             }
         }
     }

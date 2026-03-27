@@ -19,7 +19,6 @@ public class OrderUI : MonoBehaviour
 
     public void SetupOrderVisuals(Orders orderData, int index)
     {
-        setPosition(orderData, index);
 
         if (orderData.IsActive)
         {
@@ -31,6 +30,8 @@ public class OrderUI : MonoBehaviour
             {
                 slot.gameObject.SetActive(false);
             }
+
+            setPosition(orderData, index);
 
             timerText.text = "Time: " + orderData.timer;
 
@@ -53,7 +54,6 @@ public class OrderUI : MonoBehaviour
 
     public void setPosition(Orders order, int index)
     {
-        int orderCount = BennyOrders.levelOrders.Count;
         RectTransform rect = GetComponent<RectTransform>();
         int ypos = 350;
 

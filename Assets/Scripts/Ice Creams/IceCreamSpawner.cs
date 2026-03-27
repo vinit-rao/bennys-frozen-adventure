@@ -8,8 +8,9 @@ public class IceCreamSpawner : MonoBehaviour
     public GameObject scoopOne, scoopTwo, scoopThree;
     public BennyOrders bennyOrders;
 
-    public float chunkTime = 0;
+    public float chunkTime = 6;
     public float timeBetween = 2;
+    bool spawningChunk = false;
 
     private float chunkTimer = 0f;
     public List<int> currentChunk = new List<int> { 0, 1, 2 };
@@ -20,8 +21,6 @@ public class IceCreamSpawner : MonoBehaviour
     public TextMeshProUGUI leftOrderText;
 
     public float minSpawn = 4;
-
-    Coroutine IceCreamsC;
 
     private void Start()
     {
@@ -37,6 +36,7 @@ public class IceCreamSpawner : MonoBehaviour
             scoop.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
             scoop.GetComponent<IceCreamScript>().spawner = this;
         }
+        StartCoroutine(IceCreams(currentChunk));
     }
 
     //fisher yates algorithm
@@ -54,13 +54,14 @@ public class IceCreamSpawner : MonoBehaviour
 
     void Update()
     {
+        if (spawningChunk) return;
+
         chunkTimer += Time.deltaTime;
 
         if (chunkTimer >= chunkTime)
         {
-            chunkTime = 6;
             Shuffle(currentChunk);
-            IceCreamsC = StartCoroutine(IceCreams(currentChunk));
+            StartCoroutine(IceCreams(currentChunk));
 
             chunkTimer = 0f;
         }
@@ -68,6 +69,7 @@ public class IceCreamSpawner : MonoBehaviour
 
     IEnumerator IceCreams(List<int> chunk)
     {
+        spawningChunk = true;
         foreach (int flavor in chunk)
         {
             Vector3 randomPosition =
@@ -90,5 +92,6 @@ public class IceCreamSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(timeBetween);
         }
+        spawningChunk = false;
     }
 }
