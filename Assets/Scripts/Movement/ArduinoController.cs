@@ -1,7 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using System.IO.Ports;
 using System;
+
+#if !UNITY_WEBGL
+using System.IO.Ports;
+#endif
 
 public class ArduinoController : MonoBehaviour
 {
@@ -10,7 +13,9 @@ public class ArduinoController : MonoBehaviour
     public int baudRate = 9600;
     public float deadzone = 0.2f;
 
+#if !UNITY_WEBGL
     private SerialPort serialPort;
+#endif
 
     public int rawJoyX;
     public int rawJoyY;
@@ -33,13 +38,16 @@ public class ArduinoController : MonoBehaviour
 
     void Start()
     {
+#if !UNITY_WEBGL
         serialPort = new SerialPort(portName, baudRate);
         serialPort.ReadTimeout = 10;
         try { serialPort.Open(); } catch (Exception e) { Debug.LogWarning(e.Message); }
+#endif
     }
 
     void Update()
     {
+#if !UNITY_WEBGL
         if (serialPort != null && serialPort.IsOpen)
         {
             try
@@ -64,6 +72,7 @@ public class ArduinoController : MonoBehaviour
             catch (TimeoutException) { }
             catch (Exception e) { Debug.LogWarning(e.Message); }
         }
+#endif
     }
 
     private float NormalizeAxis(int rawValue)
@@ -75,16 +84,21 @@ public class ArduinoController : MonoBehaviour
 
     public void BlinkLeftLED()
     {
+#if !UNITY_WEBGL
         StartCoroutine(BlinkRoutine(1, 0.25f)); // blinks for a quarter second
+#endif
     }
 
     public void BlinkRightLED()
     {
+#if !UNITY_WEBGL
         StartCoroutine(BlinkRoutine(2, 0.25f));
+#endif
     }
 
     private IEnumerator BlinkRoutine(int ledID, float duration)
     {
+#if !UNITY_WEBGL
         //led on
         if (ledID == 1) leftLedOn = true;
         if (ledID == 2) rightLedOn = true;
@@ -94,10 +108,14 @@ public class ArduinoController : MonoBehaviour
         if (ledID == 1) leftLedOn = false;
         if (ledID == 2) rightLedOn = false;
         SendLEDData();
+#else
+        yield return null; 
+#endif
     }
 
     private void SendLEDData()
     {
+#if !UNITY_WEBGL
         if (serialPort != null && serialPort.IsOpen)
         {
             int l1 = leftLedOn ? 1 : 0;
@@ -106,10 +124,13 @@ public class ArduinoController : MonoBehaviour
 
             serialPort.Write($"{l1},{l2},{l3}\n");
         }
+#endif
     }
 
     void OnDestroy()
     {
+#if !UNITY_WEBGL
         if (serialPort != null && serialPort.IsOpen) serialPort.Close();
+#endif
     }
 }

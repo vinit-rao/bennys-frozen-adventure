@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 108054006}
   - component: {fileID: 108054005}
   - component: {fileID: 108054004}
+  - component: {fileID: 108054007}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -341,6 +342,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &108054007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108054003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c6f3e49d67549bbb164ee1f913f5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useArduinoController: 1
+  portName: COM3
+  baudRate: 9600
+  deadzone: 0.2
+  rawJoyX: 0
+  rawJoyY: 0
+  isLeftBtnPressed: 0
+  isRightBtnPressed: 0
+  joyX: 0
+  joyY: 0
 --- !u!1 &309519766
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +825,10 @@ PrefabInstance:
       propertyPath: UIcontainer
       value: 
       objectReference: {fileID: 1640575381}
+    - target: {fileID: 3782242056185039068, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
+      propertyPath: arduino
+      value: 
+      objectReference: {fileID: 108054007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
