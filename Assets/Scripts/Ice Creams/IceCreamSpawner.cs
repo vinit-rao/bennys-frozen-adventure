@@ -79,9 +79,58 @@ public class IceCreamSpawner : MonoBehaviour
             GameObject prefab = null;
             Color color = Color.white;
 
-            if (flavor == 0) { prefab = scoopOne; color = new Color(0.9f, 0.3f, 0.5f); }
-            if (flavor == 1) { prefab = scoopTwo; color = new Color(1.0f, 0.5f, 0.0f); }
-            if (flavor == 2) { prefab = scoopThree; color = Color.white; }
+            if (flavor == 0)
+            {
+                prefab = scoopOne;
+
+                if (prefab.name == "ScoopStrawberry(Clone)")
+                {
+                    color = new Color(0.9f, 0.3f, 0.5f); ;
+                }
+
+                else if (prefab.name == "ScoopRockyRoad(Clone)")
+                {
+                    color = new Color(1.0f, 0.3f, 0.3f);
+                }
+
+                else
+                {
+                    color = new Color(0.8f, 0.5f, 1.0f);
+                }
+            }
+            if (flavor == 1)
+            {
+                if (prefab.name == "ScoopChoc(Clone)")
+                {
+                    color = new Color(1.0f, 0.3f, 0.0f);
+                }
+
+                else if (prefab.name == "ScoopPistachio(Clone)")
+                {
+                    color = new Color(0.2f, 1.0f, 0.0f);
+                }
+
+                else
+                {
+                    color = new Color(0.2f, 0.8f, 1.0f);
+                }
+            }
+            if (flavor == 2)
+            {
+                if (prefab.name == "ScoopVanilla(Clone)")
+                {
+                    color = Color.white;
+                }
+
+                else if (prefab.name == "ScoopButterscotch(Clone)")
+                {
+                    color = new Color(1.0f, 0.8f, 0.3f);
+                }
+                else
+                {
+                    color = new Color(0.2f, 0.6f, 0.2f);
+                }
+            }
 
             GameObject scoop = Instantiate(prefab, randomPosition, Quaternion.identity);
             GameObject light = Instantiate(spotLight, randomPosition, Quaternion.identity);

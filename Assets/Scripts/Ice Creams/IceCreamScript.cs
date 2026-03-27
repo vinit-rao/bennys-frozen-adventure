@@ -17,6 +17,7 @@ public class IceCreamScript : MonoBehaviour
 
     public TextMeshProUGUI rightOrderText;
     public TextMeshProUGUI leftOrderText;
+    private ArduinoController arduino;
 
     //freeze ice cream in every direction but down
     void Start()
@@ -26,6 +27,7 @@ public class IceCreamScript : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        arduino = FindObjectOfType<ArduinoController>();
     }
 
     private void addScoop()
@@ -45,6 +47,11 @@ public class IceCreamScript : MonoBehaviour
         {
             print("Added left");
 
+            if (arduino != null && arduino.useArduinoController) //arduino left led blink
+            {
+                arduino.BlinkLeftLED();
+            }
+
             //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
             stack_y += scoopHeight * (leftCount);
 
@@ -61,14 +68,40 @@ public class IceCreamScript : MonoBehaviour
                     leftOrderText.text += "straw, ";
                     return;
 
-                case "ScoopVanilla(Clone)":
+                case "ScoopChoc(Clone)":
                     bennyOrders.leftOrder.Add(1);
-                    leftOrderText.text += "van, ";
+                    leftOrderText.text += "choc, ";
                     return;
 
-                case "ScoopChoc(Clone)":
+                case "ScoopVanilla(Clone)":
                     bennyOrders.leftOrder.Add(2);
-                    leftOrderText.text += "choc, ";
+                    leftOrderText.text += "van, ";
+                    return;
+                case "ScoopRockyRoad(Clone)":
+                    bennyOrders.leftOrder.Add(3);
+                    leftOrderText.text += "rocky road, ";
+                    return;
+
+                case "ScoopPistachio(Clone)":
+                    bennyOrders.leftOrder.Add(4);
+                    leftOrderText.text += "pista, ";
+                    return;
+
+                case "ScoopButterscotch(Clone)":
+                    bennyOrders.leftOrder.Add(5);
+                    leftOrderText.text += "butterscotch, ";
+                    return;
+                case "ScoopLavender(Clone)":
+                    bennyOrders.leftOrder.Add(6);
+                    leftOrderText.text += "lav, ";
+                    return;
+                case "ScoopBlueMoon(Clone)":
+                    bennyOrders.leftOrder.Add(7);
+                    leftOrderText.text += "blue moon, ";
+                    return;
+                case "ScoopBlackHole(Clone)":
+                    bennyOrders.leftOrder.Add(8);
+                    leftOrderText.text += "black hole, ";
                     return;
             }
         }
@@ -77,6 +110,11 @@ public class IceCreamScript : MonoBehaviour
         //same thing but for right hand
         {
             print("Added right");
+
+            if (arduino != null && arduino.useArduinoController) //arduino right led blink
+            {
+                arduino.BlinkRightLED();
+            }
 
             stack_y += scoopHeight * (rightCount);
 
@@ -88,17 +126,44 @@ public class IceCreamScript : MonoBehaviour
                 case "ScoopStrawberry(Clone)":
                     bennyOrders.rightOrder.Add(0);
                     rightOrderText.text += "straw, ";
-                    break;
-
-                case "ScoopVanilla(Clone)":
-                    bennyOrders.rightOrder.Add(1);
-                    rightOrderText.text += "van, ";
-                    break;
+                    return;
 
                 case "ScoopChoc(Clone)":
-                    bennyOrders.rightOrder.Add(2);
+                    bennyOrders.rightOrder.Add(1);
                     rightOrderText.text += "choc, ";
-                    break;
+                    return;
+
+                case "ScoopVanilla(Clone)":
+                    bennyOrders.rightOrder.Add(2);
+                    rightOrderText.text += "van, ";
+                    return;
+
+                case "ScoopRockyRoad(Clone)":
+                    bennyOrders.rightOrder.Add(3);
+                    rightOrderText.text += "rocky road, ";
+                    return;
+
+                case "ScoopPistachio(Clone)":
+                    bennyOrders.rightOrder.Add(4);
+                    rightOrderText.text += "pista, ";
+                    return;
+
+                case "ScoopButterscotch(Clone)":
+                    bennyOrders.rightOrder.Add(5);
+                    rightOrderText.text += "butterscotch, ";
+                    return;
+                case "ScoopLavender(Clone)":
+                    bennyOrders.rightOrder.Add(6);
+                    rightOrderText.text += "lav, ";
+                    return;
+                case "ScoopBlueMoon(Clone)":
+                    bennyOrders.rightOrder.Add(7);
+                    rightOrderText.text += "blue moon, ";
+                    return;
+                case "ScoopBlackHole(Clone)":
+                    bennyOrders.rightOrder.Add(8);
+                    rightOrderText.text += "black hole, ";
+                    return;
             }
         }
     }
@@ -120,7 +185,8 @@ public class IceCreamScript : MonoBehaviour
         //deletes the ice cream after 5 seconds if the collision is the floor
         if (collision != null)
         {
-            if (collision.CompareTag("Floor") || collision.CompareTag("Fallen")) { 
+            if (collision.CompareTag("Floor") || collision.CompareTag("Fallen"))
+            {
                 gameObject.tag = "Fallen";
                 timeRemaining -= Time.deltaTime;
 
@@ -143,6 +209,7 @@ public class IceCreamScript : MonoBehaviour
         {
             //makes it so that it can't land on anything else
             landed = true;
+            gameObject.tag = "ScoopLanded";
 
             //stops all movement
             rb.isKinematic = true;
@@ -152,15 +219,17 @@ public class IceCreamScript : MonoBehaviour
             //depending on the scoop add it to the list of benny scoops
             addScoop();
 
-        //if it lands on another ice cream scoop
-        } else if (other.transform.CompareTag("Scoop") && !landed)
+            //if it lands on another ice cream scoop
+        }
+        else if (other.transform.CompareTag("ScoopLanded") && !landed)
         {
             landed = true;
+            gameObject.tag = "ScoopLanded";
 
             rb.isKinematic = true;
             transform.SetParent(other.transform.parent);
 
             addScoop();
         }
-    }   
+    }
 }
