@@ -174,18 +174,6 @@ public class IceCreamScript : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            rb.velocity = new Vector3(0, -3.44f, 0);
-            spawner.timeBetween = 1;
-        }
-        else
-        {
-            rb.velocity = new Vector3(0, -1.77f, 0);
-            spawner.timeBetween = 2;
-        }
-
         //deletes the ice cream after 5 seconds if the collision is the floor
         if (collision != null)
         {
