@@ -7,20 +7,20 @@ public static class DifficultyManager
 {
 public static string sceneName => SceneManager.GetActiveScene().name;
     
-    public static int timeOrderBaseline
+    public static float timeMultiplier
     {
         get
         {
             switch (sceneName)
             {
                 case "Level1":
-                    return 25;
+                    return 5f;
                 case "Level2":
-                    return 15;
+                    return 4.5f;
                 case "Level3":
-                    return 10;
+                    return 3.8f;
                 default:
-                    return 25;
+                    return 5f;
             }
         }
     }
@@ -34,12 +34,19 @@ public static string sceneName => SceneManager.GetActiveScene().name;
                 case "Level1":
                     return 2.0f;
                 case "Level2":
-                    return 1.5f;
+                    return 1.8f;
                 case "Level3":
-                    return 1.0f;
+                    return 1.6f;
                 default:
                     return 2.0f;
             }
         }
     }
+
+    public static float fallSpeed => sceneName switch {
+    "Level1" => 1.8f,
+    "Level2" => 2.3f,
+    "Level3" => 2.8f,
+    _        => 1.8f
+};
 }

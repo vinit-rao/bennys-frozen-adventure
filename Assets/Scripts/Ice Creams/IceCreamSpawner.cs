@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class IceCreamSpawner : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class IceCreamSpawner : MonoBehaviour
     {
         Debug.Log("spawn rate: " + DifficultyManager.spawnRate);
         Debug.Log("chunk time: " + chunkTime);
+        Debug.Log("fall speed: " + DifficultyManager.fallSpeed);
         chunkTimer += Time.deltaTime;
 
         if (chunkTimer >= chunkTime)

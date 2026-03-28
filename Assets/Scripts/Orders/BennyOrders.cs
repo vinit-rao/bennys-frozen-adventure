@@ -143,8 +143,8 @@ public class BennyOrders : MonoBehaviour
             rightCount = rightOrder.Count;
         }
 
-        print("The correct amount on the right is " + rightA);
-        print("The correct amount on the left is " + leftA);
+        // print("The correct amount on the right is " + rightA);
+        // print("The correct amount on the left is " + leftA);
 
         //if leftA or rightA (however many ice creams are correct) is equal to the amount of ice creams in the order, mark the order as complete
         if (leftA == order.iceCreams.Count && !order.timeFailed)
@@ -240,18 +240,13 @@ public class BennyOrders : MonoBehaviour
         for (int i = 0; i < numOrders; i++)
         {   // timer logic
             bool active = false;
-            int random = Random.Range(3, 6); // an order randomly has 3-5 scoops
-            int timeOrderBaseline = DifficultyManager.timeOrderBaseline;
-            int time = timeOrderBaseline;
-            
-            
-            if (random == 3) { time += 25; } // +25 sec for 3 scoops
-            else if (random == 4) { time += 35; } // +35 sec for 4 scoops
-            else { time += 50; } // +50 sec for 5 scoops
+            int scoopCount = Random.Range(3, 6); // an order randomly has 3-5 scoops
+            float timeMultiplier = DifficultyManager.timeMultiplier;
+            float time = 20 + scoopCount * timeMultiplier;
 
             if (i == 0 || i == 1) active = true;
 
-            Orders order = createOrder(random, time, active);
+            Orders order = createOrder(scoopCount, Mathf.RoundToInt(time), active);
 
             if (order.IsActive) { StartCoroutine(countDown(order)); }
         }
