@@ -35,15 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelMenus/LevelMenu2.unity
     guid: 8598bb418246e9b40abdb3d2c3643b4e
-  - enabled: 0
-    path: Assets/Scenes/WinLose/Level2/LoseMenu2.unity
-    guid: 7144c7f548e83374a86ee55a22b9dd32
-  - enabled: 0
-    path: Assets/Scenes/WinLose/Level2/WinMenu2.unity
-    guid: f84595cb865f40e428b043fd7d09e8d7
-  - enabled: 0
-    path: Assets/Scenes/WinLose/Level3/LoseMenu3.unity
-    guid: d76b408bcf4784b44ab4eadb617eafe7
   - enabled: 1
     path: Assets/Scenes/SettingsMenu.unity
     guid: 006a90313cb64294793d79ed872cfdab

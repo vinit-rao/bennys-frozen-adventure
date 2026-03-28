@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using JetBrains.Annotations;
 
 public class IceCreamSpawner : MonoBehaviour
 {
     public GameObject scoopOne, scoopTwo, scoopThree;
     public BennyOrders bennyOrders;
 
-    public float chunkTime = 6;
-    public float timeBetween = 2f;
+    public float chunkTime;
 
     private float chunkTimer = 0f;
     public List<int> currentChunk = new List<int> { 0, 1, 2 };
@@ -36,6 +36,9 @@ public class IceCreamSpawner : MonoBehaviour
             scoop.GetComponent<IceCreamScript>().spawner = this;
         }
         StartCoroutine(IceCreams(currentChunk));
+
+        chunkTime = DifficultyManager.spawnRate * 3;
+
     }
 
     //fisher yates algorithm
@@ -53,6 +56,8 @@ public class IceCreamSpawner : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("spawn rate: " + DifficultyManager.spawnRate);
+        Debug.Log("chunk time: " + chunkTime);
         chunkTimer += Time.deltaTime;
 
         if (chunkTimer >= chunkTime)
@@ -139,7 +144,7 @@ public class IceCreamSpawner : MonoBehaviour
             light.transform.SetParent(scoop.transform);
             light.transform.GetComponent<Light>().color = color;
 
-            yield return new WaitForSeconds(timeBetween);
+            yield return new WaitForSeconds(DifficultyManager.spawnRate);
         }
     }
 }
