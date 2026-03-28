@@ -458,7 +458,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056298907}
   m_CullTransparentMesh: 1
---- !u!1 &1081784179
+--- !u!1 &1202435046
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -466,42 +466,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1081784180}
-  - component: {fileID: 1081784182}
-  - component: {fileID: 1081784181}
+  - component: {fileID: 1202435047}
+  - component: {fileID: 1202435049}
+  - component: {fileID: 1202435048}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BennyInTruck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1081784180
+--- !u!224 &1202435047
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081784179}
+  m_GameObject: {fileID: 1202435046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5580777, y: 1.3536731, z: 1.3536731}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2087462001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 485, y: 128}
-  m_SizeDelta: {x: 1100, y: 700}
+  m_AnchoredPosition: {x: -236, y: 49}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1081784181
+--- !u!114 &1202435048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081784179}
+  m_GameObject: {fileID: 1202435046}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -515,7 +515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ffd67d664d20eb4799c87a96941094d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c311869e18244ff097a4df51c8b614d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -525,13 +525,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &1081784182
+--- !u!222 &1202435049
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081784179}
+  m_GameObject: {fileID: 1202435046}
   m_CullTransparentMesh: 1
 --- !u!1 &1439335424
 GameObject:
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 1769563835}
   - component: {fileID: 1769563834}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c1ad553e3e791994eb5582e0a6ae0443, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb3e6b218232a4c3ab9466f3f802ae72, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1070,7 +1070,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1769563833}
-  - {fileID: 1081784180}
+  - {fileID: 1202435047}
   - {fileID: 1838100070}
   - {fileID: 1056298908}
   m_Father: {fileID: 0}
