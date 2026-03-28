@@ -77,7 +77,7 @@ public class IceCreamSpawner : MonoBehaviour
         {
             Vector3 randomPosition =
             new Vector3(Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)),
-            20, Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)));
+            18, Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)));
 
             GameObject prefab = null;
             Color color = Color.white;
