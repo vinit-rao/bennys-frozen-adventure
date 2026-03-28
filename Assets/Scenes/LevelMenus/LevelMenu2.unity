@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 1191046479}
   - component: {fileID: 1191046478}
   m_Layer: 5
-  m_Name: Lavender
+  m_Name: Pistachio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1239,9 +1239,9 @@ RectTransform:
   - {fileID: 1014097597}
   - {fileID: 869475060}
   - {fileID: 898169689}
-  - {fileID: 1817006601}
-  - {fileID: 1191046477}
   - {fileID: 1479166144}
+  - {fileID: 1191046477}
+  - {fileID: 1817006601}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 1479166146}
   - component: {fileID: 1479166145}
   m_Layer: 5
-  m_Name: BlackHole
+  m_Name: RockyRoad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1540,7 +1540,7 @@ GameObject:
   - component: {fileID: 1817006603}
   - component: {fileID: 1817006602}
   m_Layer: 5
-  m_Name: BlueMoon
+  m_Name: Butterscotch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

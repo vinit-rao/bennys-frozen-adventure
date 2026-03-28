@@ -128,6 +128,7 @@ public class IceCreamScript : MonoBehaviour
 
     private void Update()
     {
+        rb.velocity = new Vector3(0, -DifficultyManager.fallSpeed, 0);
         //deletes the ice cream after 5 seconds if the collision is the floor
         if (collision != null)
         {
