@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Drawing.Text;
 
 public class Orders
 {
@@ -100,28 +101,6 @@ public class BennyOrders : MonoBehaviour
         return order;
     }
 
-    //randomly generates a set of ice creams to complete
-    void Start()
-    {
-        floor = GameObject.Find("Floor");
-
-        for (int i = 0; i < numOrders; i++)
-        {   // timer logic
-            bool active = false;
-            int random = Random.Range(3, 6); // an order randomly has 3-5 scoops
-            int time = 15; // baseline 15 sec
-            if (random == 3) { time += 25; } // 40 sec for 3 scoops
-            else if (random == 4) { time += 35; } // 50 sec for 4 scoops
-            else { time += 50; } // 65 sec for 5 scoops
-
-            if (i == 0 || i == 1) active = true;
-
-            Orders order = createOrder(random, time, active);
-
-            if (order.IsActive) { StartCoroutine(countDown(order)); }
-        }
-    }
-
     float scoreCalc(Orders order)
     {
         float score = (order.timer / order.time) + 0.5f;
@@ -129,7 +108,6 @@ public class BennyOrders : MonoBehaviour
 
         return score;
     }
-    
 
     void checkComplete(Orders order)
     {
@@ -252,6 +230,32 @@ public class BennyOrders : MonoBehaviour
             }
         }
     }
+    // ================================================================
+    // ================================================================
+    //randomly generates a set of ice creams to complete
+    void Start()
+    {
+        floor = GameObject.Find("Floor");
+
+        for (int i = 0; i < numOrders; i++)
+        {   // timer logic
+            bool active = false;
+            int random = Random.Range(3, 6); // an order randomly has 3-5 scoops
+            int timeOrderBaseline = DifficultyManager.timeOrderBaseline;
+            int time = timeOrderBaseline;
+            
+            
+            if (random == 3) { time += 25; } // +25 sec for 3 scoops
+            else if (random == 4) { time += 35; } // +35 sec for 4 scoops
+            else { time += 50; } // +50 sec for 5 scoops
+
+            if (i == 0 || i == 1) active = true;
+
+            Orders order = createOrder(random, time, active);
+
+            if (order.IsActive) { StartCoroutine(countDown(order)); }
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -262,7 +266,7 @@ public class BennyOrders : MonoBehaviour
             {
                 checkComplete(order);
             }
-            
+
         }
         // garbage bin at the top right corner (4, 0, 4) to destroy ice cream
         if (gameObject.transform.position.x == 4 && gameObject.transform.position.z == 4)
@@ -276,14 +280,15 @@ public class BennyOrders : MonoBehaviour
                 {
                     Destroy(iceCream.gameObject);
                 }
-                    
+
                 leftOrder.Clear();
 
                 leftText.text = "Left: ";
 
                 leftCount = leftOrder.Count;
 
-            } else if (rotation == 270)
+            }
+            else if (rotation == 270)
             {
                 print("In the area");
                 foreach (Transform iceCream in transform.Find("ArmR"))
@@ -303,7 +308,7 @@ public class BennyOrders : MonoBehaviour
             finishedTimer -= Time.deltaTime;
             if (finishedTimer < 0)
             {
-                if (gameObject.name == "Benny")
+                if (gameObject.name == "Benny") // lvl 1
                 {
                     if (((score / numOrders) * 5) > 2)
                     {
@@ -313,7 +318,8 @@ public class BennyOrders : MonoBehaviour
                     {
                         SceneManager.LoadScene("LoseMenu1");
                     }
-                } else if (gameObject.name == "BennyCowboy")
+                }
+                else if (gameObject.name == "BennyCowboy") // lvl 2
                 {
                     if (((score / numOrders) * 5) > 2)
                     {
@@ -323,7 +329,8 @@ public class BennyOrders : MonoBehaviour
                     {
                         SceneManager.LoadScene("LoseMenu2");
                     }
-                } else if (gameObject.name == "BennyAstro")
+                }
+                else if (gameObject.name == "BennyAstro") // lvl 3
                 {
                     if (((score / numOrders) * 5) > 2)
                     {
@@ -334,7 +341,7 @@ public class BennyOrders : MonoBehaviour
                         SceneManager.LoadScene("LoseMenu3");
                     }
                 }
-                
+
             }
         }
     }
