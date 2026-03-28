@@ -19,17 +19,19 @@ public class IceCreamScript : MonoBehaviour
     public TextMeshProUGUI leftOrderText;
     private ArduinoController arduino;
 
-    //freeze ice cream in every direction but down
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         bennyOrders = GameObject.FindWithTag("Player").GetComponent<BennyOrders>();
+        //freeze ice cream in every direction but falling down
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
         arduino = FindObjectOfType<ArduinoController>();
     }
 
+// bool storing scoop id and flavour text, use with scoopLandOnHand() below
+// id matches scoopOne, scoopTwo, scoopThree in BennyOrders.cs & spawner rand int
     private bool getScoopId(string scoopName, out int flavourId, out string flavourText)
     {
         flavourId = -1;
@@ -76,7 +78,7 @@ public class IceCreamScript : MonoBehaviour
         return false;
     }
 
-    private void AddScoopToHand(System.Collections.Generic.List<int> handOrder, TextMeshProUGUI orderText, int scoopCount, bool isLeft)
+    private void scoopLandOnHand(System.Collections.Generic.List<int> handOrder, TextMeshProUGUI orderText, int scoopCount, bool isLeft)
     {
         float stack_y = 2.5f + scoopHeight * scoopCount;
         transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
@@ -97,10 +99,10 @@ public class IceCreamScript : MonoBehaviour
             }
             #endif
         }
-        else
-        {
-            Debug.LogWarning($"Unknown scoop type: {transform.name}");
-        }
+        // else
+        // {
+        //     Debug.LogWarning($"Unknown scoop type: {transform.name}");
+        // }
     }
 
     private void addScoop()
@@ -116,11 +118,11 @@ public class IceCreamScript : MonoBehaviour
 
         if (parent.name == "ArmL")
         {
-            AddScoopToHand(bennyOrders.leftOrder, leftOrderText, bennyOrders.leftOrder.Count, true);
+            scoopLandOnHand(bennyOrders.leftOrder, leftOrderText, bennyOrders.leftOrder.Count, true);
         }
         else if (parent.name == "ArmR")
         {
-            AddScoopToHand(bennyOrders.rightOrder, rightOrderText, bennyOrders.rightOrder.Count, false);
+            scoopLandOnHand(bennyOrders.rightOrder, rightOrderText, bennyOrders.rightOrder.Count, false);
         }
     }
 
