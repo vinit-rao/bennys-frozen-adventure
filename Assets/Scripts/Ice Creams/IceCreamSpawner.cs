@@ -66,7 +66,7 @@ public class IceCreamSpawner : MonoBehaviour
     IEnumerator IceCreams(List<int> chunk)
     {
         Shuffle(chunk);
-        foreach (int flavor in chunk)
+        foreach (int flavour in chunk)
         {
             Vector3 randomPosition =
             new Vector3(Mathf.RoundToInt(Random.Range(-minSpawn, minSpawn)),
@@ -75,7 +75,7 @@ public class IceCreamSpawner : MonoBehaviour
             GameObject prefab = null;
             Color color = Color.white;
 
-            if (flavor == 0)
+            if (flavour == 0)
             {
                 prefab = scoopOne;
 
@@ -94,7 +94,7 @@ public class IceCreamSpawner : MonoBehaviour
                     color = new Color(0.8f, 0.5f, 1.0f);
                 }
             }
-            if (flavor == 1)
+            if (flavour == 1)
             {
                 prefab = scoopTwo;
 
@@ -113,7 +113,7 @@ public class IceCreamSpawner : MonoBehaviour
                     color = new Color(0.2f, 0.8f, 1.0f);
                 }
             }
-            if (flavor == 2)
+            if (flavour == 2)
             {
                 prefab = scoopThree;
 

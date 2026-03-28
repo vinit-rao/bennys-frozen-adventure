@@ -49,7 +49,7 @@ public class BennyOrders : MonoBehaviour
         "Kirby"
     };
 
-    //lists flavors for each of Benny's arms
+    //lists flavours for each of Benny's arms
     public List<int> leftOrder = new List<int>();
     public List<int> rightOrder = new List<int>();
     public List<Orders> levelOrders = new List<Orders>();
@@ -106,24 +106,13 @@ public class BennyOrders : MonoBehaviour
         floor = GameObject.Find("Floor");
 
         for (int i = 0; i < numOrders; i++)
-        {
+        {   // timer logic
             bool active = false;
-            int random = Random.Range(3, 6);
-            int time = (random * 6) + 15;
-
-            if (time > 25 && time < 35)
-            {
-                time = 35;
-            } else if (time > 35 && time < 45)
-            {
-                time = 45;
-            } else if (time > 45 && time < 60)
-            {
-                time = 60;
-            } else if (time > 60 && time < 75)
-            {
-                time = 75;
-            }
+            int random = Random.Range(3, 6); // an order randomly has 3-5 scoops
+            int time = 15; // baseline 15 sec
+            if (random == 3) { time += 25; } // 40 sec for 3 scoops
+            else if (random == 4) { time += 35; } // 50 sec for 4 scoops
+            else { time += 50; } // 65 sec for 5 scoops
 
             if (i == 0 || i == 1) active = true;
 
@@ -150,7 +139,7 @@ public class BennyOrders : MonoBehaviour
         int leftA = 0;
         int rightA = 0;
 
-        //checks if the flavor is correct on either side for however many scoops there are in the order
+        //checks if the flavour is correct on either side for however many scoops there are in the order
         for (int i = 0; i < order.iceCreams.Count; i++)
         {
 

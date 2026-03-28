@@ -19,160 +19,110 @@ public class IceCreamScript : MonoBehaviour
     public TextMeshProUGUI leftOrderText;
     private ArduinoController arduino;
 
-    //freeze ice cream in every direction but down
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         bennyOrders = GameObject.FindWithTag("Player").GetComponent<BennyOrders>();
+        //freeze ice cream in every direction but falling down
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionX;
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
         arduino = FindObjectOfType<ArduinoController>();
     }
 
+// bool storing scoop id and flavour text, use with scoopLandOnHand() below
+// id matches scoopOne, scoopTwo, scoopThree in BennyOrders.cs & spawner rand int
+    private bool getScoopId(string scoopName, out int flavourId, out string flavourText)
+    {
+        flavourId = -1;
+        flavourText = "";
+        switch (scoopName)
+        {
+            case "ScoopStrawberry(Clone)":
+                flavourId = 0;
+                flavourText = "straw";
+                return true;
+            case "ScoopChoc(Clone)":
+                flavourId = 1;
+                flavourText = "choc";
+                return true;
+            case "ScoopVanilla(Clone)":
+                flavourId = 2;
+                flavourText = "van";
+                return true;
+            case "ScoopRockyRoad(Clone)":
+                flavourId = 0;
+                flavourText = "rocky road";
+                return true;
+            case "ScoopPistachio(Clone)":
+                flavourId = 1;
+                flavourText = "pista";
+                return true;
+            case "ScoopButterscotch(Clone)":
+                flavourId = 2;
+                flavourText = "butterscotch";
+                return true;
+            case "ScoopLavender(Clone)":
+                flavourId = 0;
+                flavourText = "lav";
+                return true;
+            case "ScoopBlueMoon(Clone)":
+                flavourId = 1;
+                flavourText = "blue moon";
+                return true;
+            case "ScoopBlackHole(Clone)":
+                flavourId = 2;
+                flavourText = "black hole";
+                return true;
+        }
+        return false;
+    }
+
+    private void scoopLandOnHand(System.Collections.Generic.List<int> handOrder, TextMeshProUGUI orderText, int scoopCount, bool isLeft)
+    {
+        float stack_y = 2.5f + scoopHeight * scoopCount;
+        transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
+
+        if (getScoopId(transform.name, out int flavourId, out string flavourText))
+        {
+            handOrder.Add(flavourId);
+            orderText.text += flavourText + ", ";
+            numOrder = handOrder.Count;
+
+            #if !UNITY_WEBGL || UNITY_EDITOR
+            if (arduino != null && arduino.useArduinoController)
+            {
+                if (isLeft)
+                    arduino.BlinkLeftLED();
+                else
+                    arduino.BlinkRightLED();
+            }
+            #endif
+        }
+        // else
+        // {
+        //     Debug.LogWarning($"Unknown scoop type: {transform.name}");
+        // }
+    }
+
     private void addScoop()
     {
-        //counts the amount of ice creams benny is holding in each hand
-        int leftCount = bennyOrders.leftOrder.Count;
-        int rightCount = bennyOrders.rightOrder.Count;
-
-        //how high the first ice cream should be
-        float stack_y = 2.5f;
+        Transform parent = transform.parent;
+        if (parent == null) return;
 
         Transform light = transform.Find("Spot Light(Clone)");
         if (light != null)
-        {
             Destroy(light.gameObject);
-        }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        if (transform.parent.name == "ArmL")
+        if (parent.name == "ArmL")
         {
-            print("Added left");
-
-            #if !UNITY_WEBGL || UNITY_EDITOR
-                        if (arduino != null && arduino.useArduinoController) //arduino left led blink
-                        {
-                            arduino.BlinkLeftLED();
-                        }
-            #endif
-
-            //stacks it to y = 2.25, adds the average scoop height multiplied by how many scoops there are in that hand
-            stack_y += scoopHeight * (leftCount);
-
-            //changes position
-            transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
-
-            numOrder = bennyOrders.leftOrder.Count;
-
-            //adds the ice cream to the hand's list depending on its name
-            switch (transform.name)
-            {
-                case "ScoopStrawberry(Clone)":
-                    bennyOrders.leftOrder.Add(0);
-                    leftOrderText.text += "straw, ";
-                    return;
-
-                case "ScoopChoc(Clone)":
-                    bennyOrders.leftOrder.Add(1);
-                    leftOrderText.text += "choc, ";
-                    return;
-
-                case "ScoopVanilla(Clone)":
-                    bennyOrders.leftOrder.Add(2);
-                    leftOrderText.text += "van, ";
-                    return;
-                case "ScoopRockyRoad(Clone)":
-                    bennyOrders.leftOrder.Add(0);
-                    leftOrderText.text += "rocky road, ";
-                    return;
-
-                case "ScoopPistachio(Clone)":
-                    bennyOrders.leftOrder.Add(1);
-                    leftOrderText.text += "pista, ";
-                    return;
-
-                case "ScoopButterscotch(Clone)":
-                    bennyOrders.leftOrder.Add(2);
-                    leftOrderText.text += "butterscotch, ";
-                    return;
-                case "ScoopLavender(Clone)":
-                    bennyOrders.leftOrder.Add(0);
-                    leftOrderText.text += "lav, ";
-                    return;
-                case "ScoopBlueMoon(Clone)":
-                    bennyOrders.leftOrder.Add(1);
-                    leftOrderText.text += "blue moon, ";
-                    return;
-                case "ScoopBlackHole(Clone)":
-                    bennyOrders.leftOrder.Add(2);
-                    leftOrderText.text += "black hole, ";
-                    return;
-            }
+            scoopLandOnHand(bennyOrders.leftOrder, leftOrderText, bennyOrders.leftOrder.Count, true);
         }
-        else if (transform.parent.name == "ArmR")
-
-        //same thing but for right hand
+        else if (parent.name == "ArmR")
         {
-            print("Added right");
-
-            #if !UNITY_WEBGL || UNITY_EDITOR
-                        if (arduino != null && arduino.useArduinoController) //arduino right led blink
-                        {
-                            arduino.BlinkRightLED();
-                        }
-            #endif
-
-            stack_y += scoopHeight * (rightCount);
-
-            numOrder = bennyOrders.rightOrder.Count;
-
-            transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
-            switch (transform.name)
-            {
-                case "ScoopStrawberry(Clone)":
-                    bennyOrders.rightOrder.Add(0);
-                    rightOrderText.text += "straw, ";
-                    return;
-
-                case "ScoopChoc(Clone)":
-                    bennyOrders.rightOrder.Add(1);
-                    rightOrderText.text += "choc, ";
-                    return;
-
-                case "ScoopVanilla(Clone)":
-                    bennyOrders.rightOrder.Add(2);
-                    rightOrderText.text += "van, ";
-                    return;
-
-                case "ScoopRockyRoad(Clone)":
-                    bennyOrders.rightOrder.Add(0);
-                    rightOrderText.text += "rocky road, ";
-                    return;
-
-                case "ScoopPistachio(Clone)":
-                    bennyOrders.rightOrder.Add(1);
-                    rightOrderText.text += "pista, ";
-                    return;
-
-                case "ScoopButterscotch(Clone)":
-                    bennyOrders.rightOrder.Add(2);
-                    rightOrderText.text += "butterscotch, ";
-                    return;
-                case "ScoopLavender(Clone)":
-                    bennyOrders.rightOrder.Add(0);
-                    rightOrderText.text += "lav, ";
-                    return;
-                case "ScoopBlueMoon(Clone)":
-                    bennyOrders.rightOrder.Add(1);
-                    rightOrderText.text += "blue moon, ";
-                    return;
-                case "ScoopBlackHole(Clone)":
-                    bennyOrders.rightOrder.Add(2);
-                    rightOrderText.text += "black hole, ";
-                    return;
-            }
+            scoopLandOnHand(bennyOrders.rightOrder, rightOrderText, bennyOrders.rightOrder.Count, false);
         }
     }
 
