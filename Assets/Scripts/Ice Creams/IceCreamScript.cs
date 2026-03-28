@@ -88,6 +88,7 @@ public class IceCreamScript : MonoBehaviour
             handOrder.Add(flavourId);
             orderText.text += flavourText + ", ";
             numOrder = handOrder.Count;
+            
 
             #if !UNITY_WEBGL || UNITY_EDITOR
             if (arduino != null && arduino.useArduinoController)
@@ -119,6 +120,7 @@ public class IceCreamScript : MonoBehaviour
         if (parent.name == "ArmL")
         {
             scoopLandOnHand(bennyOrders.leftOrder, leftOrderText, bennyOrders.leftOrder.Count, true);
+            
         }
         else if (parent.name == "ArmR")
         {

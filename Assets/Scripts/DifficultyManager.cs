@@ -18,7 +18,7 @@ public static string sceneName => SceneManager.GetActiveScene().name;
                 case "Level2":
                     return 4.5f;
                 case "Level3":
-                    return 3.8f;
+                    return 4f;
                 default:
                     return 5f;
             }
@@ -32,13 +32,13 @@ public static string sceneName => SceneManager.GetActiveScene().name;
             switch (sceneName)
             {
                 case "Level1":
-                    return 2.0f;
+                    return 1.7f;
                 case "Level2":
                     return 1.7f;
                 case "Level3":
                     return 1.3f;
                 default:
-                    return 2.0f;
+                    return 1.7f;
             }
         }
     }
