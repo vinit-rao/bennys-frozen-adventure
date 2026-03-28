@@ -3660,7 +3660,6 @@ MonoBehaviour:
   scoopThree: {fileID: 1738511771697118128, guid: e5cd3b4113ef745fcbb321308dea2bfd, type: 3}
   bennyOrders: {fileID: 0}
   chunkTime: 6
-  timeBetween: 2
   currentChunk: 000000000100000002000000
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
   rightOrderText: {fileID: 0}
@@ -3897,15 +3896,15 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 598765650}
   - {fileID: 580406019}
-  - {fileID: 387482422}
-  - {fileID: 688280931}
+  - {fileID: 598765650}
+  - {fileID: 108054006}
   - {fileID: 1916150531}
   - {fileID: 995482543}
   - {fileID: 1560029882}
   - {fileID: 534299553}
-  - {fileID: 410996422}
   - {fileID: 1301759795}
-  - {fileID: 108054006}
   - {fileID: 31391376}
+  - {fileID: 688280931}
+  - {fileID: 387482422}
+  - {fileID: 410996422}

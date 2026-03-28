@@ -34,9 +34,9 @@ public static string sceneName => SceneManager.GetActiveScene().name;
                 case "Level1":
                     return 2.0f;
                 case "Level2":
-                    return 1.8f;
+                    return 1.7f;
                 case "Level3":
-                    return 1.6f;
+                    return 1.3f;
                 default:
                     return 2.0f;
             }

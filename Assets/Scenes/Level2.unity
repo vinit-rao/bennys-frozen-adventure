@@ -3763,7 +3763,6 @@ MonoBehaviour:
   scoopThree: {fileID: 3424335551820010054, guid: 205cfd51039f24f4282352f11ffd5b62, type: 3}
   bennyOrders: {fileID: 2030848303}
   chunkTime: 6
-  timeBetween: 2
   currentChunk: 000000000100000002000000
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
   rightOrderText: {fileID: 1753428632}
@@ -4201,16 +4200,16 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 598765650}
   - {fileID: 580406019}
-  - {fileID: 387482422}
-  - {fileID: 688280931}
+  - {fileID: 598765650}
+  - {fileID: 876945639}
+  - {fileID: 1343372409}
+  - {fileID: 1401702839}
   - {fileID: 1916150531}
   - {fileID: 995482543}
   - {fileID: 1123816789}
   - {fileID: 1560029882}
-  - {fileID: 186784792}
   - {fileID: 1471860192}
-  - {fileID: 1343372409}
-  - {fileID: 1401702839}
-  - {fileID: 876945639}
+  - {fileID: 688280931}
+  - {fileID: 387482422}
+  - {fileID: 186784792}
