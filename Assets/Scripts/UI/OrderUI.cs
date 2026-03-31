@@ -16,6 +16,7 @@ public class OrderUI : MonoBehaviour
 
     public GameObject completeStamp;
     public GameObject incompleteStamp;
+    public GameObject customerThumbnail;
 
     public void SetupOrderVisuals(Orders orderData, int index)
     {
