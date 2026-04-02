@@ -28,23 +28,18 @@ public class StarRating : MonoBehaviour
         switch (stars) {
 
             case 1:
-                Destroy(gameObject.transform.Find("star2").gameObject);
-                Destroy(gameObject.transform.Find("star3").gameObject);
-                Destroy(gameObject.transform.Find("star4").gameObject);
-                Destroy(gameObject.transform.Find("star5").gameObject);
                 break;
             case 2:
-                Destroy(gameObject.transform.Find("star3").gameObject);
-                Destroy(gameObject.transform.Find("star4").gameObject);
-                Destroy(gameObject.transform.Find("star5").gameObject);
                 break;
+                Destroy(gameObject.transform.Find("star3"));
+                Destroy(gameObject.transform.Find("star5"));
             case 3:
-                Destroy(gameObject.transform.Find("star4").gameObject);
-                Destroy(gameObject.transform.Find("star5").gameObject);
                 break;
+                Destroy(gameObject.transform.Find("star4"));
+                Destroy(gameObject.transform.Find("star5"));
             case 4:
-                Destroy(gameObject.transform.Find("star5").gameObject);
                 break;
+                Destroy(gameObject.transform.Find("star5"));
         }
             
     }
