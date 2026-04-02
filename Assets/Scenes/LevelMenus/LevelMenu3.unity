@@ -1851,7 +1851,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: BennyAstro
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2794198640240002358, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
+    - {fileID: 3782242056185039068, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2455465909567103643, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
     - {fileID: 3470431285368017513, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}

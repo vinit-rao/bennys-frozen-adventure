@@ -86,21 +86,22 @@ public class IceCreamScript : MonoBehaviour
         if (getScoopId(transform.name, out int flavourId, out string flavourText))
         {
             handOrder.Add(flavourId);
-            orderText.text += flavourText + ", ";
             numOrder = handOrder.Count;
-
-
-#if !UNITY_WEBGL || UNITY_EDITOR
-            if (arduino != null && arduino.useArduinoController)
-            {
-                if (isLeft)
-                    arduino.BlinkLeftLED();
-                else
-                    arduino.BlinkRightLED();
-            }
         }
     }
-#endif
+
+
+//#if !UNITY_WEBGL || UNITY_EDITOR
+//            if (arduino != null && arduino.useArduinoController)
+//            {
+//                if (isLeft)
+//                    arduino.BlinkLeftLED();
+//                else
+//                    arduino.BlinkRightLED();
+//            }
+//        }
+//    }
+//#endif
 
     private void addScoop()
     {
