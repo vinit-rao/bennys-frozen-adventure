@@ -14,9 +14,10 @@ public class OrderUI : MonoBehaviour
     public Sprite Sprite2;
     public Sprite Sprite3;
 
+    public RenderTexture[] rtCustomers;
+
     public GameObject completeStamp;
     public GameObject incompleteStamp;
-    public GameObject customerThumbnail;
 
     public void SetupOrderVisuals(Orders orderData, int index)
     {
@@ -47,6 +48,17 @@ public class OrderUI : MonoBehaviour
                 else if (orderData.iceCreams[i] == 2)
                     scoopSlots[i].sprite = Sprite3;
             }
+
+            // customerThumbnail randomizer from render textures
+            RawImage thumbnailImage = GameObject.Find("customerThumbnail").GetComponent<RawImage>();
+            int randomIndex = Random.Range(0, 2);
+            RenderTexture customerTexture = rtCustomers[randomIndex];
+            if (customerTexture != null)
+            {
+                thumbnailImage.texture = customerTexture;
+            }
+            
+
         } else
         {
             //if you want to create the grayed out version
