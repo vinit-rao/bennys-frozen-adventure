@@ -57,27 +57,15 @@ public class OrderUI : MonoBehaviour
     public void setPosition(Orders order, int index)
     {
         RectTransform rect = GetComponent<RectTransform>();
-        int ypos = 350;
+        int ypos = 500;
 
         switch (index)
         {
             case 0:
-                rect.anchoredPosition = new Vector2(-802, 280);
+                rect.anchoredPosition = new Vector2(-740, 180);
                 break;
             case 1:
-                rect.anchoredPosition = new Vector2(-802, 280 - ypos);
-                break;
-            case 2:
-                rect.anchoredPosition = new Vector2(-802, 280 - (ypos * 2));
-                break;
-            case 3:
-                rect.anchoredPosition = new Vector2(-552, 280);
-                break;
-            case 4:
-                rect.anchoredPosition = new Vector2(-552, 280 - ypos);
-                break;
-            case 5:
-                rect.anchoredPosition = new Vector2(-552, 280 - (ypos * 2));
+                rect.anchoredPosition = new Vector2(-740, 180 - ypos);
                 break;
         }
     }

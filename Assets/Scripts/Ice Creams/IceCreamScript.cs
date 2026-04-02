@@ -78,7 +78,7 @@ public class IceCreamScript : MonoBehaviour
         return false;
     }
 
-    private void scoopLandOnHand(System.Collections.Generic.List<int> handOrder, TextMeshProUGUI orderText, int scoopCount, bool isLeft)
+    private void scoopLandOnHand(System.Collections.Generic.List<int> handOrder, int scoopCount, bool isLeft)
     {
         float stack_y = 2.5f + scoopHeight * scoopCount;
         transform.position = new Vector3(collision.transform.position.x, stack_y, collision.transform.position.z);
@@ -116,12 +116,12 @@ public class IceCreamScript : MonoBehaviour
 
         if (parent.name == "ArmL")
         {
-            scoopLandOnHand(bennyOrders.leftOrder, leftOrderText, bennyOrders.leftOrder.Count, true);
+            scoopLandOnHand(bennyOrders.leftOrder, bennyOrders.leftOrder.Count, true);
 
         }
         else if (parent.name == "ArmR")
         {
-            scoopLandOnHand(bennyOrders.rightOrder, rightOrderText, bennyOrders.rightOrder.Count, false);
+            scoopLandOnHand(bennyOrders.rightOrder, bennyOrders.rightOrder.Count, false);
         }
     }
 
