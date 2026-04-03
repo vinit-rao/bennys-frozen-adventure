@@ -30,8 +30,8 @@ public class IceCreamScript : MonoBehaviour
         arduino = FindObjectOfType<ArduinoController>();
     }
 
-// bool storing scoop id and flavour text, use with scoopLandOnHand() below
-// id matches scoopOne, scoopTwo, scoopThree in BennyOrders.cs & spawner rand int
+    // bool storing scoop id and flavour text, use with scoopLandOnHand() below
+    // id matches scoopOne, scoopTwo, scoopThree in BennyOrders.cs & spawner rand int
     private bool getScoopId(string scoopName, out int flavourId, out string flavourText)
     {
         flavourId = -1;
@@ -86,25 +86,22 @@ public class IceCreamScript : MonoBehaviour
         if (getScoopId(transform.name, out int flavourId, out string flavourText))
         {
             handOrder.Add(flavourId);
-            orderText.text += flavourText + ", ";
             numOrder = handOrder.Count;
-            
-
-            #if !UNITY_WEBGL || UNITY_EDITOR
-            if (arduino != null && arduino.useArduinoController)
-            {
-                if (isLeft)
-                    arduino.BlinkLeftLED();
-                else
-                    arduino.BlinkRightLED();
-            }
-            #endif
         }
-        // else
-        // {
-        //     Debug.LogWarning($"Unknown scoop type: {transform.name}");
-        // }
     }
+
+
+//#if !UNITY_WEBGL || UNITY_EDITOR
+//            if (arduino != null && arduino.useArduinoController)
+//            {
+//                if (isLeft)
+//                    arduino.BlinkLeftLED();
+//                else
+//                    arduino.BlinkRightLED();
+//            }
+//        }
+//    }
+//#endif
 
     private void addScoop()
     {
@@ -120,7 +117,7 @@ public class IceCreamScript : MonoBehaviour
         if (parent.name == "ArmL")
         {
             scoopLandOnHand(bennyOrders.leftOrder, leftOrderText, bennyOrders.leftOrder.Count, true);
-            
+
         }
         else if (parent.name == "ArmR")
         {

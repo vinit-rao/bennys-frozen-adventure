@@ -44,4 +44,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HowToPlay.unity
     guid: 862359be176a6994982533a8656db17a
+  - enabled: 1
+    path: Assets/Scenes/WinLose/LoseMenu2.unity
+    guid: 177948c0d1a6a40879f726795405fbf3
+  - enabled: 1
+    path: Assets/Scenes/WinLose/LoseMenu3.unity
+    guid: 0bb9939d68f30445d9794935e28c5b33
+  - enabled: 1
+    path: Assets/Scenes/WinLose/WinMenu2.unity
+    guid: 8fb045d92cfb745d286d4043d4798356
+  - enabled: 1
+    path: Assets/Scenes/WinLose/WinMenu3.unity
+    guid: e10b4100faa92469e901ce9089b9f0d0
   m_configObjects: {}

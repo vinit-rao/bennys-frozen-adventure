@@ -51,25 +51,18 @@ public class BennyOrders : MonoBehaviour
     };
 
     //lists flavours for each of Benny's arms
-    public List<int> leftOrder = new List<int>();
-    public List<int> rightOrder = new List<int>();
+    public List<int> leftOrder, rightOrder = new List<int>();
     public List<Orders> levelOrders = new List<Orders>();
     public IceCreamSpawner spawner;
 
     public int numOrders = 5;
 
-    //how many ice creams benny is holding in each hand
-    private int leftCount = 0;
-    private int rightCount = 0;
-    public GameObject ticket;
+    public GameObject ticket, floor;
     public Transform UIcontainer;
 
     public float score;
+    public int stars = 0;
 
-    public GameObject floor;
-
-    public TextMeshProUGUI leftText;
-    public TextMeshProUGUI rightText;
     public TextMeshProUGUI scoreText;
 
     public float finishedTimer = 2;
@@ -138,9 +131,6 @@ public class BennyOrders : MonoBehaviour
                 }
             }
 
-            //update left and right count
-            leftCount = leftOrder.Count;
-            rightCount = rightOrder.Count;
         }
 
         // print("The correct amount on the right is " + rightA);
@@ -162,9 +152,6 @@ public class BennyOrders : MonoBehaviour
             {
                 Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
                 leftOrder.RemoveAt(leftOrder.Count - 1);
-                leftCount -= 1;
-
-                leftText.text = "Left :";
             }
 
         }
@@ -180,9 +167,6 @@ public class BennyOrders : MonoBehaviour
             {
                 Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
                 rightOrder.RemoveAt(rightOrder.Count - 1);
-                rightCount -= 1;
-
-                rightText.text = "Right :";
             }
         }
     }
@@ -232,8 +216,6 @@ public class BennyOrders : MonoBehaviour
             }
         }
     }
-    // ================================================================
-    // ================================================================
     //randomly generates a set of ice creams to complete
     void Start()
     {
@@ -259,7 +241,7 @@ public class BennyOrders : MonoBehaviour
     {
         foreach (Orders order in levelOrders)
         {
-            if (!order.complete)
+            if (!order.complete && order != null)
             {
                 checkComplete(order);
             }
@@ -280,9 +262,6 @@ public class BennyOrders : MonoBehaviour
 
                 leftOrder.Clear();
 
-                leftText.text = "Left: ";
-
-                leftCount = leftOrder.Count;
 
             }
             else if (rotation == 270)
@@ -295,19 +274,23 @@ public class BennyOrders : MonoBehaviour
 
                 rightOrder.Clear();
 
-                rightText.text = "Right: ";
-                rightCount = rightOrder.Count;
             }
         }
 
         if (levelOrders.Count == 0)
         {
+            stars = (int)((score / numOrders) * 5) + 1;
+            if (stars > 5) stars = 5;
+
+            print("The star count was" + stars);
+
             finishedTimer -= Time.deltaTime;
             if (finishedTimer < 0)
             {
                 if (gameObject.name == "Benny") // lvl 1
                 {
-                    if (((score / numOrders) * 5) > 2)
+                    PlayerPrefs.SetInt("L1Stars", stars);
+                    if (stars > 2)
                     {
                         SceneManager.LoadScene("WinMenu1");
                     }
@@ -318,7 +301,8 @@ public class BennyOrders : MonoBehaviour
                 }
                 else if (gameObject.name == "BennyCowboy") // lvl 2
                 {
-                    if (((score / numOrders) * 5) > 2)
+                    PlayerPrefs.SetInt("L2Stars", stars);
+                    if (stars > 2)
                     {
                         SceneManager.LoadScene("WinMenu2");
                     }
@@ -329,7 +313,8 @@ public class BennyOrders : MonoBehaviour
                 }
                 else if (gameObject.name == "BennyAstro") // lvl 3
                 {
-                    if (((score / numOrders) * 5) > 2)
+                    PlayerPrefs.SetInt("L3Stars", stars);
+                    if (stars > 2)
                     {
                         SceneManager.LoadScene("WinMenu3");
                     }
