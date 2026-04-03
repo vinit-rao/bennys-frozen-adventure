@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,6 +20,17 @@ public class OrderUI : MonoBehaviour
     public GameObject completeStamp;
     public GameObject incompleteStamp;
 
+    void Start()
+    {
+        // shuffle render texture list
+        for (int i = 0; i < rtCustomers.Length; i++)
+        {
+            int randomIndex = Random.Range(i, rtCustomers.Length);
+            RenderTexture temp = rtCustomers[i];
+            rtCustomers[i] = rtCustomers[randomIndex];
+            rtCustomers[randomIndex] = temp;
+        }
+    }
     public void SetupOrderVisuals(Orders orderData, int index)
     {
         if (orderData.IsActive)
@@ -49,22 +61,15 @@ public class OrderUI : MonoBehaviour
                     scoopSlots[i].sprite = Sprite3;
             }
 
-            // customerThumbnail randomizer from render textures
             RawImage thumbnailImage = GameObject.Find("customerThumbnail").GetComponent<RawImage>();
-            int randomIndex = Random.Range(0, 2);
-            RenderTexture customerTexture = rtCustomers[randomIndex];
-            if (customerTexture != null)
-            {
-                thumbnailImage.texture = customerTexture;
-            }
-            
+            if (index < rtCustomers.Length)
+                thumbnailImage.texture = rtCustomers[index];
 
-        } else
+        }
+        else
         {
             //if you want to create the grayed out version
         }
-
-        
     }
 
     public void setPosition(Orders order, int index)
