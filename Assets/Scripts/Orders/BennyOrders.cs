@@ -144,9 +144,7 @@ public class BennyOrders : MonoBehaviour
             order.complete = true;
 
             score += scoreCalc(order);
-
-            Debug.Log(scoreCalc(order));
-            scoreText.text = (score * 100).ToString("F0");
+            scoreText.text = "Score: " + (score * 100).ToString("F0");
 
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
@@ -161,7 +159,7 @@ public class BennyOrders : MonoBehaviour
             order.complete = true;
 
             score += scoreCalc(order);
-            scoreText.text = (score * 100).ToString("F0");
+            scoreText.text = "Score: " + (score * 100).ToString("F0");
 
             for (int j = 0; j < order.iceCreams.Count; j++)
             {
