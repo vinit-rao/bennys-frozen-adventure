@@ -89,6 +89,8 @@ public class BennyOrders : MonoBehaviour
 
         ticketUI.GetComponent<OrderUI>().BennyOrders = this;
 
+        ticketUI.SetActive(active);
+
         ticketUI.transform.SetParent(UIcontainer);
         ticketUI.name = "Ticket" + (levelOrders.Count);
 
@@ -136,7 +138,17 @@ public class BennyOrders : MonoBehaviour
                     rightA++;
                 }
             }
+            // If the order is correct 
+            if ((leftA == order.iceCreams.Count || rightA == order.iceCreams.Count) && !order.timeFailed && !order.complete)
+            {
+                order.complete = true;
 
+                //Trigger Animation
+                Animator anim = order.ticket.GetComponent<Animator>();
+                if (anim != null)
+                {
+                    anim.SetTrigger("Close"); 
+                }
         }
 
         // print("The correct amount on the right is " + rightA);
@@ -178,6 +190,7 @@ public class BennyOrders : MonoBehaviour
             rightOrder.Clear();
         }
     }
+}
 
     private IEnumerator countDown(Orders order)
     {
@@ -189,7 +202,7 @@ public class BennyOrders : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             order.timer -= 1;
-            timerUI.text = "Time" + order.timer;
+            timerUI.text = "Time:" + order.timer;
         }
 
         if (!order.complete)
@@ -356,7 +369,6 @@ public class BennyOrders : MonoBehaviour
                         AudioManager.Instance.PlayLevelEndSound();
                     }
                 }
-
             }
         }
     }

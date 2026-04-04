@@ -31,8 +31,16 @@ public class MusicToggle : MonoBehaviour
 
     void Start()
     {
+        SetupSlider();
+    }
+
+    void SetupSlider()
+    {
         if (volumeSlider != null)
         {
+      
+            volumeSlider.onValueChanged.RemoveAllListeners();
+
             volumeSlider.value = currentVolume;
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
@@ -44,13 +52,12 @@ public class MusicToggle : MonoBehaviour
         AudioListener.volume = currentVolume;
         PlayerPrefs.SetFloat("soundVolume", currentVolume);
     }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        
         volumeSlider = FindObjectOfType<Slider>();
-        if (volumeSlider != null)
-        {
-            volumeSlider.value = currentVolume;
-            volumeSlider.onValueChanged.AddListener(SetVolume);
-        }
+
+        SetupSlider();
     }
 }
