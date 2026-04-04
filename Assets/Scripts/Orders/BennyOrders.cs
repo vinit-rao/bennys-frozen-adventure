@@ -235,8 +235,18 @@ public class BennyOrders : MonoBehaviour
             rtCustomers[randomIndex] = temp;
         }
 
-        floor = GameObject.Find("Floor");
-        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        if (floor == null)
+        {
+            floor = GameObject.Find("Floor");
+            Debug.LogWarning("Floor was not manually assigned in the inspector. Assigning using Find() method.");
+        }
+
+        // scoreText safeguard in case manual inspector assignment is missed
+        if (scoreText == null) 
+        {
+            scoreText = GameObject.Find("ScoreText")?.GetComponent<TextMeshProUGUI>();
+            Debug.LogWarning("ScoreText was not manually assigned in the inspector. Assigning using Find() method.");
+        }
 
         for (int i = 0; i < numOrders; i++)
         {   // timer logic

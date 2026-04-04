@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class CustomerThumbnail : MonoBehaviour
 {
-    private List<Color> skinColors = new List<Color> { new Color(1f, 0.8f, 0.6f), new Color(0.8f, 0.6f, 0.4f), new Color(0.6f, 0.4f, 0.2f) };
-    private List<Color> hairColors = new List<Color> { Color.black, Color.green, Color.blue };
-    private List<Color> shirtColors = new List<Color> { Color.red, Color.blue, Color.green };
+    private List<Color> skinColors = new List<Color> { new Color(1f, 0.8f, 0.6f),
+                                                       new Color(0.8f, 0.6f, 0.4f),
+                                                       new Color(0.6f, 0.4f, 0.2f) };
+    private List<Color> hairColors = new List<Color> { new Color(0.1f, 0, 0),
+                                                       new Color(0.5f, 0.4f, 0.2f),
+                                                       new Color(0.2f, 0.1f, 0.1f) };
+    private List<Color> shirtColors = new List<Color> { new Color(0.8f, 0.4f, 0.4f),
+                                                        new Color(0.6f, 0.5f, 0.2f),
+                                                        new Color(0.3f, 0.4f, 0.3f),
+                                                        new Color(0.2f, 0.4f, 0.6f) };
     // Start is called before the first frame update
     void Start()
     {
-     // grabs the prefab's skin, hair, shirt and randomize from a list of swatches containing Color()
-    MeshRenderer skinRenderer = transform
-        .Find("customerMesh/skin").GetComponent<MeshRenderer>();
-    MeshRenderer hairRenderer = transform
-        .Find("customerMesh/hairBrows").GetComponent<MeshRenderer>();
-    MeshRenderer shirtRenderer = transform
-        .Find("customerMesh/shirt").GetComponent<MeshRenderer>();
+        // grabs the prefab's skin, hair, shirt and randomize from a list of swatches containing Color()
+        MeshRenderer skinRenderer = transform
+            .Find("customerMesh/skin").GetComponent<MeshRenderer>();
+        MeshRenderer hairRenderer = transform
+            .Find("customerMesh/hairBrows").GetComponent<MeshRenderer>();
+        MeshRenderer shirtRenderer = transform
+            .Find("customerMesh/shirt").GetComponent<MeshRenderer>();
 
-    skinRenderer.material.color  = skinColors[Random.Range(0, skinColors.Count)];
-    hairRenderer.material.color  = hairColors[Random.Range(0, hairColors.Count)];
-    shirtRenderer.material.color = shirtColors[Random.Range(0, shirtColors.Count)];
+        skinRenderer.material.color = skinColors[Random.Range(0, skinColors.Count)];
+        hairRenderer.material.color = hairColors[Random.Range(0, hairColors.Count)];
+        shirtRenderer.material.color = shirtColors[Random.Range(0, shirtColors.Count)];
     }
 }
