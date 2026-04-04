@@ -15,6 +15,7 @@ public class Orders
     public bool timeFailed;
     public bool IsActive = false;
     public GameObject ticket;
+    public RenderTexture assignedRT;
 
     //how many of the ice creams are correct
     public int time;
@@ -66,6 +67,7 @@ public class BennyOrders : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     public float finishedTimer = 2;
+    public RenderTexture[] rtCustomers;
 
     Orders createOrder(int size, int time, bool active)
     {
@@ -90,7 +92,11 @@ public class BennyOrders : MonoBehaviour
         ticketUI.transform.SetParent(UIcontainer);
         ticketUI.name = "Ticket" + (levelOrders.Count);
 
-        order.ticket.GetComponent<OrderUI>().SetupOrderVisuals(order, levelOrders.IndexOf(order));
+        int orderIndex = levelOrders.Count - 1;
+        RenderTexture rt = orderIndex < rtCustomers.Length ? rtCustomers[orderIndex] : null;
+        order.assignedRT = rt; // ADD THIS
+
+        order.ticket.GetComponent<OrderUI>().SetupOrderVisuals(order, levelOrders.IndexOf(order), rt);
         return order;
     }
 
@@ -207,7 +213,7 @@ public class BennyOrders : MonoBehaviour
                 nextInLine.IsActive = true;
                 int newIndex = levelOrders.IndexOf(nextInLine);
 
-                nextInLine.ticket.GetComponent<OrderUI>().SetupOrderVisuals(nextInLine, newIndex);
+                nextInLine.ticket.GetComponent<OrderUI>().SetupOrderVisuals(nextInLine, newIndex, nextInLine.assignedRT);
                 StartCoroutine(countDown(nextInLine));
 
                 break;
@@ -217,6 +223,14 @@ public class BennyOrders : MonoBehaviour
     //randomly generates a set of ice creams to complete
     void Start()
     {
+        for (int i = 0; i < rtCustomers.Length; i++)
+        {
+            int randomIndex = Random.Range(i, rtCustomers.Length);
+            RenderTexture temp = rtCustomers[i];
+            rtCustomers[i] = rtCustomers[randomIndex];
+            rtCustomers[randomIndex] = temp;
+        }
+
         floor = GameObject.Find("Floor");
 
         for (int i = 0; i < numOrders; i++)

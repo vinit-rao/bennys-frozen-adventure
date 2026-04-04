@@ -1949,89 +1949,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3870828861905370304, guid: 52d2951a7ba7342e2a9c3a2f4a8525e2, type: 3}
   m_PrefabInstance: {fileID: 787446572}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &876945637
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 876945639}
-  - component: {fileID: 876945638}
-  m_Layer: 0
-  m_Name: CustomerCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!20 &876945638
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876945637}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 28
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 1f7da9c2f07a04513886321ac04da0c3, type: 2}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &876945639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876945637}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.30871874, z: -0, w: 0.9511534}
-  m_LocalPosition: {x: 0.02, y: 39.64, z: -0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -35.964, z: 0}
 --- !u!1001 &980434797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2507,6 +2424,22 @@ PrefabInstance:
       propertyPath: UIcontainer
       value: 
       objectReference: {fileID: 1844641458}
+    - target: {fileID: 2566776988032916675, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
+      propertyPath: rtCustomers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566776988032916675, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
+      propertyPath: rtCustomers.Array.data[0]
+      value: 
+      objectReference: {fileID: 8400000, guid: 1f7da9c2f07a04513886321ac04da0c3, type: 2}
+    - target: {fileID: 2566776988032916675, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
+      propertyPath: rtCustomers.Array.data[1]
+      value: 
+      objectReference: {fileID: 8400000, guid: 2ad53d7e1896d4f1ea3689788342d79f, type: 2}
+    - target: {fileID: 2566776988032916675, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
+      propertyPath: rtCustomers.Array.data[2]
+      value: 
+      objectReference: {fileID: 8400000, guid: 395982151b7c14c5992bb5f57c38e70c, type: 2}
     - target: {fileID: 3541170529824674089, guid: 2137c26306aec40368767b2c6f2d76b3, type: 3}
       propertyPath: arduino
       value: 
@@ -4283,8 +4216,6 @@ MonoBehaviour:
   chunkTime: 6
   currentChunk: 000000000100000002000000
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
-  rightOrderText: {fileID: 0}
-  leftOrderText: {fileID: 0}
   minSpawn: 4
 --- !u!4 &1916150531
 Transform:
@@ -4656,7 +4587,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 580406019}
   - {fileID: 598765650}
-  - {fileID: 876945639}
+  - {fileID: 385790083}
   - {fileID: 1401702839}
   - {fileID: 1916150531}
   - {fileID: 995482543}
@@ -4666,4 +4597,3 @@ SceneRoots:
   - {fileID: 387482422}
   - {fileID: 186784792}
   - {fileID: 1123816789}
-  - {fileID: 385790083}

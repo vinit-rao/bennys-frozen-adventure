@@ -15,23 +15,10 @@ public class OrderUI : MonoBehaviour
     public Sprite Sprite2;
     public Sprite Sprite3;
 
-    public RenderTexture[] rtCustomers;
-
     public GameObject completeStamp;
     public GameObject incompleteStamp;
 
-    void Start()
-    {
-        // shuffle render texture list
-        for (int i = 0; i < rtCustomers.Length; i++)
-        {
-            int randomIndex = Random.Range(i, rtCustomers.Length);
-            RenderTexture temp = rtCustomers[i];
-            rtCustomers[i] = rtCustomers[randomIndex];
-            rtCustomers[randomIndex] = temp;
-        }
-    }
-    public void SetupOrderVisuals(Orders orderData, int index)
+    public void SetupOrderVisuals(Orders orderData, int index, RenderTexture customerRT = null)
     {
         if (orderData.IsActive)
         {
@@ -60,10 +47,9 @@ public class OrderUI : MonoBehaviour
                 else if (orderData.iceCreams[i] == 2)
                     scoopSlots[i].sprite = Sprite3;
             }
-
-            RawImage thumbnailImage = GameObject.Find("customerThumbnail").GetComponent<RawImage>();
-            if (index < rtCustomers.Length)
-                thumbnailImage.texture = rtCustomers[index];
+            RawImage thumbnailImage = transform.Find("customerThumbnail")?.GetComponent<RawImage>();
+            if (thumbnailImage != null && customerRT != null)
+                thumbnailImage.texture = customerRT;
 
         }
         else

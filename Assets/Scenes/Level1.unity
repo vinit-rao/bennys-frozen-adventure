@@ -567,7 +567,7 @@ CanvasRenderer:
 --- !u!1 &357742832
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2053277376199839876, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -4268,8 +4268,6 @@ MonoBehaviour:
   chunkTime: 6
   currentChunk: 000000000100000002000000
   spotLight: {fileID: 4423962130101435653, guid: f73e1552b7a9a41aebd57fdc56dc6522, type: 3}
-  rightOrderText: {fileID: 0}
-  leftOrderText: {fileID: 0}
   minSpawn: 4
 --- !u!4 &1916150531
 Transform:
@@ -4500,6 +4498,22 @@ PrefabInstance:
       propertyPath: UIcontainer
       value: 
       objectReference: {fileID: 790291793}
+    - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: rtCustomers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: rtCustomers.Array.data[0]
+      value: 
+      objectReference: {fileID: 8400000, guid: 1f7da9c2f07a04513886321ac04da0c3, type: 2}
+    - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: rtCustomers.Array.data[1]
+      value: 
+      objectReference: {fileID: 8400000, guid: 2ad53d7e1896d4f1ea3689788342d79f, type: 2}
+    - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
+      propertyPath: rtCustomers.Array.data[2]
+      value: 
+      objectReference: {fileID: 8400000, guid: 395982151b7c14c5992bb5f57c38e70c, type: 2}
     - target: {fileID: 2864931069487301653, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

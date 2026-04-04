@@ -1576,6 +1576,10 @@ MonoBehaviour:
   Sprite1: {fileID: 21300000, guid: b0d1a5d2c9312884983bf2fdbefe0712, type: 3}
   Sprite2: {fileID: 21300000, guid: 7b1758c32824664489ee0d575f992ac3, type: 3}
   Sprite3: {fileID: 21300000, guid: 9d6afbbf0cf0d5349a5f3652b4cdf36d, type: 3}
+  rtCustomers:
+  - {fileID: 8400000, guid: 1f7da9c2f07a04513886321ac04da0c3, type: 2}
+  - {fileID: 8400000, guid: 2ad53d7e1896d4f1ea3689788342d79f, type: 2}
+  - {fileID: 8400000, guid: 395982151b7c14c5992bb5f57c38e70c, type: 2}
   completeStamp: {fileID: 6705436139722492546}
   incompleteStamp: {fileID: 4828332172484675282}
 --- !u!1 &8749962055886464708
