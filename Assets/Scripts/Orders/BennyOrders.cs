@@ -13,7 +13,6 @@ public class Orders
     public string name;
     public bool complete;
     public bool timeFailed;
-    public bool IsActive = false;
     public GameObject ticket;
     public RenderTexture assignedRT;
 
@@ -85,7 +84,6 @@ public class BennyOrders : MonoBehaviour
 
         order.ticket = Instantiate(ticket);
         GameObject ticketUI = order.ticket;
-        order.IsActive = active;
 
         ticketUI.GetComponent<OrderUI>().BennyOrders = this;
 
@@ -198,7 +196,7 @@ public class BennyOrders : MonoBehaviour
 
         order.timer = order.time;
 
-        while (order.timer >= 0 && !order.complete && order.IsActive)
+        while (order.timer >= 0 && !order.complete && order.ticket.activeSelf)
         {
             yield return new WaitForSeconds(1);
             order.timer -= 1;
@@ -220,14 +218,14 @@ public class BennyOrders : MonoBehaviour
         foreach (Orders orders in levelOrders)
         {
             int index = levelOrders.IndexOf(orders);
-            if (orders.IsActive) { orders.ticket.GetComponent<OrderUI>().setPosition(orders, index); }
+            if (orders.ticket.activeSelf) { orders.ticket.GetComponent<OrderUI>().setPosition(orders, index); }
         }
 
         foreach (Orders nextInLine in levelOrders)
         {
-            if (!nextInLine.IsActive)
+            if (!nextInLine.ticket.activeSelf)
             {
-                nextInLine.IsActive = true;
+                nextInLine.ticket.SetActive(true);
                 int newIndex = levelOrders.IndexOf(nextInLine);
 
                 nextInLine.ticket.GetComponent<OrderUI>().SetupOrderVisuals(nextInLine, newIndex, nextInLine.assignedRT);
@@ -272,7 +270,7 @@ public class BennyOrders : MonoBehaviour
 
             Orders order = createOrder(scoopCount, Mathf.RoundToInt(time), active);
 
-            if (order.IsActive) { StartCoroutine(countDown(order)); }
+            if (order.ticket.activeSelf) { StartCoroutine(countDown(order)); }
         }
     }
 
