@@ -74,6 +74,7 @@ public class OrderUI : MonoBehaviour
     {
         if (completeStamp != null) completeStamp.SetActive(true);
         if (incompleteStamp != null) incompleteStamp.SetActive(false);
+        AudioManager.Instance.PlayOrderCompleteSound();
     }
 
     public void MarkAsIncomplete()
