@@ -18,7 +18,7 @@ public class OrderUI : MonoBehaviour
     public GameObject completeStamp;
     public GameObject incompleteStamp;
 
-    public void SetupOrderVisuals(Orders orderData, int index, RenderTexture customerRT = null)
+    public void SetupOrderVisuals(Orders orderData, int index, RenderTexture rt)
     {
         if (orderData.IsActive)
         {
@@ -48,8 +48,7 @@ public class OrderUI : MonoBehaviour
                     scoopSlots[i].sprite = Sprite3;
             }
             RawImage thumbnailImage = GetComponentInChildren<RawImage>();
-            if (thumbnailImage != null && customerRT != null)
-                thumbnailImage.texture = customerRT;
+                thumbnailImage.texture = rt;
 
         }
         else

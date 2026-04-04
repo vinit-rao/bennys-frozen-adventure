@@ -4457,7 +4457,7 @@ PrefabInstance:
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: floor
       value: 
-      objectReference: {fileID: 387482418}
+      objectReference: {fileID: 0}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: ticket
       value: 
@@ -4465,14 +4465,14 @@ PrefabInstance:
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: spawner
       value: 
-      objectReference: {fileID: 1916150530}
+      objectReference: {fileID: 0}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: leftText
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: numOrders
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: rightText
@@ -4481,7 +4481,7 @@ PrefabInstance:
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 550342728}
+      objectReference: {fileID: 1065145713}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: uiTicket1
       value: 

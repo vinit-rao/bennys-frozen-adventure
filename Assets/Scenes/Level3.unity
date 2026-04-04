@@ -820,7 +820,7 @@ PrefabInstance:
     - target: {fileID: 2794198640240002358, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2062044307}
     - target: {fileID: 2794198640240002358, guid: 0656281d72aaf4f68ae7726aa0b3361c, type: 3}
       propertyPath: UIcontainer
       value: 

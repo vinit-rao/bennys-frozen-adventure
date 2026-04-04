@@ -152,11 +152,13 @@ public class BennyOrders : MonoBehaviour
             score += scoreCalc(order);
             scoreText.text = "Score: " + (score * 100).ToString("F0");
 
-            for (int j = 0; j < order.iceCreams.Count; j++)
+            Transform armL = transform.Find("ArmL");
+            int leftCount = armL.childCount;
+            for (int j = 0; j < order.iceCreams.Count && j < leftCount; j++)
             {
-                Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
-                leftOrder.RemoveAt(leftOrder.Count - 1);
+                Destroy(armL.GetChild(leftCount - 1 - j).gameObject);
             }
+            leftOrder.Clear();
 
         }
         else if (rightA == order.iceCreams.Count && !order.timeFailed)
@@ -167,11 +169,13 @@ public class BennyOrders : MonoBehaviour
             score += scoreCalc(order);
             scoreText.text = "Score: " + (score * 100).ToString("F0");
 
-            for (int j = 0; j < order.iceCreams.Count; j++)
+            Transform armR = transform.Find("ArmR");
+            int rightCount = armR.childCount;
+            for (int j = 0; j < order.iceCreams.Count && j < rightCount; j++)
             {
-                Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
-                rightOrder.RemoveAt(rightOrder.Count - 1);
+                Destroy(armR.GetChild(rightCount - 1 - j).gameObject);
             }
+            rightOrder.Clear();
         }
     }
 
@@ -232,6 +236,7 @@ public class BennyOrders : MonoBehaviour
         }
 
         floor = GameObject.Find("Floor");
+        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
 
         for (int i = 0; i < numOrders; i++)
         {   // timer logic
