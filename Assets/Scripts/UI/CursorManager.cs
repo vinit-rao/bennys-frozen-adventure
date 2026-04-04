@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 public class CursorManager : MonoBehaviour
 {
     [SerializeField] private Texture2D defaultCursor;
-    [SerializeField] private Texture2D hoverCursor; 
+    [SerializeField] private Texture2D hoverCursor;
+    [SerializeField] private Texture2D lockedCursor;
     
     private Vector2 defaultHotSpot;
     private Vector2 hoverHotSpot;
@@ -24,6 +25,11 @@ public class CursorManager : MonoBehaviour
     public void SetHoverCursor()
     {
         Cursor.SetCursor(hoverCursor, hoverHotSpot, CursorMode.Auto);
+    }
+
+    public void SetLockedCursor()
+    {
+        Cursor.SetCursor(lockedCursor, hoverHotSpot, CursorMode.Auto);
     }
 
 
