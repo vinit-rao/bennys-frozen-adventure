@@ -181,7 +181,7 @@ public class BennyOrders : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             order.timer -= 1;
-            timerUI.text = "Time" + order.timer;
+            timerUI.text = "Time:" + order.timer;
         }
 
         if (!order.complete)
