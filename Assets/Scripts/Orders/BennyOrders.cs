@@ -63,7 +63,7 @@ public class BennyOrders : MonoBehaviour
     public float score;
     public int stars = 0;
 
-    public TextMeshProUGUI leftText, rightText, scoreText;
+    public TextMeshProUGUI scoreText;
 
     public float finishedTimer = 2;
 
@@ -150,8 +150,6 @@ public class BennyOrders : MonoBehaviour
             {
                 Destroy(transform.GetChild(1).GetChild(leftOrder.Count - 1).gameObject);
                 leftOrder.RemoveAt(leftOrder.Count - 1);
-
-                leftText.text = "Left :";
             }
 
         }
@@ -167,8 +165,6 @@ public class BennyOrders : MonoBehaviour
             {
                 Destroy(transform.GetChild(0).GetChild(rightOrder.Count - 1).gameObject);
                 rightOrder.RemoveAt(rightOrder.Count - 1);
-
-                rightText.text = "Right :";
             }
         }
     }
@@ -243,7 +239,7 @@ public class BennyOrders : MonoBehaviour
     {
         foreach (Orders order in levelOrders)
         {
-            if (!order.complete)
+            if (!order.complete && order != null)
             {
                 checkComplete(order);
             }
@@ -264,7 +260,6 @@ public class BennyOrders : MonoBehaviour
 
                 leftOrder.Clear();
 
-                leftText.text = "Left: ";
 
             }
             else if (rotation == 270)
@@ -277,7 +272,6 @@ public class BennyOrders : MonoBehaviour
 
                 rightOrder.Clear();
 
-                rightText.text = "Right: ";
             }
         }
 
