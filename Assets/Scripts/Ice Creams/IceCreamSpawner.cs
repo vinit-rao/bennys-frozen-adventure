@@ -17,9 +17,6 @@ public class IceCreamSpawner : MonoBehaviour
 
     public GameObject spotLight;
 
-    public TextMeshProUGUI rightOrderText;
-    public TextMeshProUGUI leftOrderText;
-
     public float minSpawn = 4;
 
     private void Start()
@@ -32,8 +29,6 @@ public class IceCreamSpawner : MonoBehaviour
             if (i == 2) scoop = scoopThree;
 
             scoop.GetComponent<IceCreamScript>().bennyOrders = bennyOrders;
-            scoop.GetComponent<IceCreamScript>().leftOrderText = leftOrderText;
-            scoop.GetComponent<IceCreamScript>().rightOrderText = rightOrderText;
             scoop.GetComponent<IceCreamScript>().spawner = this;
         }
         StartCoroutine(IceCreams(currentChunk));
