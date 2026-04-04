@@ -4723,7 +4723,7 @@ PrefabInstance:
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 1065145713}
+      objectReference: {fileID: 550342728}
     - target: {fileID: 2074345663119617650, guid: 26f906188089444a8bdfc4016e0b4950, type: 3}
       propertyPath: uiTicket1
       value: 
@@ -4901,3 +4901,4 @@ SceneRoots:
   - {fileID: 387482422}
   - {fileID: 591732509}
   - {fileID: 108923553}
+  - {fileID: 1761298358}

@@ -179,7 +179,7 @@ public class BennyOrders : MonoBehaviour
             order.complete = true;
 
             score += scoreCalc(order);
-            scoreText.text = "Score: " + (score * 100).ToString("F0");
+            scoreText.text = (score * 100).ToString("F0");
 
             Transform armR = transform.Find("ArmR");
             int rightCount = armR.childCount;
