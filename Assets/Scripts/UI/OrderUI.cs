@@ -20,7 +20,7 @@ public class OrderUI : MonoBehaviour
 
     public void SetupOrderVisuals(Orders orderData, int index, RenderTexture rt)
     {
-        if (orderData.IsActive)
+        if (gameObject.activeSelf)
         {
             setPosition(orderData, index);
             customerNameText.text = orderData.name;
@@ -65,10 +65,10 @@ public class OrderUI : MonoBehaviour
         switch (index)
         {
             case 0:
-                rect.anchoredPosition = new Vector2(-740, 180);
+                rect.anchoredPosition = new Vector2(-750, 180);
                 break;
             case 1:
-                rect.anchoredPosition = new Vector2(-740, 180 - ypos);
+                rect.anchoredPosition = new Vector2(-750, 180 - ypos);
                 break;
         }
     }
@@ -77,7 +77,7 @@ public class OrderUI : MonoBehaviour
     {
         if (completeStamp != null) completeStamp.SetActive(true);
         if (incompleteStamp != null) incompleteStamp.SetActive(false);
-        AudioManager.Instance.PlayOrderCompleteSound();
+        //AudioManager.Instance.PlayOrderCompleteSound();
     }
 
     public void MarkAsIncomplete()

@@ -118,7 +118,7 @@ public class BennyScript : MonoBehaviour
     {
         isMoving = true;
 
-        AudioManager.Instance.PlayMoveSound();
+        //AudioManager.Instance.PlayMoveSound();
 
         float duration = timeStepper * 0.75f;
         float elapsed = 0f;
@@ -147,7 +147,7 @@ public class BennyScript : MonoBehaviour
     {
         isTurning = true;
 
-        AudioManager.Instance.PlayMoveSound();
+        //AudioManager.Instance.PlayMoveSound();
 
         float duration = timeStepper * 0.6f;
         float hopHeight = 0.3f;
