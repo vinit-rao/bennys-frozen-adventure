@@ -64,7 +64,7 @@ public class BennyOrders : MonoBehaviour
     public float score;
     public int stars = 0;
 
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText; // IMPORTANT: assign ScoreText in the inspector
 
     public float finishedTimer = 2;
     public RenderTexture[] rtCustomers;
