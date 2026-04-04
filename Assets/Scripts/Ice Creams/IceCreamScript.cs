@@ -149,7 +149,8 @@ public class IceCreamScript : MonoBehaviour
     {
         //allows outside functions to see the collision
         collision = other.gameObject;
-        AudioManager.Instance.PlayCatchSound();
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayCatchSound();
         //checks if the object collided with one of benny's arms
         if (other.transform.CompareTag("BennyArm") && !landed)
         {
