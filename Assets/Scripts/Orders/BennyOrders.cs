@@ -235,6 +235,7 @@ public class BennyOrders : MonoBehaviour
             }
         }
     }
+
     //randomly generates a set of ice creams to complete
     void Start()
     {
@@ -272,6 +273,10 @@ public class BennyOrders : MonoBehaviour
 
             if (order.ticket.activeSelf) { StartCoroutine(countDown(order)); }
         }
+
+        Debug.Log(PlayerPrefs.GetInt("L1Passed", 0));
+        Debug.Log(PlayerPrefs.GetInt("L2Passed", 0));
+        Debug.Log(PlayerPrefs.GetInt("L3Passed", 0));
     }
 
     // Update is called once per frame
@@ -332,6 +337,7 @@ public class BennyOrders : MonoBehaviour
                     {
                         SceneManager.LoadScene("WinMenu1");
                         AudioManager.Instance.PlayLevelEndSound();
+                        PlayerPrefs.SetInt("L1Passed", 1);
                     }
                     else
                     {
@@ -346,6 +352,7 @@ public class BennyOrders : MonoBehaviour
                     {
                         SceneManager.LoadScene("WinMenu2");
                         AudioManager.Instance.PlayLevelEndSound();
+                        PlayerPrefs.SetInt("L2Passed", 1);
                     }
                     else
                     {
@@ -360,6 +367,7 @@ public class BennyOrders : MonoBehaviour
                     {
                         SceneManager.LoadScene("WinMenu3");
                         AudioManager.Instance.PlayLevelEndSound();
+                        PlayerPrefs.SetInt("L3Passed", 1);
                     }
                     else
                     {
