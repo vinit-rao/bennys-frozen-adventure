@@ -132,7 +132,17 @@ public class BennyOrders : MonoBehaviour
                     rightA++;
                 }
             }
+            // If the order is correct 
+            if ((leftA == order.iceCreams.Count || rightA == order.iceCreams.Count) && !order.timeFailed && !order.complete)
+            {
+                order.complete = true;
 
+                //Trigger Animation
+                Animator anim = order.ticket.GetComponent<Animator>();
+                if (anim != null)
+                {
+                    anim.SetTrigger("Close"); 
+                }
         }
 
         // print("The correct amount on the right is " + rightA);
@@ -172,6 +182,7 @@ public class BennyOrders : MonoBehaviour
             }
         }
     }
+}
 
     private IEnumerator countDown(Orders order)
     {
@@ -325,7 +336,6 @@ public class BennyOrders : MonoBehaviour
                         SceneManager.LoadScene("LoseMenu3");
                     }
                 }
-
             }
         }
     }
