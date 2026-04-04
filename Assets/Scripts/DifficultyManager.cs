@@ -50,9 +50,9 @@ public static string sceneName => SceneManager.GetActiveScene().name;
             switch (sceneName)
             {
                 case "Level1":
-                    return 1.8f;
+                    return 2.1f;
                 case "Level2":
-                    return 2.3f;
+                    return 2.4f;
                 case "Level3":
                     return 2.8f;
                 default:
