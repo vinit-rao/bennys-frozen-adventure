@@ -43,10 +43,21 @@ public static string sceneName => SceneManager.GetActiveScene().name;
         }
     }
 
-    public static float fallSpeed => sceneName switch {
-    "Level1" => 1.8f,
-    "Level2" => 2.3f,
-    "Level3" => 2.8f,
-    _        => 1.8f
-};
+    public static float fallSpeed
+    {
+        get
+        {
+            switch (sceneName)
+            {
+                case "Level1":
+                    return 1.8f;
+                case "Level2":
+                    return 2.3f;
+                case "Level3":
+                    return 2.8f;
+                default:
+                    return 1.8f;
+            }
+        }
+    }
 }
