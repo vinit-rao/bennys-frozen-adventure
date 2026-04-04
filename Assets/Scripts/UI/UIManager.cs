@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
             SceneManager.LoadScene("Level1"); 
         }
     }
-\
+
     public void QuitToMainMenu()
     {
         isPaused = false;

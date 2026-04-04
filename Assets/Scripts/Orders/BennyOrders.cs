@@ -64,7 +64,7 @@ public class BennyOrders : MonoBehaviour
     public float score;
     public int stars = 0;
 
-    public TextMeshProUGUI scoreText; // IMPORTANT: assign ScoreText in the inspector
+    public TextMeshProUGUI scoreText; 
 
     public float finishedTimer = 2;
     public RenderTexture[] rtCustomers;
@@ -162,7 +162,7 @@ public class BennyOrders : MonoBehaviour
             order.complete = true;
 
             score += scoreCalc(order);
-            scoreText.text = "Score: " + (score * 100).ToString("F0");
+            scoreText.text = (score * 100).ToString("F0");
 
             Transform armL = transform.Find("ArmL");
             int leftCount = armL.childCount;
