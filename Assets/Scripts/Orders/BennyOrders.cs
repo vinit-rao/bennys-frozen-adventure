@@ -320,10 +320,12 @@ public class BennyOrders : MonoBehaviour
                     if (stars > 2)
                     {
                         SceneManager.LoadScene("WinMenu1");
+                        AudioManager.Instance.PlayLevelEndSound();
                     }
                     else
                     {
                         SceneManager.LoadScene("LoseMenu1");
+                        AudioManager.Instance.PlayLevelEndSound();
                     }
                 }
                 else if (gameObject.name == "BennyCowboy") // lvl 2
@@ -332,10 +334,12 @@ public class BennyOrders : MonoBehaviour
                     if (stars > 2)
                     {
                         SceneManager.LoadScene("WinMenu2");
+                        AudioManager.Instance.PlayLevelEndSound();
                     }
                     else
                     {
                         SceneManager.LoadScene("LoseMenu2");
+                        AudioManager.Instance.PlayLevelEndSound();
                     }
                 }
                 else if (gameObject.name == "BennyAstro") // lvl 3
@@ -344,10 +348,12 @@ public class BennyOrders : MonoBehaviour
                     if (stars > 2)
                     {
                         SceneManager.LoadScene("WinMenu3");
+                        AudioManager.Instance.PlayLevelEndSound();
                     }
                     else
                     {
                         SceneManager.LoadScene("LoseMenu3");
+                        AudioManager.Instance.PlayLevelEndSound();
                     }
                 }
 
