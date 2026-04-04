@@ -93,8 +93,8 @@ public class BennyOrders : MonoBehaviour
         ticketUI.name = "Ticket" + (levelOrders.Count);
 
         int orderIndex = levelOrders.Count - 1;
-        RenderTexture rt = orderIndex < rtCustomers.Length ? rtCustomers[orderIndex] : null;
-        order.assignedRT = rt; // ADD THIS
+        RenderTexture rt = rtCustomers[orderIndex % rtCustomers.Length];
+        order.assignedRT = rt;
 
         order.ticket.GetComponent<OrderUI>().SetupOrderVisuals(order, levelOrders.IndexOf(order), rt);
         return order;

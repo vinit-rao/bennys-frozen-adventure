@@ -47,7 +47,7 @@ public class OrderUI : MonoBehaviour
                 else if (orderData.iceCreams[i] == 2)
                     scoopSlots[i].sprite = Sprite3;
             }
-            RawImage thumbnailImage = transform.Find("customerThumbnail")?.GetComponent<RawImage>();
+            RawImage thumbnailImage = GetComponentInChildren<RawImage>();
             if (thumbnailImage != null && customerRT != null)
                 thumbnailImage.texture = customerRT;
 
