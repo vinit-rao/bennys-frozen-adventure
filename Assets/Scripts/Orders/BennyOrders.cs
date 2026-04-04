@@ -87,6 +87,8 @@ public class BennyOrders : MonoBehaviour
 
         ticketUI.GetComponent<OrderUI>().BennyOrders = this;
 
+        ticketUI.SetActive(active);
+
         ticketUI.transform.SetParent(UIcontainer);
         ticketUI.name = "Ticket" + (levelOrders.Count);
 
