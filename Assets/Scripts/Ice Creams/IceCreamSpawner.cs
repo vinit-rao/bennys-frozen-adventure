@@ -57,9 +57,9 @@ public class IceCreamSpawner : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("spawn rate: " + DifficultyManager.spawnRate);
-        Debug.Log("chunk time: " + chunkTime);
-        Debug.Log("fall speed: " + DifficultyManager.fallSpeed);
+        // Debug.Log("spawn rate: " + DifficultyManager.spawnRate);
+        // Debug.Log("chunk time: " + chunkTime);
+        // Debug.Log("fall speed: " + DifficultyManager.fallSpeed);
         chunkTimer += Time.deltaTime;
 
         if (chunkTimer >= chunkTime)
