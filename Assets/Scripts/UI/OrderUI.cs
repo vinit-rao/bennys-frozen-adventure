@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -17,7 +18,7 @@ public class OrderUI : MonoBehaviour
     public GameObject completeStamp;
     public GameObject incompleteStamp;
 
-    public void SetupOrderVisuals(Orders orderData, int index)
+    public void SetupOrderVisuals(Orders orderData, int index, RenderTexture rt)
     {
         if (orderData.IsActive)
         {
@@ -46,38 +47,28 @@ public class OrderUI : MonoBehaviour
                 else if (orderData.iceCreams[i] == 2)
                     scoopSlots[i].sprite = Sprite3;
             }
-        } else
+            RawImage thumbnailImage = GetComponentInChildren<RawImage>();
+                thumbnailImage.texture = rt;
+
+        }
+        else
         {
             //if you want to create the grayed out version
         }
-
-        
     }
 
     public void setPosition(Orders order, int index)
     {
         RectTransform rect = GetComponent<RectTransform>();
-        int ypos = 350;
+        int ypos = 500;
 
         switch (index)
         {
             case 0:
-                rect.anchoredPosition = new Vector2(-802, 280);
+                rect.anchoredPosition = new Vector2(-740, 180);
                 break;
             case 1:
-                rect.anchoredPosition = new Vector2(-802, 280 - ypos);
-                break;
-            case 2:
-                rect.anchoredPosition = new Vector2(-802, 280 - (ypos * 2));
-                break;
-            case 3:
-                rect.anchoredPosition = new Vector2(-552, 280);
-                break;
-            case 4:
-                rect.anchoredPosition = new Vector2(-552, 280 - ypos);
-                break;
-            case 5:
-                rect.anchoredPosition = new Vector2(-552, 280 - (ypos * 2));
+                rect.anchoredPosition = new Vector2(-740, 180 - ypos);
                 break;
         }
     }
@@ -86,6 +77,7 @@ public class OrderUI : MonoBehaviour
     {
         if (completeStamp != null) completeStamp.SetActive(true);
         if (incompleteStamp != null) incompleteStamp.SetActive(false);
+        AudioManager.Instance.PlayOrderCompleteSound();
     }
 
     public void MarkAsIncomplete()
