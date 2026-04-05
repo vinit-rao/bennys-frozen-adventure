@@ -34,7 +34,7 @@ public class ArduinoController : MonoBehaviour
 
     private bool leftLedOn = false;
     private bool rightLedOn = false;
-    private bool middleLedOn = false; // Ignored for now!
+    private bool middleLedOn = false;
 
     void Start()
     {
@@ -96,17 +96,28 @@ public class ArduinoController : MonoBehaviour
 #endif
     }
 
+    public void BlinkMiddleLED()
+    {
+#if !UNITY_WEBGL || UNITY_EDITOR
+        StartCoroutine(BlinkRoutine(3, 0.5f)); // blinks for half a second for a completed order
+#endif
+    }
+
     private IEnumerator BlinkRoutine(int ledID, float duration)
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
         //led on
         if (ledID == 1) leftLedOn = true;
         if (ledID == 2) rightLedOn = true;
+        if (ledID == 3) middleLedOn = true;
         SendLEDData();
+
         yield return new WaitForSeconds(duration);
+
         //led off
         if (ledID == 1) leftLedOn = false;
         if (ledID == 2) rightLedOn = false;
+        if (ledID == 3) middleLedOn = false;
         SendLEDData();
 #else
         yield return null; 

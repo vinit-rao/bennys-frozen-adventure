@@ -61,7 +61,7 @@ public class BennyScript : MonoBehaviour
         }
 
         // benny turning while sliding (no hop tho cause it looks nicer)
-        if (!isTurning && ticker >= timeStepper)
+        if (!isTurning)
         {
             if (rotLeft)
             {

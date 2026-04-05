@@ -15,7 +15,6 @@ public class Orders
     public bool timeFailed;
     public GameObject ticket;
     public RenderTexture assignedRT;
-
     //how many of the ice creams are correct
     public int time;
     public float timer = 0f;
@@ -67,6 +66,7 @@ public class BennyOrders : MonoBehaviour
 
     public float finishedTimer = 2;
     public RenderTexture[] rtCustomers;
+    private ArduinoController arduino;
 
     Orders createOrder(int size, int time, bool active)
     {
@@ -159,6 +159,8 @@ public class BennyOrders : MonoBehaviour
             UI.MarkAsComplete();
             order.complete = true;
 
+            if (arduino != null && arduino.useArduinoController) arduino.BlinkMiddleLED();
+
             score += scoreCalc(order);
             scoreText.text = (score * 100).ToString("F0");
 
@@ -175,6 +177,8 @@ public class BennyOrders : MonoBehaviour
         {
             UI.MarkAsComplete();
             order.complete = true;
+
+            if (arduino != null && arduino.useArduinoController) arduino.BlinkMiddleLED();
 
             score += scoreCalc(order);
             scoreText.text = (score * 100).ToString("F0");
@@ -239,6 +243,7 @@ public class BennyOrders : MonoBehaviour
     //randomly generates a set of ice creams to complete
     void Start()
     {
+        arduino = FindObjectOfType<ArduinoController>();
         for (int i = 0; i < rtCustomers.Length; i++)
         {
             int randomIndex = Random.Range(i, rtCustomers.Length);

@@ -30,8 +30,6 @@ public class IceCreamScript : MonoBehaviour
         arduino = FindObjectOfType<ArduinoController>();
     }
 
-    // bool storing scoop id and flavour text, use with scoopLandOnHand() below
-    // id matches scoopOne, scoopTwo, scoopThree in BennyOrders.cs & spawner rand int
     private bool getScoopId(string scoopName, out int flavourId, out string flavourText)
     {
         flavourId = -1;
@@ -88,20 +86,13 @@ public class IceCreamScript : MonoBehaviour
             handOrder.Add(flavourId);
             numOrder = handOrder.Count;
         }
+
+        if (arduino != null && arduino.useArduinoController)
+        {
+            if (isLeft) arduino.BlinkLeftLED();
+            else arduino.BlinkRightLED();
+        }
     }
-
-
-//#if !UNITY_WEBGL || UNITY_EDITOR
-//            if (arduino != null && arduino.useArduinoController)
-//            {
-//                if (isLeft)
-//                    arduino.BlinkLeftLED();
-//                else
-//                    arduino.BlinkRightLED();
-//            }
-//        }
-//    }
-//#endif
 
     private void addScoop()
     {
@@ -117,7 +108,6 @@ public class IceCreamScript : MonoBehaviour
         if (parent.name == "ArmL")
         {
             scoopLandOnHand(bennyOrders.leftOrder, bennyOrders.leftOrder.Count, true);
-
         }
         else if (parent.name == "ArmR")
         {
@@ -136,7 +126,6 @@ public class IceCreamScript : MonoBehaviour
                 gameObject.tag = "Fallen";
                 timeRemaining -= Time.deltaTime;
 
-                //you can change the time if you want it was just for debugging
                 if (timeRemaining <= 4)
                 {
                     Destroy(transform.gameObject);
@@ -147,27 +136,19 @@ public class IceCreamScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        //allows outside functions to see the collision
         collision = other.gameObject;
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayCatchSound();
-            
-        //checks if the object collided with one of benny's arms
+
         if (other.transform.CompareTag("BennyArm") && !landed)
         {
-            //makes it so that it can't land on anything else
             landed = true;
             gameObject.tag = "ScoopLanded";
 
-            //stops all movement
             rb.isKinematic = true;
-
             transform.SetParent(other.transform);
 
-            //depending on the scoop add it to the list of benny scoops
             addScoop();
-
-            //if it lands on another ice cream scoop
         }
         else if (other.transform.CompareTag("ScoopLanded") && !landed)
         {
