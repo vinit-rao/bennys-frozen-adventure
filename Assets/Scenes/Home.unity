@@ -357,6 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCursor: {fileID: 2800000, guid: f546f9cffd608f6418218cf4942cfc94, type: 3}
   hoverCursor: {fileID: 2800000, guid: 77ef125e6050e264d9b45f1afca716bc, type: 3}
+  lockedCursor: {fileID: 0}
 --- !u!4 &882768805
 Transform:
   m_ObjectHideFlags: 0
@@ -766,6 +767,7 @@ GameObject:
   - component: {fileID: 1440270349}
   - component: {fileID: 1440270348}
   - component: {fileID: 1440270350}
+  - component: {fileID: 1440270351}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -786,6 +788,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1440270350}
+  musicSource: {fileID: 1440270351}
+  masterMusicVolume: 0.5
+  masterSfxVolume: 0.3
+  sceneMusicMaps:
+  - sceneName: Home
+    tracks:
+    - {fileID: 8300000, guid: b91f34121009e446294ebe90b74f4f0c, type: 3}
+    - {fileID: 8300000, guid: dcee19849f4bb4fcfb1e43400d804ea1, type: 3}
+  - sceneName: LevelSelect
+    tracks:
+    - {fileID: 8300000, guid: c21b007f86a1e41b6833bb4dc51f5143, type: 3}
+  - sceneName: Level1
+    tracks:
+    - {fileID: 8300000, guid: 69b1897648fcc4864a64e4c7b3413cb2, type: 3}
+  - sceneName: Level2
+    tracks:
+    - {fileID: 8300000, guid: 69b1897648fcc4864a64e4c7b3413cb2, type: 3}
+  - sceneName: Level3
+    tracks:
+    - {fileID: 8300000, guid: 69b1897648fcc4864a64e4c7b3413cb2, type: 3}
+  - sceneName: LoseMenu1
+    tracks:
+    - {fileID: 0}
+  - sceneName: LoseMenu2
+    tracks:
+    - {fileID: 0}
+  - sceneName: LoseMenu3
+    tracks:
+    - {fileID: 0}
+  - sceneName: WinMenu1
+    tracks:
+    - {fileID: 0}
+  - sceneName: WinMenu2
+    tracks:
+    - {fileID: 0}
+  - sceneName: WinMenu3
+    tracks:
+    - {fileID: 0}
   clickSounds:
   - {fileID: 8300000, guid: d77ffb88da27045828186feaa9111a39, type: 3}
   - {fileID: 8300000, guid: 2082f3a6dff924f4e9ad7713506000e0, type: 3}
@@ -910,39 +950,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1568451440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1568451442}
-  - component: {fileID: 1568451441}
-  - component: {fileID: 1568451443}
-  m_Layer: 0
-  m_Name: Music
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!82 &1568451441
+--- !u!82 &1440270351
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568451440}
+  m_GameObject: {fileID: 1440270347}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 296c2d788651a42318b320ed39679c68, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1024,33 +1046,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &1568451442
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568451440}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -67.50103, y: -6.2802353, z: 93.13793}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1568451443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568451440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf74fec79b5014209926f7a46906eccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1769563832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,5 +1413,5 @@ SceneRoots:
   - {fileID: 2087462001}
   - {fileID: 863193914}
   - {fileID: 350141226}
-  - {fileID: 1568451442}
   - {fileID: 882768805}
+  - {fileID: 1440270349}
