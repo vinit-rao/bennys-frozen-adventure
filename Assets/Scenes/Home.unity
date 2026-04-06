@@ -1157,6 +1157,12 @@ MonoBehaviour:
   - sceneName: HowToPlay
     tracks:
     - {fileID: 8300000, guid: dcee19849f4bb4fcfb1e43400d804ea1, type: 3}
+  - sceneName: SettingsMenu
+    tracks:
+    - {fileID: 8300000, guid: dcee19849f4bb4fcfb1e43400d804ea1, type: 3}
+  - sceneName: Credits
+    tracks:
+    - {fileID: 8300000, guid: dcee19849f4bb4fcfb1e43400d804ea1, type: 3}
   - sceneName: Level1
     tracks:
     - {fileID: 8300000, guid: 69b1897648fcc4864a64e4c7b3413cb2, type: 3}
