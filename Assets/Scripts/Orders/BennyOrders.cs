@@ -82,14 +82,12 @@ public class BennyOrders : MonoBehaviour
         }
         levelOrders.Add(order);
 
-        order.ticket = Instantiate(ticket);
+        order.ticket = Instantiate(ticket, UIcontainer);
         GameObject ticketUI = order.ticket;
 
         ticketUI.GetComponent<OrderUI>().BennyOrders = this;
 
         ticketUI.SetActive(active);
-
-        ticketUI.transform.SetParent(UIcontainer);
         ticketUI.name = "Ticket" + (levelOrders.Count);
 
         int orderIndex = levelOrders.Count - 1;
