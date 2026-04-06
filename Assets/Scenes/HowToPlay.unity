@@ -681,7 +681,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fe52f221e29431b4085ffd51cfc09d7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39b393a658cb8f54ca6b1541e294039e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -730,6 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCursor: {fileID: 2800000, guid: f546f9cffd608f6418218cf4942cfc94, type: 3}
   hoverCursor: {fileID: 2800000, guid: 77ef125e6050e264d9b45f1afca716bc, type: 3}
+  lockedCursor: {fileID: 0}
 --- !u!4 &1764307369
 Transform:
   m_ObjectHideFlags: 0
