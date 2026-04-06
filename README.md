@@ -17,6 +17,7 @@
 - Gemini
 
 ## External Resources Used:
+- Nat's Live Coding Files: [Google Drive Files](https://drive.google.com/drive/folders/1F4Znth0OLodDD92RguUhvbwWk2U5uSaN)
 - Snap to tile tutorial: [Unity Grid Based Movement System: Part 1 Setup](https://www.youtube.com/watch?v=4JaHSLA2CKs)
 - Basic 3D Assets: [Building an Isometric Pixel Art Crossy Road Chicken by PXLFLX](https://www.youtube.com/watch?v=Ohc2brva1Qs)
 - Random Spawn Positions: [Spawn Objects at Random Position in Unity](https://www.youtube.com/watch?v=IbiwNnOv5So)
@@ -26,6 +27,11 @@
 - Render Texture: [A Quick Intro to Unity's Render Textures! | Unity 2019+](https://www.youtube.com/watch?v=h5T83Ctp4PA)
 - Custom Cursor: [How to create a custom cursor in Unity 6](https://www.youtube.com/watch?v=5bSyIuMEjXE)
 - Music: [Seeni (Vinit's Friend)](https://www.instagram.com/notseeni/)
+- Audio Gameobject: [Unity multiple audio sources](https://www.youtube.com/watch?v=a3ute1PdC_o)
+- Arduino Controller: [How to Connect Arduino to Unity – Step-by-Step Tutorial](https://www.youtube.com/watch?v=LzG_-tL2Fg0)
+- WebGL: [How To Deploy Your Unity Game With WebGL](https://www.youtube.com/watch?v=7xGhPUz8C2M)
+- Build .app: [How to BUILD / EXPORT your Game in Unity (Windows | Mac | WebGL)](https://www.youtube.com/watch?v=7nxKAtxGSn8)
+- GLB unity: [USE GLB & GLTF Format in Unity - How to Import Super Easy](https://www.youtube.com/watch?v=uwonNIEV60M)
 
 ## Brain Freeze Team
 - Fabio Figueroa Perez
@@ -39,4 +45,3 @@
 - Customers appear in the 3D space (still technically met just used a render texture to show them in the ui)
 - 5 Levels (droppped down to 3)
 - Benny can go to a customer to hand the ice cream (switched to auto complete)
-- 
