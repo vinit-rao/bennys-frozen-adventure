@@ -82,14 +82,12 @@ public class BennyOrders : MonoBehaviour
         }
         levelOrders.Add(order);
 
-        order.ticket = Instantiate(ticket);
+        order.ticket = Instantiate(ticket, UIcontainer);
         GameObject ticketUI = order.ticket;
 
         ticketUI.GetComponent<OrderUI>().BennyOrders = this;
 
         ticketUI.SetActive(active);
-
-        ticketUI.transform.SetParent(UIcontainer);
         ticketUI.name = "Ticket" + (levelOrders.Count);
 
         int orderIndex = levelOrders.Count - 1;
@@ -161,6 +159,7 @@ public class BennyOrders : MonoBehaviour
 
             if (arduino != null && arduino.useArduinoController) arduino.BlinkMiddleLED();
 
+            AudioManager.Instance.PlayOrderCompleteSound();
             score += scoreCalc(order);
             scoreText.text = (score * 100).ToString("F0");
 
@@ -251,7 +250,6 @@ public class BennyOrders : MonoBehaviour
             }
         }
     }
-/////////////////////////
 
     //randomly generates a set of ice creams to complete
     void Start()

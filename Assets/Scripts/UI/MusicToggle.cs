@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MusicToggle : MonoBehaviour
 {
@@ -9,15 +10,28 @@ public class MusicToggle : MonoBehaviour
     void Start()
     {
        
-        if (AudioManager.Instance != null)
+        if (musicSlider == null || sfxSlider == null)
+        {
+            Debug.LogError("Sliders not assigned");
+            return;
+        }
+
+        StartCoroutine(InitializeSliders());
+
+        musicSlider.onValueChanged.AddListener(OnMusicChanged);
+        sfxSlider.onValueChanged.AddListener(OnSfxChanged);
+
+    }
+    IEnumerator InitializeSliders()
+    {
+       yield return null;
+
+       if (AudioManager.Instance != null)
         {
             musicSlider.value = AudioManager.Instance.masterMusicVolume;
             sfxSlider.value = AudioManager.Instance.masterSfxVolume;
         }
-        musicSlider.onValueChanged.AddListener(OnMusicChanged);
-        sfxSlider.onValueChanged.AddListener(OnSfxChanged);
     }
-
 
     public void OnMusicChanged(float value)
     {

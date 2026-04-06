@@ -19,6 +19,9 @@ public class BennyScript : MonoBehaviour
     public bool isMoving = false;
     public bool isTurning = false;
 
+    public float turnCooldown = 0.2f;
+    private float nextTurnTime = 0f;
+
     public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     public ArduinoController arduino;
@@ -60,11 +63,13 @@ public class BennyScript : MonoBehaviour
             isHoldingKey = false;
         }
 
-        // benny turning while sliding (no hop tho cause it looks nicer)
-        if (!isTurning)
+        // benny turning while sliding
+        if (!isTurning && Time.time >= nextTurnTime)
         {
             if (rotLeft)
             {
+                nextTurnTime = Time.time + turnCooldown;
+
                 benny_rotation -= 90f;
                 if (benny_rotation < 0) benny_rotation = 270;
 
@@ -72,6 +77,8 @@ public class BennyScript : MonoBehaviour
             }
             else if (rotRight)
             {
+                nextTurnTime = Time.time + turnCooldown;
+
                 benny_rotation += 90f;
                 if (benny_rotation == 360) benny_rotation = 0;
 
