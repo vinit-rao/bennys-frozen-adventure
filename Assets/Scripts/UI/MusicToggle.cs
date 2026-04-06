@@ -1,63 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MusicToggle : MonoBehaviour
 {
-    public static MusicToggle instance;
-    public Slider volumeSlider;
-    private float currentVolume = 1f;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        currentVolume = PlayerPrefs.GetFloat("soundVolume", 1f);
-        AudioListener.volume = currentVolume;
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+    public Slider musicSlider;
+    public Slider sfxSlider;
 
     void Start()
     {
-        SetupSlider();
+       
+        if (AudioManager.Instance != null)
+        {
+            musicSlider.value = AudioManager.Instance.masterMusicVolume;
+            sfxSlider.value = AudioManager.Instance.masterSfxVolume;
+        }
+        musicSlider.onValueChanged.AddListener(OnMusicChanged);
+        sfxSlider.onValueChanged.AddListener(OnSfxChanged);
     }
 
-    void SetupSlider()
-    {
-        if (volumeSlider != null)
-        {
-      
-            volumeSlider.onValueChanged.RemoveAllListeners();
 
-            volumeSlider.value = currentVolume;
-            volumeSlider.onValueChanged.AddListener(SetVolume);
+    public void OnMusicChanged(float value)
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetMusicVolume(value);
         }
     }
 
-    public void SetVolume(float value)
+    public void OnSfxChanged(float value)
     {
-        currentVolume = value;
-        AudioListener.volume = currentVolume;
-        PlayerPrefs.SetFloat("soundVolume", currentVolume);
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        
-        volumeSlider = FindObjectOfType<Slider>();
-
-        SetupSlider();
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.SetSfxVolume(value);
+        }
     }
 }
