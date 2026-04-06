@@ -3,6 +3,7 @@
 - [Watch the Trailer](https://youtu.be/_w7nBbe73mw)
 - Benny's ice cream machine has broken and it's your job to catch the scoops and fulfill the orders in our demo!
 - Welcome to **Benny's Frozen Adventure**! This is an interactive, grid-based arcade game developed in Unity where you have to help Benny catch scoops, stack massive cones, and fulfill ice cream orders.
+<img width="1920" height="1059" alt="Screenshot 2026-04-06 at 5 42 38 PM" src="https://github.com/user-attachments/assets/bfe8aa42-1f53-44e4-bd02-a1aa064a55ea" />
 
 ## Tech & Tools Used
 - Unity
