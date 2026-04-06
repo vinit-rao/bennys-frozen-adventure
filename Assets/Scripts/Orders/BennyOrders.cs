@@ -209,6 +209,18 @@ public class BennyOrders : MonoBehaviour
             timerUI.text = "Failed";
         }
 
+        if(!order.complete)
+        {
+            order.timeFailed = true;
+            timerUI.text = "Failed";
+            Animator anim = order.ticket.GetComponentInChildren<Animator>();
+            if (anim != null)
+            {
+                anim.SetTrigger("Close");
+            }
+        }
+    
+
         int orderIndex = levelOrders.IndexOf(order);
 
         yield return new WaitForSeconds(2);
@@ -235,6 +247,7 @@ public class BennyOrders : MonoBehaviour
             }
         }
     }
+/////////////////////////
 
     //randomly generates a set of ice creams to complete
     void Start()
