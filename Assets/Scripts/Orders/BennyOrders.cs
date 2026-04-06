@@ -158,7 +158,7 @@ public class BennyOrders : MonoBehaviour
 
             UI.MarkAsComplete();
             order.complete = true;
-
+            AudioManager.Instance.PlayOrderCompleteSound();
             score += scoreCalc(order);
             scoreText.text = (score * 100).ToString("F0");
 
@@ -247,7 +247,6 @@ public class BennyOrders : MonoBehaviour
             }
         }
     }
-/////////////////////////
 
     //randomly generates a set of ice creams to complete
     void Start()

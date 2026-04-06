@@ -5167,6 +5167,7 @@ GameObject:
   - component: {fileID: 1974370367}
   - component: {fileID: 1974370369}
   - component: {fileID: 1974370368}
+  - component: {fileID: 1974370370}
   m_Layer: 5
   m_Name: pausetext
   m_TagString: Untagged
@@ -5228,6 +5229,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974370366}
   m_CullTransparentMesh: 1
+--- !u!114 &1974370370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974370366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e7ba1f6a8a7482f8a552ef4615049d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 5
+  time: 2
 --- !u!1001 &2006975127
 PrefabInstance:
   m_ObjectHideFlags: 0
