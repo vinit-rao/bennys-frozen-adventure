@@ -9,7 +9,7 @@ using System.IO.Ports;
 public class ArduinoController : MonoBehaviour
 {
     public bool useArduinoController = false;
-    public string portName = "COM3";
+    public string portName = "/dev/cu.usbmodem2101";
     public int baudRate = 9600;
     public float deadzone = 0.2f;
 
@@ -50,27 +50,36 @@ public class ArduinoController : MonoBehaviour
 #if !UNITY_WEBGL || UNITY_EDITOR
         if (serialPort != null && serialPort.IsOpen)
         {
+            string latestValidData = "";
             try
             {
-                string data = serialPort.ReadLine();
-                if (!string.IsNullOrEmpty(data))
+                while (serialPort.BytesToRead > 0)
                 {
-                    string[] values = data.Split(',');
-                    if (values.Length == 4)
+                    latestValidData = serialPort.ReadLine().Trim();
+                }
+            }
+            catch (TimeoutException) { }
+            catch (Exception e) { Debug.LogWarning(e.Message); }
+            if (!string.IsNullOrEmpty(latestValidData))
+            {
+                string[] values = latestValidData.Split(',');
+                if (values.Length == 4)
+                {
+                    if (int.TryParse(values[0], out int rx) &&
+                        int.TryParse(values[1], out int ry) &&
+                        int.TryParse(values[2], out int lb) &&
+                        int.TryParse(values[3], out int rb))
                     {
-                        rawJoyX = int.Parse(values[0]);
-                        rawJoyY = int.Parse(values[1]);
-                        isLeftBtnPressed = int.Parse(values[2]) == 1;
-                        isRightBtnPressed = int.Parse(values[3]) == 1;
+                        rawJoyX = rx;
+                        rawJoyY = ry;
+                        isLeftBtnPressed = lb == 1;
+                        isRightBtnPressed = rb == 1;
 
-                        // Normalize the math
                         joyX = -NormalizeAxis(rawJoyX);
                         joyY = NormalizeAxis(rawJoyY);
                     }
                 }
             }
-            catch (TimeoutException) { }
-            catch (Exception e) { Debug.LogWarning(e.Message); }
         }
 #endif
     }
